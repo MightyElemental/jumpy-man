@@ -26,7 +26,13 @@ public class PlayState extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-
+		for (int i = 0; i < entities.size(); i++) {
+			if (entities.get(i) != null) {
+				Entity temp = entities.get(i);
+				g.drawImage(temp.getDisplayImage().getScaledCopy(temp.getSizeX(), temp.getSizeY()), temp.getLocationX(),
+						temp.getLocationY());
+			}
+		}
 	}
 
 	@Override

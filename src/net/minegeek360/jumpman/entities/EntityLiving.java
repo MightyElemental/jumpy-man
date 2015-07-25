@@ -5,11 +5,11 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class EntityLiving extends Entity {
 
-	protected float moveSpeed;
-
-	public EntityLiving(String name) {
-		super(name);
+	public EntityLiving(String name, int sizeX, int sizeY) {
+		super(name, sizeX, sizeY);
 	}
+
+	protected float moveSpeed;
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {

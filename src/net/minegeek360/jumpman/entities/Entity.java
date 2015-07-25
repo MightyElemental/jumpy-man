@@ -1,6 +1,7 @@
 package net.minegeek360.jumpman.entities;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.state.StateBasedGame;
 
 public abstract class Entity {
@@ -11,8 +12,14 @@ public abstract class Entity {
 
 	protected float velocityX, velocityY, locationX, locationY;
 
-	public Entity(String name) {
+	protected int sizeX, sizeY;
+	
+	protected Image displayImage;
+
+	public Entity(String name, int sizeX, int sizeY) {
 		this.entityName = name;
+		this.sizeX = sizeX;
+		this.sizeY = sizeY;
 	}
 
 	public String getName() {
@@ -72,6 +79,38 @@ public abstract class Entity {
 
 	public void setLocationY(float locationY) {
 		this.locationY = locationY;
+	}
+
+	public int getSizeX() {
+		return sizeX;
+	}
+
+	/** Sets the width of the entity
+	 * 
+	 * @param sizeX
+	 *            the new width for the entity */
+	public void setSizeX(int sizeX) {
+		this.sizeX = sizeX;
+	}
+
+	public int getSizeY() {
+		return sizeY;
+	}
+
+	/** Sets the height of the entity
+	 * 
+	 * @param sizeY
+	 *            the new height for the entity */
+	public void setSizeY(int sizeY) {
+		this.sizeY = sizeY;
+	}
+
+	public Image getDisplayImage() {
+		return displayImage;
+	}
+
+	public void setDisplayImage(Image displayImage) {
+		this.displayImage = displayImage;
 	}
 
 }

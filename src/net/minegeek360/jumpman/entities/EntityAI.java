@@ -5,8 +5,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public abstract class EntityAI extends EntityLiving {
 
-	public EntityAI(String name) {
-		super(name);
+	public EntityAI(String name, int sizeX, int sizeY) {
+		super(name, sizeX, sizeY);
 	}
 
 	@Override

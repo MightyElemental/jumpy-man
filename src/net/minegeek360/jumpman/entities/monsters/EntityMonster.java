@@ -7,8 +7,8 @@ import net.minegeek360.jumpman.entities.EntityAI;
 
 public class EntityMonster extends EntityAI {
 
-	public EntityMonster(String name) {
-		super(name);
+	public EntityMonster(String name, int sizeX, int sizeY) {
+		super(name, sizeX, sizeY);
 	}
 
 	@Override
