@@ -73,5 +73,5 @@ public class StartupSettings extends JFrame
 		JButton btnNewButton = new JButton("Launch");
 		btnNewButton.setBounds(10, 202, 280, 63);
 		contentPane.add(btnNewButton);
-	}
+	} 
 }
