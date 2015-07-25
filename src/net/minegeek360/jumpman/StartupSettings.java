@@ -17,37 +17,30 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
-public class StartupSettings extends JFrame
-{
+public class StartupSettings extends JFrame {
 
 	private JPanel contentPane;
 
 	/** Launch the application. */
-	public void startUp()
-	{
-		EventQueue.invokeLater(new Runnable()
-		{
-			public void run()
-			{
-				try
-				{
+	public void startUp() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
 					StartupSettings frame = new StartupSettings();
 					frame.setVisible(true);
-				}
-				catch (Exception e)
-				{
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
 
-	JComboBox<String>	aspComboBox	= new JComboBox<String>();
-	JComboBox<String>	resComboBox	= new JComboBox<String>();
+	JComboBox<String> aspComboBox = new JComboBox<String>();
+	JComboBox<String> resComboBox = new JComboBox<String>();
+	JCheckBox chckbxShowFps = new JCheckBox("Show FPS");
 
 	/** Create the frame. */
-	public StartupSettings()
-	{
+	public StartupSettings() {
 		setResizable(false);
 		setType(Type.UTILITY);
 		setTitle("Game setup");
@@ -77,15 +70,12 @@ public class StartupSettings extends JFrame
 
 		aspComboBox.setBounds(126, 15, 154, 20);
 		contentPane.add(aspComboBox);
-		for (int i = 0; i < JumpMan.commonRatios.length; i++)
-		{
+		for (int i = 0; i < JumpMan.commonRatios.length; i++) {
 			aspComboBox.addItem((int) JumpMan.commonRatios[i][0] + ":" + (int) JumpMan.commonRatios[i][1]);
 		}
 
-		aspComboBox.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
+		aspComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				LoadResolution();
 
 			}
@@ -105,12 +95,10 @@ public class StartupSettings extends JFrame
 		contentPane.add(lblMaxFps);
 
 		final JSlider slider = new JSlider();
-		slider.addMouseListener(new MouseAdapter()
-		{
+		slider.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseReleased(MouseEvent arg0)
-			{
-				lblNewLabel.setText(slider.getValue() + " frames per second");
+			public void mouseReleased(MouseEvent arg0) {
+				lblNewLabel.setText(slider.getValue() + " Frames Per Second");
 			}
 		});
 
@@ -122,14 +110,11 @@ public class StartupSettings extends JFrame
 
 		contentPane.add(slider);
 
-		final JCheckBox chckbxShowFps = new JCheckBox("Show FPS");
 		chckbxShowFps.setBounds(93, 168, 106, 23);
 		contentPane.add(chckbxShowFps);
 
-		btnNewButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				JumpMan.width = JumpMan.commonResolutions[aspComboBox.getSelectedIndex()][resComboBox.getSelectedIndex()];
 				JumpMan.aspectRatio = JumpMan.commonRatios[aspComboBox.getSelectedIndex()];
 				JumpMan.maxFPS = slider.getValue();
@@ -142,11 +127,9 @@ public class StartupSettings extends JFrame
 		LoadResolution();
 	}
 
-	public void LoadResolution()
-	{
+	public void LoadResolution() {
 		resComboBox.removeAllItems();
-		for (int i = 0; i < JumpMan.commonResolutions[aspComboBox.getSelectedIndex()].length; i++)
-		{
+		for (int i = 0; i < JumpMan.commonResolutions[aspComboBox.getSelectedIndex()].length; i++) {
 			int height = (int) (JumpMan.commonResolutions[aspComboBox.getSelectedIndex()][i]
 					* (JumpMan.commonRatios[aspComboBox.getSelectedIndex()][1] / JumpMan.commonRatios[aspComboBox.getSelectedIndex()][0]));
 			resComboBox.addItem(JumpMan.commonResolutions[aspComboBox.getSelectedIndex()][i] + ":" + height);
