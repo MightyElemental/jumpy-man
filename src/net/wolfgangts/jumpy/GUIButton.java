@@ -44,9 +44,11 @@ public class GUIButton
 		return this.buttonRect;
 	}
 	
-	public void setClickEvent(Runnable clickEvent)
+	public GUIButton setClickEvent(Runnable clickEvent)
 	{
 		this.clickEvent = clickEvent;
+		
+		return this;
 	}
 	
 	public void callClickEvent()
