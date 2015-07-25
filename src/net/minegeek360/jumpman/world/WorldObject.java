@@ -1,6 +1,9 @@
 package net.minegeek360.jumpman.world;
 
-public class WorldObject {
+import java.awt.Rectangle;
+
+@SuppressWarnings("serial")
+public class WorldObject extends Rectangle {
 
 	protected boolean isSolid = true;
 
