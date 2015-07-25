@@ -46,6 +46,7 @@ public class JumpMan extends StateBasedGame {
 	}
 
 	public static TrueTypeFont font;
+	public static TrueTypeFont fontArial;
 
 	public static void startGame() {
 		AppGameContainer appGc;
@@ -71,11 +72,15 @@ public class JumpMan extends StateBasedGame {
 		NULL_IMAGE = resLoader.loadImage("noImage");
 
 		try {
-			InputStream inputStream = org.newdawn.slick.util.ResourceLoader.getResourceAsStream("res/assets/monkey.ttf");
+			InputStream inputStream = org.newdawn.slick.util.ResourceLoader.getResourceAsStream("res/assets/fonts/arial (1).ttf");
 			Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
-			awtFont2 = awtFont2.deriveFont(20f); // set font size
-			font = new TrueTypeFont(awtFont2, true);
-			// System.out.println("Created new font size ("+i+")");
+			awtFont2 = awtFont2.deriveFont(15f);
+			fontArial = new TrueTypeFont(awtFont2, true);
+			
+			InputStream inputStream1 = org.newdawn.slick.util.ResourceLoader.getResourceAsStream("res/assets/fonts/monkey.ttf");
+			Font awtFont21 = Font.createFont(Font.TRUETYPE_FONT, inputStream1);
+			awtFont21 = awtFont21.deriveFont(36f);
+			font = new TrueTypeFont(awtFont21, true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

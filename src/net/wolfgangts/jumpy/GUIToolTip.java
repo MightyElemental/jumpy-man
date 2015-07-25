@@ -3,6 +3,7 @@ package net.wolfgangts.jumpy;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.JumpMan;
@@ -17,11 +18,16 @@ public class GUIToolTip
 	{
 		if (showHint)
 		{
+			TrueTypeFont currentFont = JumpMan.fontArial;
+			
 			int x = gc.getInput().getMouseX();
 			int y = gc.getInput().getMouseY();
-			int width = JumpMan.font.getWidth(this.hint);
-			int height = JumpMan.font.getHeight();
+			int width = currentFont.getWidth(this.hint);
+			int height = currentFont.getHeight();
 
+
+			
+			g.setFont(currentFont);
 			g.setColor(new Color(255, 255, 255, 255));
 			g.fillRect(x - 5, y-height - 10, width + 10, height + 10);
 			g.setColor(new Color(0, 0, 0, 255));
