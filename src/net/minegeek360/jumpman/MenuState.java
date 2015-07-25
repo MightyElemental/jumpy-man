@@ -40,7 +40,7 @@ public class MenuState extends BasicGameState
 		Render3D = new Render3D();
 		gui = new GUIRender();
 
-		gui.addButton(new GUIButton(0, gc.getHeight() / 2, gc.getWidth(), 50, "Hi").setColor(new Color(255, 0, 0, 255)).setClickEvent(new Runnable()
+		gui.addButton(0, gc.getHeight() / 2 - 25, gc.getWidth(), 50, "Hi").setColor(new Color(255, 0, 0, 255)).setClickEvent(new Runnable()
 		{
 			public void run()
 			{
@@ -49,9 +49,11 @@ public class MenuState extends BasicGameState
 		}).setHoverEvent(new Runnable(){
 			public void run()
 			{
-				tooltip.setHint("Hi");
+				tooltip.setHint("You are an idiot");
 			}
-		}));
+		});
+		
+		
 
 	}
 
@@ -65,6 +67,7 @@ public class MenuState extends BasicGameState
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
 	{
+		tooltip.update();
 		gui.update(gc, sbg, delta);
 		if (sbg.getCurrentState().getID() != stateToChange)
 			sbg.enterState(stateToChange);

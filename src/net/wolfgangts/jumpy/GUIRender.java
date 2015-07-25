@@ -67,4 +67,20 @@ public class GUIRender
 	{
 		buttons.add(button);
 	}
+	
+	public GUIButton addButton(int x, int y, int i, int j)
+	{
+		GUIButton newButton = new GUIButton(x,y,i,j);
+		
+		buttons.add(newButton);
+		return newButton;
+	}
+	
+	public GUIButton addButton(int x, int y, int i, int j, String title)
+	{
+		GUIButton newButton = new GUIButton(x,y,i,j, title);
+		
+		buttons.add(newButton);
+		return newButton;
+	}
 }

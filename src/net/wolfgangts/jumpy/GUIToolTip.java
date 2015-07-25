@@ -23,9 +23,9 @@ public class GUIToolTip
 			int height = JumpMan.font.getHeight();
 
 			g.setColor(new Color(255, 255, 255, 255));
-			g.drawRect(x, y, width, height);
+			g.fillRect(x - 5, y-height - 10, width + 10, height + 10);
 			g.setColor(new Color(0, 0, 0, 255));
-			g.drawString(this.hint, x + width / 2, y + height / 2);
+			g.drawString(this.hint, x, y-height-5);
 		}
 
 	}
@@ -39,9 +39,6 @@ public class GUIToolTip
 
 	public void update()
 	{
-		if(System.currentTimeMillis()-this.time >= 500)
-		{
-			this.showHint = false;
-		}
+		this.showHint = false;
 	}
 }
