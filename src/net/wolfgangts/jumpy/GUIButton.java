@@ -4,12 +4,18 @@ package net.wolfgangts.jumpy;
 import java.awt.Rectangle;
 
 import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.state.StateBasedGame;
+
+import net.minegeek360.jumpman.JumpMan;
 
 public class GUIButton
 {
 	private Rectangle	buttonRect;
 	private String		title;
 	private Runnable	clickEvent;
+	private Runnable	hoverEvent;
 	private Color		color;
 	private Color		fontColor;
 
@@ -26,9 +32,11 @@ public class GUIButton
 		this.setTitle(title);
 	}
 
-	public void setColor(Color color)
+	public GUIButton setColor(Color color)
 	{
 		this.color = color;
+		
+		return this;
 	}
 
 	public Color getColor()
@@ -36,9 +44,11 @@ public class GUIButton
 		return this.color;
 	}
 
-	public void setFontColor(Color color)
+	public GUIButton setFontColor(Color color)
 	{
 		this.fontColor = color;
+		
+		return this;
 	}
 
 	public Color getFontColor()
@@ -83,4 +93,37 @@ public class GUIButton
 		if (this.clickEvent != null)
 			this.clickEvent.run();
 	}
+	
+	public GUIButton setHoverEvent(Runnable hoverEvent)
+	{
+		this.hoverEvent = hoverEvent;
+
+		return this;
+	}
+
+	
+	public void callHoverEvent()
+	{
+		if (this.hoverEvent != null)
+			this.hoverEvent.run();
+	}
+	
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
+	{
+		Rectangle position = this.buttonRect;
+		
+		g.setColor(this.color);
+		g.fillRect(position.x, position.y, position.width, position.height);
+
+		g.setColor(this.fontColor);
+		g.setFont(JumpMan.font);
+		
+		int width = JumpMan.font.getWidth(this.title);
+		int height = JumpMan.font.getHeight();
+		
+		g.drawString(this.title, position.x + position.width / 2 - width/2, position.y + position.height / 2 - height/2);
+
+	}
+	
+	
 }

@@ -25,20 +25,8 @@ public class GUIRender
 	{
 		for (Object buttonObj : buttons.toArray())
 		{
-			GUIButton button = (GUIButton) buttonObj;
-
-			Rectangle position = button.getPosition();
-
-			g.setColor(new Color(255,255,255,255));
-			g.fillRect(position.x, position.y, position.width, position.height);
-
-			g.setColor(new Color(0, 0, 0, 255));
-			g.setFont(JumpMan.font);
-			
-			int width = JumpMan.font.getWidth(button.getTitle());
-			int height = JumpMan.font.getHeight();
-			
-			g.drawString(button.getTitle(), position.x + position.width / 2 - width/2, position.y + position.height / 2 - height/2);
+				GUIButton button = (GUIButton) buttonObj;
+				button.render(gc, sbg, g);
 		}
 	}
 
@@ -54,6 +42,17 @@ public class GUIRender
 				if (position.contains(new Point(gc.getInput().getMouseX(), gc.getInput().getMouseY())))
 				{
 					button.callClickEvent();
+				}
+			}
+		}else{
+			for (Object buttonObj : buttons.toArray())
+			{
+				GUIButton button = (GUIButton) buttonObj;
+				Rectangle position = button.getPosition();
+
+				if (position.contains(new Point(gc.getInput().getMouseX(), gc.getInput().getMouseY())))
+				{
+					button.callHoverEvent();
 				}
 			}
 		}
