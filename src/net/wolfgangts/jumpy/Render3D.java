@@ -8,7 +8,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class Renderer
+public class Render3D
 {
 	private ArrayList<float[]>	objects			= new ArrayList<float[]>();
 	private float				gameTime;
@@ -17,7 +17,7 @@ public class Renderer
 
 	private Random random = new Random();
 
-	public Renderer()
+	public Render3D()
 	{
 		this.gameTime = 0;
 	}
