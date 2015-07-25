@@ -31,9 +31,7 @@ public class PlayState extends BasicGameState {
 				Entity temp = world.entities.get(i);
 				g.drawImage(temp.getDisplayImage().getScaledCopy(temp.getSizeX(), temp.getSizeY()), temp.getLocationX(),
 						temp.getLocationY());
-						
-				 
-				
+
 			}
 		}
 	}
