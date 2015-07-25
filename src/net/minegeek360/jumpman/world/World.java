@@ -18,5 +18,7 @@ public class World {
 	public void init(GameContainer gc, StateBasedGame sbg) {
 		entities.add(new EntityPlayer());
 	}
+	
+	public WorldMap currentMapLoaded;
 
 }

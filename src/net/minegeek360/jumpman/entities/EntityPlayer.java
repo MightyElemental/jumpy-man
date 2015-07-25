@@ -9,7 +9,7 @@ public class EntityPlayer extends EntityLiving {
 	int[] playerCont = { Input.KEY_D, Input.KEY_A, Input.KEY_W, Input.KEY_S, Input.KEY_SPACE };
 
 	public EntityPlayer() {
-		super("Player", 50, 35);
+		super("Player", 35, 50);
 		this.setHealth(50);
 		this.maxHealth = 50;
 		this.setDisplayImage("entity.player.player_stand");
