@@ -17,9 +17,18 @@ public class GUIRender
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 	{
-		for(GUIButton button : (GUIButton[]) buttons.toArray())
+		for(Object buttonObj : buttons.toArray())
 		{
-			g.fillRect(button.getPosition().x, button.getPosition().y, button.getPosition().width, button.getPosition().height);
+			GUIButton button = (GUIButton) buttonObj;
+			
+			g.fillRect(
+					button.getPosition().x, 
+					button.getPosition().y, 
+					button.getPosition().width, 
+					button.getPosition().height
+					);
+			
+			
 		}
 	}
 	
@@ -32,5 +41,4 @@ public class GUIRender
 	{
 		buttons.add(button);
 	}
-	
 }
