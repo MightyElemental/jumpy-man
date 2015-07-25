@@ -22,6 +22,7 @@ public class JumpMan extends StateBasedGame {
 	public static int maxFPS;
 	public static boolean fullscreen;
 	public static boolean showFPS;
+	public static boolean vsync;
 
 	public JumpMan(String name) {
 		super(name);
@@ -45,6 +46,7 @@ public class JumpMan extends StateBasedGame {
 			appGc.setMaximumLogicUpdateInterval(30);
 			appGc.setMinimumLogicUpdateInterval(15);
 			appGc.setShowFPS(showFPS);
+			appGc.setVSync(vsync);
 			appGc.start();
 		} catch (SlickException e) {
 			e.printStackTrace();

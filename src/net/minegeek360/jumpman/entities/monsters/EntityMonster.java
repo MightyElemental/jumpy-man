@@ -18,7 +18,7 @@ public class EntityMonster extends EntityAI {
 
 	@Override
 	public void think(GameContainer gc, StateBasedGame sbg, int delta) {
-		
+
 	}
 
 }

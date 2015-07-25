@@ -40,6 +40,7 @@ public class StartupSettings extends JFrame {
 	JCheckBox chckbxShowFps = new JCheckBox("Show FPS");
 	JSlider slider = new JSlider();
 	JCheckBox chckbxFullscreen = new JCheckBox("Fullscreen");
+	JCheckBox chckbxVsync = new JCheckBox("VSync");
 
 	/** Create the frame. */
 	public StartupSettings() {
@@ -110,8 +111,11 @@ public class StartupSettings extends JFrame {
 
 		contentPane.add(slider);
 
-		chckbxShowFps.setBounds(93, 168, 106, 23);
+		chckbxShowFps.setBounds(93, 168, 85, 23);
 		contentPane.add(chckbxShowFps);
+
+		chckbxVsync.setBounds(180, 168, 67, 23);
+		contentPane.add(chckbxVsync);
 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -129,6 +133,7 @@ public class StartupSettings extends JFrame {
 		JumpMan.maxFPS = slider.getValue();
 		JumpMan.fullscreen = chckbxFullscreen.isSelected();
 		JumpMan.showFPS = chckbxShowFps.isSelected();
+		JumpMan.vsync = chckbxVsync.isSelected();
 		JumpMan.startGame();
 	}
 

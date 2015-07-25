@@ -3,7 +3,7 @@ package net.minegeek360.jumpman.entities;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
 
-public abstract class EntityAI extends Entity {
+public abstract class EntityAI extends EntityLiving {
 
 	public EntityAI(String name) {
 		super(name);
