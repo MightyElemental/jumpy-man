@@ -58,25 +58,25 @@ public class EntityLiving extends Entity {
 	/** Adds velocity to the entity to move left */
 	public void moveLeft() {
 		if (velocityX < -moveSpeed) { return; }
-		this.velocityX -= moveSpeed / 4;
+		this.velocityX -= moveSpeed;
 	}
 
 	/** Adds velocity to the entity to move right */
 	public void moveRight() {
 		if (velocityX > moveSpeed) { return; }
-		this.velocityX += moveSpeed / 4;
+		this.velocityX += moveSpeed;
 	}
 
 	/** Adds velocity to the entity to move up */
 	public void moveUp() {
 		if (velocityY < -moveSpeed) { return; }
-		this.velocityY -= moveSpeed / 4;
+		this.velocityY -= moveSpeed;
 	}
 
 	/** Adds velocity to the entity to move down */
 	public void moveDown() {
 		if (velocityY > moveSpeed) { return; }
-		this.velocityY += moveSpeed / 4;
+		this.velocityY += moveSpeed;
 	}
 
 	/** Gets the speed at which the entity moves */

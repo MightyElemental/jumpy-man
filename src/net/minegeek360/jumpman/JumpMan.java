@@ -13,7 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
 /** @author MightyElemental & WolfgangTS */
 public class JumpMan extends StateBasedGame {
 
-	public static final String GAME_VERSION = "0.0.0";
+	public static final String GAME_VERSION = "0.0.1";
 	public static final String GAME_NAME = "The Adventures Of Jumpy Man";
 	public static final String GAME_NAME_DISPLAY = GAME_NAME + " | Version " + GAME_VERSION;
 
