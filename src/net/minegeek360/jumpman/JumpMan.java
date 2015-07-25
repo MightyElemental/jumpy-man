@@ -72,11 +72,11 @@ public class JumpMan extends StateBasedGame {
 		NULL_IMAGE = resLoader.loadImage("noImage");
 
 		try {
-			InputStream inputStream = org.newdawn.slick.util.ResourceLoader.getResourceAsStream("res/assets/fonts/arial (1).ttf");
+			InputStream inputStream = org.newdawn.slick.util.ResourceLoader.getResourceAsStream("res/assets/fonts/arial.ttf");
 			Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
 			awtFont2 = awtFont2.deriveFont(15f);
 			fontArial = new TrueTypeFont(awtFont2, true);
-			
+
 			InputStream inputStream1 = org.newdawn.slick.util.ResourceLoader.getResourceAsStream("res/assets/fonts/monkey.ttf");
 			Font awtFont21 = Font.createFont(Font.TRUETYPE_FONT, inputStream1);
 			awtFont21 = awtFont21.deriveFont(36f);
