@@ -1,9 +1,13 @@
 package net.minegeek360.jumpman;
 
+import java.awt.Font;
+import java.io.InputStream;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.StateBasedGame;
 
 /** @author MightyElemental & WolfgangTS */
@@ -41,6 +45,8 @@ public class JumpMan extends StateBasedGame {
 		settingMenu.startUp();
 	}
 
+	public static TrueTypeFont font;
+
 	public static void startGame() {
 		AppGameContainer appGc;
 
@@ -63,6 +69,17 @@ public class JumpMan extends StateBasedGame {
 		this.getState(STATE_MENU).init(gc, this);
 		this.getState(STATE_PLAY).init(gc, this);
 		NULL_IMAGE = resLoader.loadImage("noImage");
+
+		try {
+			InputStream inputStream = org.newdawn.slick.util.ResourceLoader.getResourceAsStream("res/assets/monkey.ttf");
+			Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+			awtFont2 = awtFont2.deriveFont(20f); // set font size
+			font = new TrueTypeFont(awtFont2, true);
+			// System.out.println("Created new font size ("+i+")");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		this.enterState(STATE_MENU);
 	}
 
