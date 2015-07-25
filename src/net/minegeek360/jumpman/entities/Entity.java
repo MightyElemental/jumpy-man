@@ -13,7 +13,7 @@ public abstract class Entity {
 	protected float velocityX, velocityY, locationX, locationY;
 
 	protected int sizeX, sizeY;
-	
+
 	protected Image displayImage;
 
 	public Entity(String name, int sizeX, int sizeY) {
@@ -109,8 +109,14 @@ public abstract class Entity {
 		return displayImage;
 	}
 
-	public void setDisplayImage(Image displayImage) {
+	/** Sets the image to be displayed
+	 * 
+	 * @param displayImage
+	 *            the new image to be displayed
+	 * @return Entity for ease in construction */
+	public Entity setDisplayImage(Image displayImage) {
 		this.displayImage = displayImage;
+		return this;
 	}
 
 }

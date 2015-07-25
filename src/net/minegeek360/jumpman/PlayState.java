@@ -1,7 +1,5 @@
 package net.minegeek360.jumpman;
 
-import java.util.ArrayList;
-
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -9,26 +7,28 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.entities.Entity;
+import net.minegeek360.jumpman.world.World;
 
 public class PlayState extends BasicGameState {
 
 	private final int ID;
-	public ArrayList<Entity> entities;
-
+	public World world;
+	
 	public PlayState(int playState) {
 		this.ID = playState;
 	}
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		entities = new ArrayList<Entity>();
+		world = new World();
+		world.init(gc,sbg);
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		for (int i = 0; i < entities.size(); i++) {
-			if (entities.get(i) != null) {
-				Entity temp = entities.get(i);
+		for (int i = 0; i < world.entities.size(); i++) {
+			if (world.entities.get(i) != null) {
+				Entity temp = world.entities.get(i);
 				g.drawImage(temp.getDisplayImage().getScaledCopy(temp.getSizeX(), temp.getSizeY()), temp.getLocationX(),
 						temp.getLocationY());
 			}
@@ -37,8 +37,8 @@ public class PlayState extends BasicGameState {
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		for (int i = 0; i < entities.size(); i++) {
-			entities.get(i).update(gc, sbg, delta);
+		for (int i = 0; i < world.entities.size(); i++) {
+			world.entities.get(i).update(gc, sbg, delta);
 		}
 	}
 

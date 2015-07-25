@@ -13,7 +13,45 @@ public class EntityLiving extends Entity {
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
+		float delta2 = delta / 16f;
+		formatVelocity();
+		this.setLocationX(this.getLocationX() + (getVelocityY() * delta2));
+		this.setLocationY(this.getLocationY() + (getVelocityX() * delta2));
+		System.out.println(delta2);
+	}
 
+	private void formatVelocity() {
+		int velShift = 10;
+
+		if (velocityX > 0) {
+			velocityX -= moveSpeed / velShift;
+		} else if (velocityX < 0) {
+			velocityX += moveSpeed / velShift;
+		}
+		if (velocityX >= moveSpeed) {
+			velocityX = moveSpeed;
+		} else if (velocityX <= -moveSpeed) {
+			velocityX = -moveSpeed;
+		}
+
+		if (velocityX > -0.19 && velocityX < 0.19) {
+			velocityX = 0;
+		}
+
+		if (velocityY > 0) {
+			velocityY -= moveSpeed / velShift;
+		} else if (velocityY < 0) {
+			velocityY += moveSpeed / velShift;
+		}
+		if (velocityY >= moveSpeed) {
+			velocityY = moveSpeed;
+		} else if (velocityY <= -moveSpeed) {
+			velocityY = -moveSpeed;
+		}
+
+		if (velocityY > -0.19 && velocityY < 0.19) {
+			velocityY = 0;
+		}
 	}
 
 	/** Adds velocity to the entity to move left */
