@@ -36,13 +36,19 @@ public class MenuState extends BasicGameState
 		Render3D = new Render3D();
 		gui = new GUIRender();
 
-		gui.addButton(new GUIButton(10, 10, 50, 50, "Hi").setClickEvent(new Runnable()
+		gui.addButton(new GUIButton(0, gc.getHeight()/2, gc.getWidth(), 50, "Hi").setClickEvent(new Runnable()
 		{
 			public void run()
 			{
-				stateToChange = JumpMan.STATE_MENU;
+				stateToChange = JumpMan.STATE_PLAY;
 			}
 		}));
+		
+		
+		
+
+		
+		
 
 	}
 
@@ -58,6 +64,8 @@ public class MenuState extends BasicGameState
 		gui.update(gc, sbg, delta);
 		if(sbg.getCurrentState().getID() != stateToChange)
 			sbg.enterState(stateToChange);
+		
+
 	}
 
 	@Override
