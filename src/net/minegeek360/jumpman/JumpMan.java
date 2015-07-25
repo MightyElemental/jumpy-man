@@ -27,7 +27,15 @@ public class JumpMan extends StateBasedGame {
 	}
 
 	public static void main(String[] args) {
+		StartupSettings settingMenu = new StartupSettings();
+		
+		settingMenu.startUp();
+	}
+	
+	public static void startGame()
+	{
 		AppGameContainer appGc;
+		
 		try {
 			appGc = new AppGameContainer(new JumpMan(GAME_NAME));
 			appGc.setDisplayMode(width, (int) (width / aspectRatio[0] * aspectRatio[1]), false);
