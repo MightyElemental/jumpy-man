@@ -20,12 +20,14 @@ public class MenuState extends BasicGameState
 	private Random		random	= new Random();
 	private Render3D	Render3D;
 	private GUIRender	gui;
+	private int stateToChange = JumpMan.STATE_MENU;
 
 	/* End */
 
 	public MenuState(int stateMenu)
 	{
 		this.ID = stateMenu;
+		
 	}
 
 	@Override
@@ -38,7 +40,7 @@ public class MenuState extends BasicGameState
 		{
 			public void run()
 			{
-				System.out.println("Hi");
+				stateToChange = JumpMan.STATE_MENU;
 			}
 		}));
 
@@ -54,8 +56,8 @@ public class MenuState extends BasicGameState
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
 	{
 		gui.update(gc, sbg, delta);
-
-		// sbg.enterState(JumpMan.STATE_PLAY);
+		if(sbg.getCurrentState().getID() != stateToChange)
+			sbg.enterState(stateToChange);
 	}
 
 	@Override
