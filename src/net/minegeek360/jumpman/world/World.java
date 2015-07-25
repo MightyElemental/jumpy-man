@@ -13,7 +13,7 @@ public class World {
 	public ArrayList<Entity> entities = new ArrayList<Entity>();
 	
 	public void init(GameContainer gc, StateBasedGame sbg){
-		entities.add(new EntityLiving("That thing",50,50).setMoveSpeed(50));
+		entities.add(new EntityLiving("That thing",250,250).setMoveSpeed(50));
 	}
 
 }
