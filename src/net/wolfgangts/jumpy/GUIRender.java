@@ -29,7 +29,7 @@ public class GUIRender
 
 			Rectangle position = button.getPosition();
 
-			g.setColor(new Color(255, 255, 255, 255));
+			g.setColor(new Color(255,255,255,255));
 			g.fillRect(position.x, position.y, position.width, position.height);
 
 			g.setColor(new Color(0, 0, 0, 255));
