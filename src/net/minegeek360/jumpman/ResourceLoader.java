@@ -30,7 +30,6 @@ public class ResourceLoader {
 				loadedImage = new Image("res/assets/textures/" + location);
 			} catch (Exception e) {
 				System.out.println("CANT LOAD IMAGE '" + location + "'");
-				e.printStackTrace();
 			}
 			mapLoads.put(location, loadedImage);
 		}

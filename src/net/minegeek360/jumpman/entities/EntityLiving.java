@@ -17,8 +17,8 @@ public class EntityLiving extends Entity {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
 		float delta2 = delta / 16f;
 		formatVelocity();
-		this.setLocationX(this.getLocationX() + (getVelocityY() * delta2));
-		this.setLocationY(this.getLocationY() + (getVelocityX() * delta2));
+		this.setLocationX(this.getLocationX() + (getVelocityX() * delta2));
+		this.setLocationY(this.getLocationY() + (getVelocityY() * delta2));
 	}
 
 	private void formatVelocity() {
