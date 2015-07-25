@@ -25,8 +25,6 @@ public class GUIToolTip
 			int width = currentFont.getWidth(this.hint);
 			int height = currentFont.getHeight();
 
-
-			
 			g.setFont(currentFont);
 			g.setColor(new Color(255, 255, 255, 255));
 			g.fillRect(x - 5, y-height - 10, width + 10, height + 10);

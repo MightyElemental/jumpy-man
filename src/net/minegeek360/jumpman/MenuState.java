@@ -52,9 +52,6 @@ public class MenuState extends BasicGameState
 				tooltip.setHint("Click to start the game.");
 			}
 		});
-		
-		
-
 	}
 
 	@Override
