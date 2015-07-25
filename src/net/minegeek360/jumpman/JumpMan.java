@@ -40,8 +40,8 @@ public class JumpMan extends StateBasedGame {
 			appGc = new AppGameContainer(new JumpMan(GAME_NAME));
 			appGc.setDisplayMode(width, (int) (width / aspectRatio[0] * aspectRatio[1]), false);
 			appGc.setTargetFrameRate(60);
-			appGc.setMaximumLogicUpdateInterval(30);
-			appGc.setMinimumLogicUpdateInterval(15);
+			appGc.setMaximumLogicUpdateInterval(15);
+			appGc.setMinimumLogicUpdateInterval(1);
 			appGc.start();
 		} catch (SlickException e) {
 			e.printStackTrace();

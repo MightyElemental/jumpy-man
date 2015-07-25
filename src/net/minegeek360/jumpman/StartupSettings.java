@@ -10,6 +10,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Window.Type;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class StartupSettings extends JFrame
@@ -58,6 +60,8 @@ public class StartupSettings extends JFrame
 		comboBox.setBounds(126, 46, 154, 20);
 		contentPane.add(comboBox);
 		
+		
+		
 		JLabel resolutionLabel = new JLabel("Resolution:");
 		resolutionLabel.setBounds(10, 49, 106, 14);
 		contentPane.add(resolutionLabel);
@@ -71,7 +75,14 @@ public class StartupSettings extends JFrame
 		contentPane.add(comboBox_1);
 		
 		JButton btnNewButton = new JButton("Launch");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JumpMan.startGame();
+			}
+		});
 		btnNewButton.setBounds(10, 202, 280, 63);
 		contentPane.add(btnNewButton);
+		
 	} 
 }

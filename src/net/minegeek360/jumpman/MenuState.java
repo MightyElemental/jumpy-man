@@ -1,17 +1,30 @@
 package net.minegeek360.jumpman;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+
+import net.wolfgangts.jumpy.Renderer;
 
 public class MenuState extends BasicGameState
 {
 
 	private final int ID;
+
+	/** Variables to be deleted */
+	private float DELETE_THIS = 0;
+	private Random random = new Random();
+	private Renderer rend;
+
+	
+
+	/** End */
 
 	public MenuState(int stateMenu)
 	{
@@ -21,11 +34,9 @@ public class MenuState extends BasicGameState
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
 	{
-
+		rend = new Renderer();
 	}
-
-	/** A variable to be deleted */
-	private float DELETE_THIS = 0;
+	
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException
@@ -33,29 +44,16 @@ public class MenuState extends BasicGameState
 		g.drawString("Hello WolfgangTS...", (float) ((Math.sin(DELETE_THIS / 45.0) * 100) + 300), 50);
 		g.drawString("Or are you MightyElemental?", (float) ((Math.sin(DELETE_THIS / 46.0) * 100) + 350), 100);
 
-		for (int i = 0; i < DELETE_THIS_2.size(); i++)
-		{
-			int size = DELETE_THIS_2.size();
-
-			if (i != size - 1)
-				g.drawLine(DELETE_THIS_2.get(i)[0], DELETE_THIS_2.get(i)[1], DELETE_THIS_2.get((i + 1) % size)[0], DELETE_THIS_2.get((i + 1) % size)[1]);
-
-		}
-
+		rend.render(gc, sbg, g);
 	}
-
-	/** A variable to be deleted */
-	private ArrayList<float[]> DELETE_THIS_2 = new ArrayList<float[]>();
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
 	{
-		DELETE_THIS += 1 * delta / 5.0;
-		DELETE_THIS_2.add(new float[] {
-				DELETE_THIS * (DELETE_THIS / 500f), 
-				(float) (Math.sin(DELETE_THIS / 20.0f) * (DELETE_THIS / 5f)) + 200 
-				});
+		rend.update(gc, sbg, delta);
 	}
+	
+
 
 	@Override
 	public int getID()
