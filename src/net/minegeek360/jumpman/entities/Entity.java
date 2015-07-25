@@ -4,6 +4,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.state.StateBasedGame;
 
+/** @author MightyElemental */
 public abstract class Entity {
 
 	protected String entityName = "Undefined";

@@ -13,7 +13,7 @@ public class PlayState extends BasicGameState {
 
 	private final int ID;
 	public World world;
-	
+
 	public PlayState(int playState) {
 		this.ID = playState;
 	}
@@ -21,7 +21,7 @@ public class PlayState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		world = new World();
-		world.init(gc,sbg);
+		world.init(gc, sbg);
 	}
 
 	@Override

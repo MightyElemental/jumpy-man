@@ -5,6 +5,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+/** @author MightyElemental & WolfgangTS */
 public class JumpMan extends StateBasedGame {
 
 	public static final String GAME_VERSION = "0.0.0";

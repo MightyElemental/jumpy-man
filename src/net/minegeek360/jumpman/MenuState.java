@@ -33,12 +33,13 @@ public class MenuState extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		gui.render(gc, sbg, g);
+		//gui.render(gc, sbg, g);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		// rend.update(gc, sbg, delta);
+		sbg.enterState(JumpMan.STATE_PLAY);
 	}
 
 	@Override
