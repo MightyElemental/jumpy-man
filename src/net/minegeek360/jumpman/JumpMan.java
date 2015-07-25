@@ -19,6 +19,9 @@ public class JumpMan extends StateBasedGame {
 
 	public static int width;
 	public static float[] aspectRatio;
+	public static int maxFPS;
+	public static boolean fullscreen;
+	public static boolean showFPS;
 
 	public JumpMan(String name) {
 		super(name);
@@ -37,11 +40,11 @@ public class JumpMan extends StateBasedGame {
 
 		try {
 			appGc = new AppGameContainer(new JumpMan(GAME_NAME_DISPLAY));
-			appGc.setDisplayMode(width, (int) (width / aspectRatio[0] * aspectRatio[1]), false);
-			appGc.setTargetFrameRate(60);
+			appGc.setDisplayMode(width, (int) (width / aspectRatio[0] * aspectRatio[1]), fullscreen);
+			appGc.setTargetFrameRate(maxFPS);
 			appGc.setMaximumLogicUpdateInterval(30);
 			appGc.setMinimumLogicUpdateInterval(15);
-			appGc.setShowFPS(false);
+			appGc.setShowFPS(showFPS);
 			appGc.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
