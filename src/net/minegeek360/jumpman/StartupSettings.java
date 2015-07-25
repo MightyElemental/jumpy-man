@@ -10,31 +10,47 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
+import javax.swing.JSlider;
+import javax.swing.SwingConstants;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
 
 @SuppressWarnings("serial")
-public class StartupSettings extends JFrame {
+public class StartupSettings extends JFrame
+{
 
 	private JPanel contentPane;
 
 	/** Launch the application. */
-	public void startUp() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	public void startUp()
+	{
+		EventQueue.invokeLater(new Runnable()
+		{
+			public void run()
+			{
+				try
+				{
 					StartupSettings frame = new StartupSettings();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				}
+				catch (Exception e)
+				{
 					e.printStackTrace();
 				}
 			}
 		});
 	}
 
-	JComboBox<String> aspComboBox = new JComboBox<String>();
-	JComboBox<String> resComboBox = new JComboBox<String>();
+	JComboBox<String>	aspComboBox	= new JComboBox<String>();
+	JComboBox<String>	resComboBox	= new JComboBox<String>();
 
 	/** Create the frame. */
-	public StartupSettings() {
+	public StartupSettings()
+	{
 		setResizable(false);
 		setType(Type.UTILITY);
 		setTitle("Game setup");
@@ -45,6 +61,11 @@ public class StartupSettings extends JFrame {
 		setContentPane(contentPane);
 		setLocationRelativeTo(null);
 		contentPane.setLayout(null);
+
+		final JLabel lblNewLabel = new JLabel("60 frames per second");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(126, 101, 154, 23);
+		contentPane.add(lblNewLabel);
 
 		resComboBox.setBounds(126, 46, 154, 20);
 		contentPane.add(resComboBox);
@@ -59,32 +80,79 @@ public class StartupSettings extends JFrame {
 
 		aspComboBox.setBounds(126, 15, 154, 20);
 		contentPane.add(aspComboBox);
-		for (int i = 0; i < JumpMan.commonRatios.length; i++) {
+		for (int i = 0; i < JumpMan.commonRatios.length; i++)
+		{
 			aspComboBox.addItem((int) JumpMan.commonRatios[i][0] + ":" + (int) JumpMan.commonRatios[i][1]);
 		}
 
-		aspComboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println(aspComboBox.getSelectedIndex());
-				resComboBox.removeAllItems();
-				for (int i = 0; i < JumpMan.commonResolutions[aspComboBox.getSelectedIndex()].length; i++) {
-					int height = (int) (JumpMan.commonResolutions[aspComboBox.getSelectedIndex()][i]
-							* (JumpMan.commonRatios[aspComboBox.getSelectedIndex()][1]
-									/ JumpMan.commonRatios[aspComboBox.getSelectedIndex()][0]));
-					resComboBox.addItem(JumpMan.commonResolutions[aspComboBox.getSelectedIndex()][i] + ":" + height);
-				}
+		aspComboBox.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				LoadResolution();
+
 			}
 		});
 
 		JButton btnNewButton = new JButton("Launch");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+
+		btnNewButton.setBounds(10, 202, 280, 63);
+		contentPane.add(btnNewButton);
+
+		final JCheckBox chckbxFullscreen = new JCheckBox("Fullscreen");
+		chckbxFullscreen.setBounds(6, 168, 85, 23);
+		contentPane.add(chckbxFullscreen);
+
+		JLabel lblMaxFps = new JLabel("Max FPS:");
+		lblMaxFps.setBounds(10, 80, 106, 14);
+		contentPane.add(lblMaxFps);
+
+		final JSlider slider = new JSlider();
+		slider.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseReleased(MouseEvent arg0)
+			{
+				lblNewLabel.setText(slider.getValue() + " frames per second");
+			}
+		});
+
+		slider.setPaintLabels(true);
+		slider.setMinimum(30);
+		slider.setValue(60);
+		slider.setMaximum(240);
+		slider.setBounds(126, 73, 154, 31);
+
+		contentPane.add(slider);
+		
+		final JCheckBox chckbxShowFps = new JCheckBox("Show FPS");
+		chckbxShowFps.setBounds(93, 168, 106, 23);
+		contentPane.add(chckbxShowFps);
+
+		btnNewButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
 				JumpMan.width = JumpMan.commonResolutions[aspComboBox.getSelectedIndex()][resComboBox.getSelectedIndex()];
 				JumpMan.aspectRatio = JumpMan.commonRatios[aspComboBox.getSelectedIndex()];
+				JumpMan.maxFPS = slider.getValue();
+				JumpMan.fullscreen = chckbxFullscreen.isSelected();
+				JumpMan.showFPS = chckbxShowFps.isSelected();
 				JumpMan.startGame();
 			}
 		});
-		btnNewButton.setBounds(10, 202, 280, 63);
-		contentPane.add(btnNewButton);
+		
+		LoadResolution();
+	}
+
+	public void LoadResolution()
+	{
+		resComboBox.removeAllItems();
+		for (int i = 0; i < JumpMan.commonResolutions[aspComboBox.getSelectedIndex()].length; i++)
+		{
+			int height = (int) (JumpMan.commonResolutions[aspComboBox.getSelectedIndex()][i]
+					* (JumpMan.commonRatios[aspComboBox.getSelectedIndex()][1] / JumpMan.commonRatios[aspComboBox.getSelectedIndex()][0]));
+			resComboBox.addItem(JumpMan.commonResolutions[aspComboBox.getSelectedIndex()][i] + ":" + height);
+		}
 	}
 }
