@@ -92,7 +92,6 @@ public class StartupSettings extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				LoadResolution();
-
 			}
 		});
 

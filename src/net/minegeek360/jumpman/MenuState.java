@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import net.wolfgangts.jumpy.GUIRender;
 import net.wolfgangts.jumpy.Render3D;
 
 public class MenuState extends BasicGameState {
@@ -16,6 +17,7 @@ public class MenuState extends BasicGameState {
 
 	private Random random = new Random();
 	private Render3D Render3D;
+	private GUIRender gui;
 
 	/* End */
 
@@ -26,11 +28,12 @@ public class MenuState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		Render3D = new Render3D();
+		gui = new GUIRender();
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		// rend.render(gc, sbg, g);
+		gui.render(gc, sbg, g);
 	}
 
 	@Override
