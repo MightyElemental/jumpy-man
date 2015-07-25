@@ -17,7 +17,6 @@ public class EntityLiving extends Entity {
 		formatVelocity();
 		this.setLocationX(this.getLocationX() + (getVelocityY() * delta2));
 		this.setLocationY(this.getLocationY() + (getVelocityX() * delta2));
-		System.out.println(delta2);
 	}
 
 	private void formatVelocity() {

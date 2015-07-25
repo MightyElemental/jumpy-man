@@ -4,6 +4,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.state.StateBasedGame;
 
+import net.minegeek360.jumpman.JumpMan;
+
 /** @author MightyElemental */
 public abstract class Entity {
 
@@ -15,7 +17,7 @@ public abstract class Entity {
 
 	protected int sizeX, sizeY;
 
-	protected Image displayImage;
+	protected Image displayImage = JumpMan.NULL_IMAGE;
 
 	public Entity(String name, int sizeX, int sizeY) {
 		this.entityName = name;
