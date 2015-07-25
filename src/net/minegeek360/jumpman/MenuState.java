@@ -1,5 +1,7 @@
 package net.minegeek360.jumpman;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -20,18 +22,27 @@ public class MenuState extends BasicGameState {
 	}
 
 	/** A variable to be deleted */
-	private int DELETE_THIS = 0;
+	private float DELETE_THIS = 0;
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.drawString("Hello WolfgangTS...", (float) ((Math.sin(DELETE_THIS / 45.0) * 100) + 300), 50);
 		g.drawString("Or are you MightyElemental?", (float) ((Math.sin(DELETE_THIS / 46.0) * 100) + 350), 100);
-		DELETE_THIS++;
+
+		for (int i = 0; i < DELETE_THIS_2.size(); i++) {
+			g.fillRect(DELETE_THIS_2.get(i)[0], DELETE_THIS_2.get(i)[1], 1, 1);
+		}
+
 	}
+
+	/** A variable to be deleted */
+	private ArrayList<float[]> DELETE_THIS_2 = new ArrayList<float[]>();
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-
+		DELETE_THIS += 1 * delta / 20.0;
+		DELETE_THIS_2.add(
+				new float[] { DELETE_THIS * (DELETE_THIS / 500f), (float) (Math.sin(DELETE_THIS / 20.0f) * (DELETE_THIS / 5f)) + 200 });
 	}
 
 	@Override
