@@ -117,8 +117,8 @@ public abstract class Entity {
 	 * @param displayImage
 	 *            the new image to be displayed
 	 * @return Entity for ease in construction */
-	public Entity setDisplayImage(Image displayImage) {
-		this.displayImage = displayImage;
+	public Entity setDisplayImage(String displayImage) {
+		this.displayImage = JumpMan.resLoader.loadImage(displayImage);
 		return this;
 	}
 

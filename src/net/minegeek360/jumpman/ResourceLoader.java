@@ -17,7 +17,7 @@ public class ResourceLoader {
 	 * @return Image the newly loaded image */
 	public Image loadImage(String imagePath) {
 
-		Image loadedImage = null;
+		Image loadedImage = JumpMan.NULL_IMAGE;
 
 		String location = imagePath.replaceAll("[.]", "/");
 		location += ".png";
@@ -30,7 +30,6 @@ public class ResourceLoader {
 				loadedImage = new Image("res/assets/textures/" + location);
 			} catch (Exception e) {
 				System.out.println("CANT LOAD IMAGE '" + location + "'");
-				e.printStackTrace();
 			}
 			mapLoads.put(location, loadedImage);
 		}
@@ -40,7 +39,7 @@ public class ResourceLoader {
 
 	public Image loadImageFromFile(String imagePath) {
 		String location = imagePath.replaceAll("[.]", "/");
-		Image temp = null;
+		Image temp = JumpMan.NULL_IMAGE;
 		try {
 			if (mapLoads.get(location) != null) {
 				// System.out.println("LOADED ORIGIONAL IMAGE");

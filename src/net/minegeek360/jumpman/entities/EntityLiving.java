@@ -10,13 +10,15 @@ public class EntityLiving extends Entity {
 	}
 
 	protected float moveSpeed;
+	protected int maxHealth = 20;
+	protected int health = maxHealth;
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
 		float delta2 = delta / 16f;
 		formatVelocity();
-		this.setLocationX(this.getLocationX() + (getVelocityY() * delta2));
-		this.setLocationY(this.getLocationY() + (getVelocityX() * delta2));
+		this.setLocationX(this.getLocationX() + (getVelocityX() * delta2));
+		this.setLocationY(this.getLocationY() + (getVelocityY() * delta2));
 	}
 
 	private void formatVelocity() {
@@ -90,6 +92,35 @@ public class EntityLiving extends Entity {
 	public Entity setMoveSpeed(float moveSpeed) {
 		this.moveSpeed = moveSpeed;
 		return this;
+	}
+
+	/** Gets the max health that the entity can have */
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	/** Sets the max health of the entity
+	 * 
+	 * @param maxHealth
+	 *            the new max health for the entity
+	 * @return Entity for ease when constructing */
+	public Entity setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
+		this.health = maxHealth;
+		return this;
+	}
+
+	/** Gets the health of the entity */
+	public int getHealth() {
+		return health;
+	}
+
+	/** Sets the health of the entity
+	 * 
+	 * @param health
+	 *            the new health to be set */
+	public void setHealth(int health) {
+		this.health = health;
 	}
 
 }
