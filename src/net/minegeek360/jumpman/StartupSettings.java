@@ -38,12 +38,14 @@ public class StartupSettings extends JFrame {
 	JComboBox<String> aspComboBox = new JComboBox<String>();
 	JComboBox<String> resComboBox = new JComboBox<String>();
 	JCheckBox chckbxShowFps = new JCheckBox("Show FPS");
+	JSlider slider = new JSlider();
+	JCheckBox chckbxFullscreen = new JCheckBox("Fullscreen");
 
 	/** Create the frame. */
 	public StartupSettings() {
 		setResizable(false);
 		setType(Type.UTILITY);
-		setTitle("Game setup");
+		setTitle(JumpMan.GAME_NAME + " | Game setup");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 306, 300);
 		contentPane = new JPanel();
@@ -86,7 +88,6 @@ public class StartupSettings extends JFrame {
 		btnNewButton.setBounds(10, 202, 280, 63);
 		contentPane.add(btnNewButton);
 
-		final JCheckBox chckbxFullscreen = new JCheckBox("Fullscreen");
 		chckbxFullscreen.setBounds(6, 168, 85, 23);
 		contentPane.add(chckbxFullscreen);
 
@@ -94,7 +95,6 @@ public class StartupSettings extends JFrame {
 		lblMaxFps.setBounds(10, 80, 106, 14);
 		contentPane.add(lblMaxFps);
 
-		final JSlider slider = new JSlider();
 		slider.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
@@ -115,16 +115,21 @@ public class StartupSettings extends JFrame {
 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JumpMan.width = JumpMan.commonResolutions[aspComboBox.getSelectedIndex()][resComboBox.getSelectedIndex()];
-				JumpMan.aspectRatio = JumpMan.commonRatios[aspComboBox.getSelectedIndex()];
-				JumpMan.maxFPS = slider.getValue();
-				JumpMan.fullscreen = chckbxFullscreen.isSelected();
-				JumpMan.showFPS = chckbxShowFps.isSelected();
-				JumpMan.startGame();
+				launchGame();
 			}
 		});
 
 		LoadResolution();
+	}
+
+	public void launchGame() {
+		this.setVisible(false);
+		JumpMan.width = JumpMan.commonResolutions[aspComboBox.getSelectedIndex()][resComboBox.getSelectedIndex()];
+		JumpMan.aspectRatio = JumpMan.commonRatios[aspComboBox.getSelectedIndex()];
+		JumpMan.maxFPS = slider.getValue();
+		JumpMan.fullscreen = chckbxFullscreen.isSelected();
+		JumpMan.showFPS = chckbxShowFps.isSelected();
+		JumpMan.startGame();
 	}
 
 	public void LoadResolution() {
