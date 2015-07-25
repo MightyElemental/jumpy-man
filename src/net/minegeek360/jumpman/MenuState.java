@@ -65,7 +65,7 @@ public class MenuState extends BasicGameState
 		if(sbg.getCurrentState().getID() != stateToChange)
 			sbg.enterState(stateToChange);
 		
-
+		
 	}
 
 	@Override
