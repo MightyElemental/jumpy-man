@@ -13,7 +13,7 @@ public class Renderer
 	private ArrayList<float[]>	objects			= new ArrayList<float[]>();
 	private float				gameTime;
 	private float				fov				= 600;
-	private float				renderDistance	= 2000;
+	private float				renderDistance	= 5000;
 
 	private Random random = new Random();
 
@@ -41,9 +41,7 @@ public class Renderer
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 	{
-		float deltaDivisor = delta / 20f;
-		
-		
+		float deltaDivisor = delta / 10f;
 
 		if (this.gameTime == 0)
 		{
@@ -103,24 +101,22 @@ public class Renderer
 		{
 			rotate(rx(-0.01f * deltaDivisor));
 		}
-		
+
 		if (gc.getInput().isMouseButtonDown(0))
 		{
 			translate(0, 0, -10 * deltaDivisor);
 		}
-		
+
 		if (gc.getInput().isMouseButtonDown(1))
 		{
 			translate(0, 0, 10 * deltaDivisor);
 		}
-		
+
 		this.gameTime += 1 * delta / 50f;
 
 		for (float[] item : this.objects)
 		{
-			item[0] += item[3] * deltaDivisor;
-			item[1] += item[4] * deltaDivisor;
-			item[2] += item[5] * deltaDivisor;
+
 		}
 	}
 

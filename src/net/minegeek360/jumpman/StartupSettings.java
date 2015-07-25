@@ -1,23 +1,20 @@
 package net.minegeek360.jumpman;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JCheckBox;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseAdapter;
+import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
 public class StartupSettings extends JFrame
@@ -124,7 +121,7 @@ public class StartupSettings extends JFrame
 		slider.setBounds(126, 73, 154, 31);
 
 		contentPane.add(slider);
-		
+
 		final JCheckBox chckbxShowFps = new JCheckBox("Show FPS");
 		chckbxShowFps.setBounds(93, 168, 106, 23);
 		contentPane.add(chckbxShowFps);
@@ -141,7 +138,7 @@ public class StartupSettings extends JFrame
 				JumpMan.startGame();
 			}
 		});
-		
+
 		LoadResolution();
 	}
 
