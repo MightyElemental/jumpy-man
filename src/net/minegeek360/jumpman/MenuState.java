@@ -17,8 +17,6 @@ public class MenuState extends BasicGameState
 
 	private final int ID;
 
-	/** Variables to be deleted */
-	private float DELETE_THIS = 0;
 	private Random random = new Random();
 	private Renderer rend;
 
@@ -41,9 +39,6 @@ public class MenuState extends BasicGameState
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException
 	{
-		g.drawString("Hello WolfgangTS...", (float) ((Math.sin(DELETE_THIS / 45.0) * 100) + 300), 50);
-		g.drawString("Or are you MightyElemental?", (float) ((Math.sin(DELETE_THIS / 46.0) * 100) + 350), 100);
-
 		rend.render(gc, sbg, g);
 	}
 
