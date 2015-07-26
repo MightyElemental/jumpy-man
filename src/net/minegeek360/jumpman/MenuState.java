@@ -10,7 +10,6 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.wolfgangts.jumpy.GUIRender;
-import net.wolfgangts.jumpy.GUIToolTip;
 import net.wolfgangts.jumpy.Render3D;
 
 public class MenuState extends BasicGameState
@@ -35,7 +34,7 @@ public class MenuState extends BasicGameState
 
 		gui = new GUIRender();
 
-		gui.addButton(0, gc.getHeight() / 2 - 25, gc.getWidth(), 50, "Start Game").setColor(new Color(255, 0, 0, 255)).setClickEvent(new Runnable()
+		gui.addButton(gc.getWidth() / 4, gc.getHeight() / 2 - 25, gc.getWidth() / 4 * 2, 50, "Start Game").setColor(new Color(255, 0, 0, 255)).setClickEvent(new Runnable()
 		{
 			public void run()
 			{
