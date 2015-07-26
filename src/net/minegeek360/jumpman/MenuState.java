@@ -54,16 +54,6 @@ public class MenuState extends BasicGameState
 				tooltip.setHint("Click to start the game.");
 			}
 		});
-		
-		gui.addButton(0,0,50,50, "Test").setClickEvent(new Runnable(){
-			private int i = 0;
-			
-			public void run()
-			{
-				System.out.println(i);
-				i++;
-			}
-		});
 	}
 
 	@Override
