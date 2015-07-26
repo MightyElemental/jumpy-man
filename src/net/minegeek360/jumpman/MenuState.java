@@ -32,7 +32,6 @@ public class MenuState extends BasicGameState
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
 	{
-		tooltip = new GUIToolTip();
 
 		gui = new GUIRender();
 
@@ -56,7 +55,7 @@ public class MenuState extends BasicGameState
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
 	{
 
-		tooltip.update();
+		gui.tooltip.update();
 		gui.update(gc, sbg, delta);
 		if (sbg.getCurrentState().getID() != JumpMan.stateToChange)
 			sbg.enterState(JumpMan.stateToChange);
