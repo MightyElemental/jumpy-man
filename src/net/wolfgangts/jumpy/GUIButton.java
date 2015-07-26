@@ -18,7 +18,7 @@ public class GUIButton
 	private Runnable	hoverEvent;
 	private Color		color;
 	private Color		fontColor;
-
+	
 	public GUIButton(int x, int y, int w, int h)
 	{
 		this.buttonRect = new Rectangle(x, y, w, h);
@@ -80,7 +80,7 @@ public class GUIButton
 	{
 		return this.buttonRect;
 	}
-
+	
 	public GUIButton setClickEvent(Runnable clickEvent)
 	{
 		this.clickEvent = clickEvent;

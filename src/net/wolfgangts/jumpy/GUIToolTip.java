@@ -19,17 +19,20 @@ public class GUIToolTip
 		if (showHint)
 		{
 			TrueTypeFont currentFont = JumpMan.fontArial;
-			
+
 			int x = gc.getInput().getMouseX();
 			int y = gc.getInput().getMouseY();
 			int width = currentFont.getWidth(this.hint);
 			int height = currentFont.getHeight();
+			int thickness = 1;
 
 			g.setFont(currentFont);
-			g.setColor(new Color(255, 255, 255, 255));
-			g.fillRect(x - 5, y-height - 10, width + 10, height + 10);
 			g.setColor(new Color(0, 0, 0, 255));
-			g.drawString(this.hint, x, y-height-5);
+			g.fillRect(x - 5 - thickness, y - height - 10 - thickness, width + 10 + thickness * 2, height + 10 + thickness * 2);
+			g.setColor(new Color(155, 155, 155, 255));
+			g.fillRect(x - 5, y - height - 10, width + 10, height + 10);
+			g.setColor(new Color(0, 0, 0, 255));
+			g.drawString(this.hint, x, y - height - 5);
 		}
 
 	}

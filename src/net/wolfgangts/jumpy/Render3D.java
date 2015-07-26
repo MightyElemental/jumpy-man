@@ -3,9 +3,9 @@ package net.wolfgangts.jumpy;
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Render3D
@@ -34,6 +34,7 @@ public class Render3D
 
 			if (z > 0 && z < this.renderDistance)
 			{
+				g.setColor(new Color(255,255,255,255));
 				g.fillOval(x / z * this.fov + gc.getWidth() / 2, y / z * this.fov + gc.getHeight() / 2, 12500f / z, 12500f / z);
 			}
 		}
@@ -47,77 +48,15 @@ public class Render3D
 		{
 			for (int i = 0; i < 1000; i++)
 			{
-				this.objects.add(new float[] { this.random.nextFloat() * gc.getWidth(), this.random.nextFloat() * gc.getWidth(), this.random.nextFloat() * (gc.getWidth() + gc.getHeight()) / 2,
-						this.random.nextFloat() * 5, this.random.nextFloat() * 5, this.random.nextFloat() * 5 });
+				this.objects.add(new float[] { 
+						this.random.nextFloat() * gc.getWidth()*2 - gc.getWidth(), 
+						this.random.nextFloat() * gc.getHeight()*2 - gc.getHeight(), 
+						this.random.nextFloat() * 5
+						});
 			}
 		}
 
-		if (gc.getInput().isKeyDown(Input.KEY_LEFT))
-		{
-			translate(5 * deltaDivisor, 0, 0);
-		}
-
-		if (gc.getInput().isKeyDown(Input.KEY_RIGHT))
-		{
-			translate(-5 * deltaDivisor, 0, 0);
-		}
-
-		if (gc.getInput().isKeyDown(Input.KEY_UP))
-		{
-			translate(0, 5 * deltaDivisor, 0);
-		}
-
-		if (gc.getInput().isKeyDown(Input.KEY_DOWN))
-		{
-			translate(0, -5 * deltaDivisor, 0);
-		}
-
-		if (gc.getInput().isKeyDown(Input.KEY_Q))
-		{
-			rotate(rz(0.01f * deltaDivisor));
-		}
-
-		if (gc.getInput().isKeyDown(Input.KEY_E))
-		{
-			rotate(rz(-0.01f * deltaDivisor));
-		}
-
-		if (gc.getInput().isKeyDown(Input.KEY_A))
-		{
-			rotate(ry(0.01f * deltaDivisor));
-		}
-
-		if (gc.getInput().isKeyDown(Input.KEY_D))
-		{
-			rotate(ry(-0.01f * deltaDivisor));
-		}
-
-		if (gc.getInput().isKeyDown(Input.KEY_W))
-		{
-			rotate(rx(0.01f * deltaDivisor));
-		}
-
-		if (gc.getInput().isKeyDown(Input.KEY_S))
-		{
-			rotate(rx(-0.01f * deltaDivisor));
-		}
-
-		if (gc.getInput().isMouseButtonDown(0))
-		{
-			translate(0, 0, -10 * deltaDivisor);
-		}
-
-		if (gc.getInput().isMouseButtonDown(1))
-		{
-			translate(0, 0, 10 * deltaDivisor);
-		}
-
 		this.gameTime += 1 * delta / 50f;
-
-		for (float[] item : this.objects)
-		{
-
-		}
 	}
 
 	public void translate(float x, float y, float z)

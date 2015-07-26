@@ -37,7 +37,10 @@ public class MenuState extends BasicGameState
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
 	{
 		tooltip = new GUIToolTip();
-		Render3D = new Render3D();
+
+		
+		
+		
 		gui = new GUIRender();
 
 		gui.addButton(0, gc.getHeight() / 2 - 25, gc.getWidth(), 50, "Start Game").setColor(new Color(255, 0, 0, 255)).setClickEvent(new Runnable()
@@ -64,11 +67,11 @@ public class MenuState extends BasicGameState
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
 	{
+
 		tooltip.update();
 		gui.update(gc, sbg, delta);
 		if (sbg.getCurrentState().getID() != stateToChange)
 			sbg.enterState(stateToChange);
-
 	}
 
 	@Override
