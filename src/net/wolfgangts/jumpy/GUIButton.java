@@ -16,6 +16,7 @@ public class GUIButton
 	private String		title;
 	private Runnable	clickEvent;
 	private Runnable	hoverEvent;
+	private Runnable    holdEvent;
 	private Color		color;
 	private Color		fontColor;
 	
@@ -94,12 +95,28 @@ public class GUIButton
 			this.clickEvent.run();
 	}
 	
+	public GUIButton setHoldEvent(Runnable holdEvent)
+	{
+		this.holdEvent = holdEvent;
+
+		return this;
+	}
+	
+	public void callHoldEvent()
+	{
+		if (this.holdEvent != null)
+			this.holdEvent.run();
+	}
+	
 	public GUIButton setHoverEvent(Runnable hoverEvent)
 	{
 		this.hoverEvent = hoverEvent;
 
 		return this;
 	}
+	
+
+
 
 	
 	public void callHoverEvent()

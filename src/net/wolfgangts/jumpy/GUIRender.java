@@ -11,6 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class GUIRender
 {
 	private ArrayList<GUIButton>	buttons			= new ArrayList<GUIButton>();
+	public GUIToolTip				tooltip			= new GUIToolTip();
 	private boolean					previousMouse1	= false;
 	private boolean					previousMouse2	= false;
 	private boolean					previousMouse3	= false;
@@ -48,6 +49,17 @@ public class GUIRender
 					{
 						button.callClickEvent();
 					}
+				}
+			}
+
+			for (Object buttonObj : buttons.toArray())
+			{
+				GUIButton button = (GUIButton) buttonObj;
+				Rectangle position = button.getPosition();
+
+				if (position.contains(new Point(gc.getInput().getMouseX(), gc.getInput().getMouseY())))
+				{
+					button.callHoldEvent();
 				}
 			}
 		}

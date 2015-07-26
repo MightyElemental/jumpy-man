@@ -9,7 +9,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import net.wolfgangts.jumpy.GUIButton;
 import net.wolfgangts.jumpy.GUIRender;
 import net.wolfgangts.jumpy.GUIToolTip;
 import net.wolfgangts.jumpy.Render3D;
@@ -19,17 +18,15 @@ public class MenuState extends BasicGameState
 
 	private final int ID;
 
-	private Random		random			= new Random();
+	private Random		random	= new Random();
 	private Render3D	Render3D;
 	private GUIRender	gui;
-	private GUIToolTip	tooltip;
 
 	/* End */
 
 	public MenuState(int stateMenu)
 	{
 		this.ID = stateMenu;
-
 	}
 
 	@Override
@@ -37,9 +34,6 @@ public class MenuState extends BasicGameState
 	{
 		tooltip = new GUIToolTip();
 
-		
-		
-		
 		gui = new GUIRender();
 
 		gui.addButton(0, gc.getHeight() / 2 - 25, gc.getWidth(), 50, "Start Game").setColor(new Color(255, 0, 0, 255)).setClickEvent(new Runnable()
@@ -48,11 +42,6 @@ public class MenuState extends BasicGameState
 			{
 				JumpMan.stateToChange = JumpMan.STATE_PLAY;
 			}
-		}).setHoverEvent(new Runnable(){
-			public void run()
-			{
-				tooltip.setHint("Click to start the game.");
-			}
 		});
 	}
 
@@ -60,7 +49,7 @@ public class MenuState extends BasicGameState
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException
 	{
 		gui.render(gc, sbg, g);
-		tooltip.render(gc, sbg, g);
+		gui.tooltip.render(gc, sbg, g);
 	}
 
 	@Override
