@@ -31,7 +31,7 @@ public class PlayState extends BasicGameState
 		gui = new GUIRender();
 
 		if (JumpMan.fullscreen)
-			gui.addButton(10, 10, 30, 30, "X").setClickEvent(new Runnable()
+			gui.addButton(gc.getWidth()-40, 10, 30, 30, "X").setClickEvent(new Runnable()
 			{
 				public void run()
 				{

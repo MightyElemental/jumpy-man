@@ -22,7 +22,6 @@ public class MenuState extends BasicGameState
 	private Random		random			= new Random();
 	private Render3D	Render3D;
 	private GUIRender	gui;
-	private int			stateToChange	= JumpMan.STATE_MENU;
 	private GUIToolTip	tooltip;
 
 	/* End */
@@ -47,12 +46,22 @@ public class MenuState extends BasicGameState
 		{
 			public void run()
 			{
-				stateToChange = JumpMan.STATE_PLAY;
+				JumpMan.stateToChange = JumpMan.STATE_PLAY;
 			}
 		}).setHoverEvent(new Runnable(){
 			public void run()
 			{
 				tooltip.setHint("Click to start the game.");
+			}
+		});
+		
+		gui.addButton(0,0,50,50, "Test").setClickEvent(new Runnable(){
+			private int i = 0;
+			
+			public void run()
+			{
+				System.out.println(i);
+				i++;
 			}
 		});
 	}
@@ -70,8 +79,8 @@ public class MenuState extends BasicGameState
 
 		tooltip.update();
 		gui.update(gc, sbg, delta);
-		if (sbg.getCurrentState().getID() != stateToChange)
-			sbg.enterState(stateToChange);
+		if (sbg.getCurrentState().getID() != JumpMan.stateToChange)
+			sbg.enterState(JumpMan.stateToChange);
 	}
 
 	@Override
