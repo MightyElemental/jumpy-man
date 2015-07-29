@@ -16,8 +16,8 @@ public class EntityStepParticle extends Entity
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 	{
-		this.locationX+=this.velocityX*(delta/17);
-		this.locationY+=this.velocityY*(delta/17);
+		this.posX+=this.velocityX*(delta/17);
+		this.posY+=this.velocityY*(delta/17);
 		
 		this.velocityX/=2*(delta/17);
 		this.velocityY-=worldObj.gravity*(delta/17);
