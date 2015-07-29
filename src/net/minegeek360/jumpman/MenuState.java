@@ -21,7 +21,6 @@ public class MenuState extends BasicGameState
 	private Render3D	Render3D;
 	private GUIRender	gui;
 
-	/* End */
 
 	public MenuState(int stateMenu)
 	{

@@ -70,8 +70,7 @@ public class PlayState extends BasicGameState
 				g.draw(ent.getBoundsRight());
 				g.draw(ent.getBoundsTop());
 				g.draw(ent.getBoundsBottom());
-				shader.setPosition(ent.getPosX() + ent.getWidth() / 2, ent.getPosY() + ent.getHeight() / 2);
-				// shader.render(gc, sbg, g);
+
 			}
 		}
 		gui.render(gc, sbg, g);

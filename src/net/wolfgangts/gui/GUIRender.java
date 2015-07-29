@@ -17,7 +17,6 @@ public class GUIRender
 	private boolean					previousMouse1	= false;
 	private boolean					previousMouse2	= false;
 	private boolean					previousMouse3	= false;
-	private Shader					shader			= new Shader();
 
 	public GUIRender()
 	{
@@ -26,8 +25,6 @@ public class GUIRender
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 	{
-		this.shader.render(gc, sbg, g);
-		
 		for (Object buttonObj : buttons.toArray())
 		{
 			GUIButton button = (GUIButton) buttonObj;
