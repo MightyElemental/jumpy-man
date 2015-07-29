@@ -1,4 +1,4 @@
-package net.minegeek360.jumpman.world;
+package net.minegeek360.jumpman.world.objects;
 
 @SuppressWarnings( "serial" )
 public class WorldBlock extends WorldObject {

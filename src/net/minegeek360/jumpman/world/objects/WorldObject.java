@@ -1,4 +1,4 @@
-package net.minegeek360.jumpman.world;
+package net.minegeek360.jumpman.world.objects;
 
 import org.newdawn.slick.geom.Rectangle;
 
@@ -7,8 +7,11 @@ public class WorldObject extends Rectangle {
 
 	protected boolean isSolid = true;
 
-	public WorldObject( float x, float y, float width, float height ) {
+	protected Material material;
+
+	public WorldObject( float x, float y, float width, float height, Material mat ) {
 		super(x, y, width, height);
+		this.material = mat;
 	}
 
 	public boolean isSolid() {

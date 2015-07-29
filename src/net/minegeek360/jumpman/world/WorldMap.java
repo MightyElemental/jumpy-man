@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
 
+import net.minegeek360.jumpman.world.objects.WorldBlock;
+import net.minegeek360.jumpman.world.objects.WorldObject;
+import net.minegeek360.jumpman.world.objects.WorldObjectFluid;
+
 public class WorldMap {
 
 	public ArrayList<WorldObject> objects = new ArrayList<WorldObject>();

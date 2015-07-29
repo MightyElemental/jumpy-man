@@ -4,7 +4,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.world.World;
-import net.minegeek360.jumpman.world.WorldObject;
+import net.minegeek360.jumpman.world.objects.WorldObject;
 
 public class EntityLiving extends Entity {
 

@@ -15,7 +15,7 @@ public abstract class Entity {
 
 	protected boolean isSolid;
 
-	protected float velocityX, velocityY, locationX, locationY = 50;
+	protected float velocityX, velocityY, posX, posY;
 
 	protected int width, height;
 
@@ -23,26 +23,26 @@ public abstract class Entity {
 
 	protected World worldObj;
 
-	public Entity( String name, int sizeX, int sizeY, World worldObj ) {
+	public Entity( String name, int width, int height, World worldObj ) {
 		this.entityName = name;
-		this.width = sizeX;
-		this.height = sizeY;
+		this.width = width;
+		this.height = height;
 	}
 
 	public Rectangle getBoundsLeft() {
-		return new Rectangle(this.locationX, this.locationY + 5, 5, this.height - 10);
+		return new Rectangle(this.posX, this.posY + 5, 5, this.height - 10);
 	}
 
 	public Rectangle getBoundsRight() {
-		return new Rectangle(locationX + width - 5, locationY + 5, 5, height - 10);
+		return new Rectangle(posX + width - 5, posY + 5, 5, height - 10);
 	}
 
 	public Rectangle getBoundsTop() {
-		return new Rectangle(locationX + (width / 2) - (width / 4), locationY, width / 2, height / 2);
+		return new Rectangle(posX + (width / 2) - (width / 4), posY, width / 2, height / 2);
 	}
 
 	public Rectangle getBoundsBottom() {
-		return new Rectangle(locationX + (width / 2) - (width / 4), locationY + (height / 2), width / 2, height / 2);
+		return new Rectangle(posX + (width / 2) - (width / 4), posY + (height / 2), width / 2, height / 2);
 	}
 
 	public String getName() {
@@ -95,19 +95,19 @@ public abstract class Entity {
 	}
 
 	public float getPosX() {
-		return locationX;
+		return posX;
 	}
 
 	public void setPosX(float locationX) {
-		this.locationX = locationX;
+		this.posX = locationX;
 	}
 
 	public float getPosY() {
-		return locationY;
+		return posY;
 	}
 
 	public void setPosY(float locationY) {
-		this.locationY = locationY;
+		this.posY = locationY;
 	}
 
 	public int getWidth() {
