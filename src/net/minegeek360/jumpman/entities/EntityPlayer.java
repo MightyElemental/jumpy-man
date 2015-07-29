@@ -29,13 +29,13 @@ public class EntityPlayer extends EntityLiving {
 		if (input.isKeyDown(playerCont[0])) {
 			if (this.canGoRight) {
 				this.moveRight();
-				worldObj.entities.add(new EntityStepParticle(this.getPosX(), this.getPosY(), worldObj));
+				worldObj.particles.add(new EntityStepParticle(this.getPosX(), this.getPosY(), worldObj));
 			}
 		}
 		if (input.isKeyDown(playerCont[1])) {
 			if (this.canGoLeft) {
 				this.moveLeft();
-				worldObj.entities.add(new EntityStepParticle(this.getPosX(), this.getPosY(), worldObj));
+				worldObj.particles.add(new EntityStepParticle(this.getPosX(), this.getPosY(), worldObj));
 			}
 		}
 		if (input.isKeyDown(playerCont[2])) {

@@ -9,7 +9,7 @@ public class EntityStepParticle extends EntityParticle
 {
 	public EntityStepParticle(float x, float y, World worldObj)
 	{
-		super("Step Particle", 5, 5, worldObj);
+		super("Step Particle", x, y, worldObj);
 		this.velocityY = 20;
 	}
 
