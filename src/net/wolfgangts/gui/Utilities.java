@@ -1,4 +1,4 @@
-package net.wolfgangts.jumpy;
+package net.wolfgangts.gui;
 
 public class Utilities
 {

@@ -1,4 +1,4 @@
-package net.wolfgangts.jumpy;
+package net.wolfgangts.gui;
 
 
 import java.awt.Rectangle;

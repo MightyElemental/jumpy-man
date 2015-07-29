@@ -10,7 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import net.minegeek360.jumpman.entities.Entity;
 import net.minegeek360.jumpman.world.World;
 import net.minegeek360.jumpman.world.WorldObject;
-import net.wolfgangts.jumpy.GUIRender;
+import net.wolfgangts.gui.GUIRender;
 
 public class PlayState extends BasicGameState {
 

@@ -3,7 +3,6 @@ package net.minegeek360.jumpman.world;
 import java.util.ArrayList;
 
 public class WorldMap {
-
 	public ArrayList<WorldObject> objects = new ArrayList<WorldObject>();
 
 	public void init() {
@@ -12,5 +11,4 @@ public class WorldMap {
 		objects.add(new WorldBlock(800, 50, 10, 500));
 		objects.add(new WorldBlock(80, 50, 10, 500));
 	}
-
 }

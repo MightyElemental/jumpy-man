@@ -1,4 +1,4 @@
-package net.wolfgangts.jumpy;
+package net.wolfgangts.gui;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;

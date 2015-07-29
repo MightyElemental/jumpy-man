@@ -9,8 +9,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import net.wolfgangts.jumpy.GUIRender;
-import net.wolfgangts.jumpy.Render3D;
+import net.wolfgangts.gui.GUIRender;
+import net.wolfgangts.gui.Render3D;
 
 public class MenuState extends BasicGameState
 {
