@@ -28,7 +28,7 @@ public class EntityLiving extends Entity {
 		formatVelocity(worldObj);
 		this.setPosX(this.getPosX() + (getVelocityX() * delta2));
 		this.setPosY(this.getPosY() + (getVelocityY() * delta2));
-		testAndHandleCollisions();
+		testAndHandleCollisions(delta2);
 	}
 
 	private void formatVelocity(World worldObj) {
@@ -59,7 +59,7 @@ public class EntityLiving extends Entity {
 		}
 	}
 
-	public void testAndHandleCollisions() {
+	public void testAndHandleCollisions(float delta) {
 		boolean flag = false;
 		for (WorldObject worldObject : worldObj.currentMapLoaded.objects) {
 			if (worldObject.isSolid()) {
