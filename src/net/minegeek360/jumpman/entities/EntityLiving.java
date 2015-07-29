@@ -156,4 +156,14 @@ public class EntityLiving extends Entity {
 		this.health = health;
 	}
 
+	
+	public float getJumpPower() {
+		return jumpPower;
+	}
+
+	
+	public void setJumpPower(float jumpPower) {
+		this.jumpPower = jumpPower;
+	}
+
 }
