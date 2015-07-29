@@ -14,6 +14,7 @@ public abstract class EntityAI extends EntityLiving {
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
+		super.update(gc, sbg, delta);
 		think(gc, sbg, delta);
 	}
 

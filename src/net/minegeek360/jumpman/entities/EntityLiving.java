@@ -22,6 +22,7 @@ public class EntityLiving extends Entity {
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
+		super.update(gc, sbg, delta);
 		float delta2 = delta / 16f;
 		formatVelocity(worldObj);
 		this.setPosX(this.getPosX() + (getVelocityX() * delta2));
