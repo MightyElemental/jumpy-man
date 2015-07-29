@@ -51,10 +51,10 @@ public class PlayState extends BasicGameState {
 			if (ent != null) {
 				g.drawImage(ent.getDisplayImage().getScaledCopy(ent.getWidth(), ent.getHeight()), ent.getPosX(), ent.getPosY());
 				g.setColor(new Color(255, 0, 0));
-				g.draw(ent.getBoundsLeft());
-				g.draw(ent.getBoundsRight());
-				g.draw(ent.getBoundsTop());
-				g.draw(ent.getBoundsBottom());
+				/*
+				 * g.draw(ent.getBoundsLeft()); g.draw(ent.getBoundsRight()); g.draw(ent.getBoundsTop());
+				 * g.draw(ent.getBoundsBottom());
+				 */
 
 			}
 		}
@@ -73,7 +73,7 @@ public class PlayState extends BasicGameState {
 		for (Entity ent : world.entities) {
 			ent.update(gc, sbg, delta);
 		}
-		
+
 		for (EntityParticle ent : world.particles) {
 			ent.update(gc, sbg, delta);
 		}
