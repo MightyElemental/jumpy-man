@@ -1,6 +1,6 @@
 package net.wolfgangts.gui;
 
-public class Utilities
+public class Utils
 {
 	/**
 	 * Finds strF in strS, returns how many times found

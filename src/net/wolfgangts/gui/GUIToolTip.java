@@ -21,7 +21,7 @@ public class GUIToolTip
 
 			String hint = this.hint;
 			
-			int heightMod = Utilities.instancesOf(hint, "\n")+1;
+			int heightMod = Utils.instancesOf(hint, "\n")+1;
 			
 			int x = gc.getInput().getMouseX();
 			int y = gc.getInput().getMouseY();
