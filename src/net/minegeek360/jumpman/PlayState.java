@@ -11,7 +11,6 @@ import net.minegeek360.jumpman.entities.Entity;
 import net.minegeek360.jumpman.world.World;
 import net.minegeek360.jumpman.world.WorldObject;
 import net.wolfgangts.gui.GUIRender;
-import net.wolfgangts.shaders.Shader;
 
 public class PlayState extends BasicGameState
 {
@@ -19,7 +18,6 @@ public class PlayState extends BasicGameState
 	private final int	ID;
 	public World		world;
 	private GUIRender	gui;
-	private Shader		shader;
 
 	public PlayState(int playState)
 	{
@@ -29,7 +27,6 @@ public class PlayState extends BasicGameState
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
 	{
-		shader = new Shader();
 
 		world = new World();
 		world.init(gc, sbg);
