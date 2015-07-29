@@ -14,7 +14,7 @@ public class EntityLiving extends Entity {
 	}
 
 	protected float		moveSpeed		= 2;
-	protected float		jumpPower		= 20;
+	protected float		jumpPower		= 5;
 	protected int		maxHealth		= 20;
 	protected int		health			= maxHealth;
 	protected int		doubleJump		= 0;
@@ -29,6 +29,9 @@ public class EntityLiving extends Entity {
 		this.setPosX(this.getPosX() + (getVelocityX() * delta2));
 		this.setPosY(this.getPosY() + (getVelocityY() * delta2));
 		testAndHandleCollisions(delta2);
+		if (isInAir) {
+			this.velocityY += worldObj.gravity * delta2;// SETUP THE GRAVITY!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		}
 	}
 
 	private void formatVelocity(World worldObj) {
@@ -50,10 +53,6 @@ public class EntityLiving extends Entity {
 		}
 
 		// Y Velocity
-		if (isInAir) {
-			this.velocityY += worldObj.gravity;// SETUP THE GRAVITY!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		}
-
 		if (velocityY > -0.19 && velocityY < 0.19) {
 			velocityY = 0;
 		}
