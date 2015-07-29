@@ -1,5 +1,7 @@
 package net.minegeek360.jumpman.entities.particles;
 
+import java.awt.Dimension;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -12,6 +14,12 @@ public abstract class EntityParticle extends Entity {
 		super(name, posX, posY, worldObj);
 	}
 
+	public void setDimensions(Dimension d)
+	{
+		this.setWidth(d.width);
+		this.setHeight(d.height);
+	}
+	
 	@Override
 	public abstract void update(GameContainer gc, StateBasedGame sbg, int delta);
 

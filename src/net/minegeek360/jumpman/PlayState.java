@@ -41,6 +41,7 @@ public class PlayState extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		gui.render(gc, sbg, g);
 		g.setColor(new Color(255, 255, 255, 1f));
 		for (WorldObject worldObj : world.currentMapLoaded.objects) {
 			g.fillRect(worldObj.getX(), worldObj.getY(), worldObj.getWidth(), worldObj.getHeight());
@@ -63,7 +64,7 @@ public class PlayState extends BasicGameState {
 				g.drawImage(part.getDisplayImage().getScaledCopy(part.getWidth(), part.getHeight()), part.getPosX(), part.getPosY());
 			}
 		}
-		gui.render(gc, sbg, g);
+
 	}
 
 	@Override

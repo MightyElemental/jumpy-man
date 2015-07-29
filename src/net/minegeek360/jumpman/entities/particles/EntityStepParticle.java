@@ -1,5 +1,7 @@
 package net.minegeek360.jumpman.entities.particles;
 
+import java.awt.Dimension;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -10,6 +12,7 @@ public class EntityStepParticle extends EntityParticle
 	public EntityStepParticle(float x, float y, World worldObj)
 	{
 		super("Step Particle", x, y, worldObj);
+		this.setDimensions(new Dimension(50, 50));
 		this.velocityY = 20;
 	}
 
