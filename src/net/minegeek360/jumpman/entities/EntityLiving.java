@@ -22,15 +22,14 @@ public class EntityLiving extends Entity {
 	protected boolean	isInAir			= true;
 
 	@Override
-	public void update(GameContainer gc, StateBasedGame sbg, int delta) {// SETUP THE
-																			// COLLISIONS!!!!!!!!!!!
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
 		float delta2 = delta / 16f;
 		formatVelocity(worldObj);
 		this.setPosX(this.getPosX() + (getVelocityX() * delta2));
 		this.setPosY(this.getPosY() + (getVelocityY() * delta2));
 		testAndHandleCollisions(delta2);
 		if (isInAir) {
-			this.velocityY += worldObj.gravity * delta2;// SETUP THE GRAVITY!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			this.velocityY += worldObj.gravity * delta2;
 		}
 	}
 
