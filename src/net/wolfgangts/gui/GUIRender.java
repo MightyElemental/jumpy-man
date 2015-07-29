@@ -8,8 +8,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
-import net.wolfgangts.shaders.Shader;
-
 public class GUIRender
 {
 	private ArrayList<GUIButton>	buttons			= new ArrayList<GUIButton>();
