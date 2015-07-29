@@ -19,6 +19,8 @@ public class EntityStepParticle extends EntityParticle
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 	{
+		super.update(gc, sbg, delta);
+		
 		this.posX+=this.velocityX*(delta/17);
 		this.posY+=this.velocityY*(delta/17);
 		

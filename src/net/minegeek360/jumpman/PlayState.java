@@ -72,7 +72,10 @@ public class PlayState extends BasicGameState {
 		gui.update(gc, sbg, delta);
 		for (Entity ent : world.entities) {
 			ent.update(gc, sbg, delta);
-			// System.out.println(ent.getPosY());
+		}
+		
+		for (EntityParticle ent : world.particles) {
+			ent.update(gc, sbg, delta);
 		}
 	}
 

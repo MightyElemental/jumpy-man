@@ -10,6 +10,8 @@ import net.minegeek360.jumpman.world.World;
 
 public abstract class EntityParticle extends Entity {
 
+	public int lifetime;
+	
 	public EntityParticle( String name, float posX, float posY, World worldObj ) {
 		super(name, posX, posY, worldObj);
 	}
@@ -20,7 +22,16 @@ public abstract class EntityParticle extends Entity {
 		this.setHeight(d.height);
 	}
 	
+	public void setLifetime(int l)
+	{
+		this.lifetime = l;
+	}
+	
 	@Override
-	public abstract void update(GameContainer gc, StateBasedGame sbg, int delta);
+	public void update(GameContainer gc, StateBasedGame sbg, int delta)
+	{
+		
+	}
+	
 
 }
