@@ -7,9 +7,9 @@ import net.minegeek360.jumpman.world.World;
 
 public class EntityStepParticle extends Entity
 {
-	public EntityStepParticle(String name, World worldObj)
+	public EntityStepParticle(float x, float y, World worldObj)
 	{
-		super(name, 1, 1, worldObj);
+		super("Step Particle", 5, 5, worldObj);
 		this.velocityY = 20;
 	}
 
