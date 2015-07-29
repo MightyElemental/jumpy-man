@@ -42,7 +42,6 @@ public class PlayState extends BasicGameState {
 		g.setColor(new Color(255, 255, 255, 1f));
 		for (WorldObject worldObj : world.currentMapLoaded.objects) {
 			g.fillRect(worldObj.x, worldObj.y, worldObj.width, worldObj.height);
-			System.out.println("asdf");
 		}
 
 		for (Entity ent : world.entities) {
@@ -57,8 +56,9 @@ public class PlayState extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		gui.update(gc, sbg, delta);
-		for (int i = 0; i < world.entities.size(); i++) {
-			world.entities.get(i).update(gc, sbg, delta);
+		for (Entity ent : world.entities) {
+			ent.update(gc, sbg, delta, world);
+			System.out.println(ent.getLocationY());
 		}
 	}
 

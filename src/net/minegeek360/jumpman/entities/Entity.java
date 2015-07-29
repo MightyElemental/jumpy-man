@@ -5,6 +5,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.JumpMan;
+import net.minegeek360.jumpman.world.World;
 
 /** @author MightyElemental */
 public abstract class Entity {
@@ -19,7 +20,7 @@ public abstract class Entity {
 
 	protected Image displayImage = JumpMan.NULL_IMAGE;
 
-	public Entity(String name, int sizeX, int sizeY) {
+	public Entity( String name, int sizeX, int sizeY ) {
 		this.entityName = name;
 		this.sizeX = sizeX;
 		this.sizeY = sizeY;
@@ -41,7 +42,7 @@ public abstract class Entity {
 	 *            the variable that holds the state
 	 * @param delta
 	 *            the time passed since the last update */
-	public abstract void update(GameContainer gc, StateBasedGame sbg, int delta);
+	public abstract void update(GameContainer gc, StateBasedGame sbg, int delta, World worldObj);
 
 	public boolean isSolid() {
 		return isSolid;

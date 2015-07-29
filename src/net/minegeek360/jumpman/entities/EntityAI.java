@@ -3,15 +3,17 @@ package net.minegeek360.jumpman.entities;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
 
+import net.minegeek360.jumpman.world.World;
+
 /** @author MightyElemental */
 public abstract class EntityAI extends EntityLiving {
 
-	public EntityAI(String name, int sizeX, int sizeY) {
+	public EntityAI( String name, int sizeX, int sizeY ) {
 		super(name, sizeX, sizeY);
 	}
 
 	@Override
-	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
+	public void update(GameContainer gc, StateBasedGame sbg, int delta, World worldObj) {
 		think(gc, sbg, delta);
 	}
 

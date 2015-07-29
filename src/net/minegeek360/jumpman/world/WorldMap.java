@@ -7,7 +7,7 @@ public class WorldMap {
 	public ArrayList<WorldObject> objects = new ArrayList<WorldObject>();
 
 	public void init() {
-		objects.add(new WorldBlock(50, 50, 400, 10));
+		objects.add(new WorldBlock(50, 70, 400, 10));
 	}
 
 }

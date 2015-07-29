@@ -3,25 +3,31 @@ package net.minegeek360.jumpman.entities;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
 
+import net.minegeek360.jumpman.world.World;
+
 public class EntityLiving extends Entity {
 
-	public EntityLiving(String name, int sizeX, int sizeY) {
+	public EntityLiving( String name, int sizeX, int sizeY ) {
 		super(name, sizeX, sizeY);
 	}
 
-	protected float moveSpeed;
-	protected int maxHealth = 20;
-	protected int health = maxHealth;
+	protected float		moveSpeed		= 2, jumpPower = 4;
+	protected int		maxHealth		= 20;
+	protected int		health			= maxHealth;
+	protected int		doubleJump		= 0;
+	protected boolean	hasDoubleJump	= false;
+	protected boolean	isInAir			= true;
 
 	@Override
-	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
+	public void update(GameContainer gc, StateBasedGame sbg, int delta, World worldObj) {// SETUP THE
+																							// COLLISIONS!!!!!!!!!!!
 		float delta2 = delta / 16f;
-		formatVelocity();
+		formatVelocity(worldObj);
 		this.setLocationX(this.getLocationX() + (getVelocityX() * delta2));
 		this.setLocationY(this.getLocationY() + (getVelocityY() * delta2));
 	}
 
-	private void formatVelocity() {
+	private void formatVelocity(World worldObj) {
 		int velShift = 10;
 
 		if (velocityX > 0) {
@@ -39,15 +45,9 @@ public class EntityLiving extends Entity {
 			velocityX = 0;
 		}
 
-		if (velocityY > 0) {
-			velocityY -= moveSpeed / velShift;
-		} else if (velocityY < 0) {
-			velocityY += moveSpeed / velShift;
-		}
-		if (velocityY >= moveSpeed) {
-			velocityY = moveSpeed;
-		} else if (velocityY <= -moveSpeed) {
-			velocityY = -moveSpeed;
+		// Y Velocity
+		if (isInAir) {
+			this.velocityY += worldObj.gravity;// SETUP THE GRAVITY!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		}
 
 		if (velocityY > -0.19 && velocityY < 0.19) {
@@ -67,16 +67,11 @@ public class EntityLiving extends Entity {
 		this.velocityX += moveSpeed;
 	}
 
-	/** Adds velocity to the entity to move up */
-	public void moveUp() {
-		if (velocityY < -moveSpeed) { return; }
-		this.velocityY -= moveSpeed;
-	}
-
-	/** Adds velocity to the entity to move down */
-	public void moveDown() {
-		if (velocityY > moveSpeed) { return; }
-		this.velocityY += moveSpeed;
+	/** Makes the entity jump */
+	public void jump() {
+		if (this.isInAir) { return; }
+		if (hasDoubleJump && doubleJump < 2) { return; }
+		this.velocityY -= jumpPower;
 	}
 
 	/** Gets the speed at which the entity moves */
