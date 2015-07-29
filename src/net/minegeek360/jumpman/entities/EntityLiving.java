@@ -4,11 +4,13 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.world.World;
+import net.minegeek360.jumpman.world.WorldObject;
 
 public class EntityLiving extends Entity {
 
-	public EntityLiving( String name, int sizeX, int sizeY ) {
-		super(name, sizeX, sizeY);
+	public EntityLiving( String name, int sizeX, int sizeY, World worldObj ) {
+		super(name, sizeX, sizeY, worldObj);
+		this.worldObj = worldObj;
 	}
 
 	protected float		moveSpeed		= 2, jumpPower = 4;
@@ -19,12 +21,13 @@ public class EntityLiving extends Entity {
 	protected boolean	isInAir			= true;
 
 	@Override
-	public void update(GameContainer gc, StateBasedGame sbg, int delta, World worldObj) {// SETUP THE
-																							// COLLISIONS!!!!!!!!!!!
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) {// SETUP THE
+																			// COLLISIONS!!!!!!!!!!!
 		float delta2 = delta / 16f;
 		formatVelocity(worldObj);
-		this.setLocationX(this.getLocationX() + (getVelocityX() * delta2));
-		this.setLocationY(this.getLocationY() + (getVelocityY() * delta2));
+		this.setPosX(this.getPosX() + (getVelocityX() * delta2));
+		this.setPosY(this.getPosY() + (getVelocityY() * delta2));
+		testAndHandleCollisions();
 	}
 
 	private void formatVelocity(World worldObj) {
@@ -46,12 +49,24 @@ public class EntityLiving extends Entity {
 		}
 
 		// Y Velocity
-		if (isInAir) {
+		if (!isInAir) {
 			this.velocityY += worldObj.gravity;// SETUP THE GRAVITY!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		}
 
 		if (velocityY > -0.19 && velocityY < 0.19) {
 			velocityY = 0;
+		}
+	}
+
+	public void testAndHandleCollisions() {
+		for (WorldObject worldObject : worldObj.currentMapLoaded.objects) {
+			if (worldObject.isSolid()) {
+				if (this.getBoundsBottom().intersects(worldObject)) {
+					this.velocityY = 0;
+					this.setPosY(worldObject.getY() - this.height);
+					this.isInAir = false;
+				}
+			}
 		}
 	}
 

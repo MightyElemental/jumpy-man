@@ -41,13 +41,20 @@ public class PlayState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.setColor(new Color(255, 255, 255, 1f));
 		for (WorldObject worldObj : world.currentMapLoaded.objects) {
-			g.fillRect(worldObj.x, worldObj.y, worldObj.width, worldObj.height);
+			g.fillRect(worldObj.getX(), worldObj.getY(), worldObj.getWidth(), worldObj.getHeight());
 		}
 
 		for (Entity ent : world.entities) {
 			if (ent != null) {
-				g.drawImage(ent.getDisplayImage().getScaledCopy(ent.getSizeX(), ent.getSizeY()), ent.getLocationX(), ent.getLocationY());
-
+				// g.drawImage(ent.getDisplayImage().getScaledCopy(ent.getWidth(), ent.getHeight()), ent.getPosX(),
+				// ent.getPosY());
+				g.setColor(new Color(0, 255, 0));
+				g.fillRect(ent.getPosX(), ent.getPosY(), ent.getWidth(), ent.getHeight());
+				g.setColor(new Color(255, 0, 0));
+				g.draw(ent.getBoundsLeft());
+				g.draw(ent.getBoundsRight());
+				g.draw(ent.getBoundsTop());
+				g.draw(ent.getBoundsBottom());
 			}
 		}
 		gui.render(gc, sbg, g);
@@ -57,8 +64,8 @@ public class PlayState extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		gui.update(gc, sbg, delta);
 		for (Entity ent : world.entities) {
-			ent.update(gc, sbg, delta, world);
-			System.out.println(ent.getLocationY());
+			ent.update(gc, sbg, delta);
+			// System.out.println(ent.getPosY());
 		}
 	}
 

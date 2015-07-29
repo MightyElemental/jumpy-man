@@ -17,7 +17,7 @@ public class World {
 	public float gravity = 0.6f; // should be 9.8m/s/s (9.8m per second for every second in the air)
 
 	public void init(GameContainer gc, StateBasedGame sbg) {
-		entities.add(new EntityPlayer());
+		entities.add(new EntityPlayer(this));
 		WorldMap map = new WorldMap();
 		map.init();
 		mapArray.add(map);

@@ -1,19 +1,14 @@
 package net.minegeek360.jumpman.world;
 
-import java.awt.Rectangle;
+import org.newdawn.slick.geom.Rectangle;
 
 @SuppressWarnings( "serial" )
 public class WorldObject extends Rectangle {
 
 	protected boolean isSolid = true;
 
-	public float x, y, width, height;
-
 	public WorldObject( float x, float y, float width, float height ) {
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+		super(x, y, width, height);
 	}
 
 	public boolean isSolid() {

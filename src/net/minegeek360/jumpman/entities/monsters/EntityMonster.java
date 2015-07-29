@@ -8,13 +8,13 @@ import net.minegeek360.jumpman.world.World;
 
 public class EntityMonster extends EntityAI {
 
-	public EntityMonster( String name, int sizeX, int sizeY ) {
-		super(name, sizeX, sizeY);
+	public EntityMonster( String name, int sizeX, int sizeY, World worldObj ) {
+		super(name, sizeX, sizeY, worldObj);
 	}
 
 	@Override
-	public void update(GameContainer gc, StateBasedGame sbg, int delta, World worldObj) {
-		super.update(gc, sbg, delta, worldObj);
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
+		super.update(gc, sbg, delta);
 	}
 
 	@Override
