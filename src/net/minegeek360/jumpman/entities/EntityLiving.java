@@ -95,6 +95,7 @@ public class EntityLiving extends Entity {
 		if (!isInAir) {
 			this.velocityX -= moveSpeed;
 		}
+		this.facingLeft = true;
 	}
 
 	/** Adds velocity to the entity to move right */
@@ -103,6 +104,7 @@ public class EntityLiving extends Entity {
 		if (!isInAir) {
 			this.velocityX += moveSpeed;
 		}
+		this.facingLeft = false;
 	}
 
 	/** Makes the entity jump */

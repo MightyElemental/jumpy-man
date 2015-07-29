@@ -17,6 +17,8 @@ public abstract class Entity {
 
 	protected float ticksAlive;
 
+	protected boolean facingLeft = true;
+
 	protected float velocityX, velocityY, posX, posY;
 
 	protected int width, height;
@@ -169,6 +171,10 @@ public abstract class Entity {
 	/** The time in game ticks the entity has been alive */
 	public float getTicksAlive() {
 		return ticksAlive;
+	}
+
+	public boolean isFacingLeft() {
+		return facingLeft;
 	}
 
 }

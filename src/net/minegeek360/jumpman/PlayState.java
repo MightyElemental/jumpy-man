@@ -1,5 +1,7 @@
 package net.minegeek360.jumpman;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -51,7 +53,8 @@ public class PlayState extends BasicGameState {
 
 		for (Entity ent : world.entities) {
 			if (ent != null) {
-				g.drawImage(ent.getDisplayImage().getScaledCopy(ent.getWidth(), ent.getHeight()), ent.getPosX(), ent.getPosY());
+				g.drawImage(ent.getDisplayImage().getScaledCopy(ent.getWidth(), ent.getHeight()).getFlippedCopy(!ent.isFacingLeft(), false),
+						ent.getPosX(), ent.getPosY());
 				g.setColor(new Color(255, 0, 0));
 				/*
 				 * g.draw(ent.getBoundsLeft()); g.draw(ent.getBoundsRight()); g.draw(ent.getBoundsTop());
@@ -78,11 +81,15 @@ public class PlayState extends BasicGameState {
 			ent.update(gc, sbg, delta);
 		}
 
+		ArrayList<EntityParticle> partsToRemove = new ArrayList<EntityParticle>();
 		for (EntityParticle ent : world.particles) {
 			ent.update(gc, sbg, delta);
 			if (ent.dead) {
-				world.particles.remove(ent);
+				partsToRemove.add(ent);
 			}
+		}
+		for (EntityParticle ent : partsToRemove) {
+			world.particles.remove(ent);
 		}
 	}
 
