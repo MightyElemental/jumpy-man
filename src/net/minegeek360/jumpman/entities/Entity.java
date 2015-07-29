@@ -15,6 +15,8 @@ public abstract class Entity {
 
 	protected boolean isSolid;
 
+	protected int ticksAlive;
+
 	protected float velocityX, velocityY, posX, posY;
 
 	protected int width, height;
@@ -80,7 +82,9 @@ public abstract class Entity {
 	 *            the variable that holds the state
 	 * @param delta
 	 *            the time passed since the last update */
-	public abstract void update(GameContainer gc, StateBasedGame sbg, int delta);
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
+		ticksAlive += 1 * delta / 16;
+	}
 
 	public boolean isSolid() {
 		return isSolid;
@@ -160,6 +164,11 @@ public abstract class Entity {
 	public Entity setDisplayImage(String displayImage) {
 		this.displayImage = JumpMan.resLoader.loadImage(displayImage);
 		return this;
+	}
+
+	/** The time in game ticks the entity has been alive */
+	public int getTicksAlive() {
+		return ticksAlive;
 	}
 
 }
