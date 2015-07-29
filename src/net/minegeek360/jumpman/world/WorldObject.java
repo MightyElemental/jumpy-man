@@ -15,8 +15,9 @@ public class WorldObject extends Rectangle {
 		return isSolid;
 	}
 
-	public void setSolid(boolean isSolid) {
+	public WorldObject setSolid(boolean isSolid) {
 		this.isSolid = isSolid;
+		return this;
 	}
 
 }

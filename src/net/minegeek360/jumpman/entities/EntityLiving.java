@@ -36,15 +36,21 @@ public class EntityLiving extends Entity {
 	private void formatVelocity(World worldObj) {
 		int velShift = 10;
 
+		if (!isInAir) {
+			if (velocityX >= moveSpeed) {
+				velocityX = moveSpeed;
+			} else if (velocityX <= -moveSpeed) {
+				velocityX = -moveSpeed;
+			}
+			velShift = 10;
+		} else {
+			velShift = 20;
+		}
+
 		if (velocityX > 0) {
 			velocityX -= moveSpeed / velShift;
 		} else if (velocityX < 0) {
 			velocityX += moveSpeed / velShift;
-		}
-		if (velocityX >= moveSpeed) {
-			velocityX = moveSpeed;
-		} else if (velocityX <= -moveSpeed) {
-			velocityX = -moveSpeed;
 		}
 
 		if (velocityX > -0.19 && velocityX < 0.19) {
@@ -86,13 +92,17 @@ public class EntityLiving extends Entity {
 	/** Adds velocity to the entity to move left */
 	public void moveLeft() {
 		if (velocityX < -moveSpeed) { return; }
-		this.velocityX -= moveSpeed;
+		if (!isInAir) {
+			this.velocityX -= moveSpeed;
+		}
 	}
 
 	/** Adds velocity to the entity to move right */
 	public void moveRight() {
 		if (velocityX > moveSpeed) { return; }
-		this.velocityX += moveSpeed;
+		if (!isInAir) {
+			this.velocityX += moveSpeed;
+		}
 	}
 
 	/** Makes the entity jump */
