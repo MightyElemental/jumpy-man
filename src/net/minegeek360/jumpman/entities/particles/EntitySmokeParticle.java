@@ -11,16 +11,16 @@ import net.minegeek360.jumpman.world.objects.WorldObject;
 
 /** @author WolfgangTS
  * @since 29/07/2015 */
-public class EntityStepParticle extends EntityParticle {
+public class EntitySmokeParticle extends EntityParticle {
 
-	public EntityStepParticle( float x, float y, World worldObj ) {
-		super("Smoke Particle", x, y, worldObj);
+	public EntitySmokeParticle( float x, float y, World worldObj ) {
+		super("Step Particle", x, y, worldObj);
 		this.setDimensions(new Dimension(4, 4));
 		this.velocityY = -2 - this.worldObj.rand.nextFloat();
 		this.velocityX = this.worldObj.rand.nextFloat() * 5 - 10;
-		this.lifetime = 200;
+		this.lifetime = 20;
 
-		this.setDisplayImage("entity.particle.walk");
+		this.setDisplayImage("entity.particle.smokeparticle");
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class EntityStepParticle extends EntityParticle {
 
 		for (WorldObject obj : worldObj.currentMapLoaded.objects) {
 			if (obj.intersects(new Rectangle(this.posX, this.posY, this.width, this.height))) {
-				this.posY = obj.getY()+obj.getHeight() + this.height;
+				this.posY = obj.getY() - this.height;
 
 				this.velocityX = 0;
 				this.velocityY = 0;
