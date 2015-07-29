@@ -30,8 +30,7 @@ public class PlayState extends BasicGameState
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
 	{
 		shader = new Shader();
-		
-		
+
 		world = new World();
 		world.init(gc, sbg);
 
@@ -71,8 +70,8 @@ public class PlayState extends BasicGameState
 				g.draw(ent.getBoundsRight());
 				g.draw(ent.getBoundsTop());
 				g.draw(ent.getBoundsBottom());
-				shader.setPosition(ent.getPosX(), ent.getPosY());
-				//shader.render(gc, sbg, g);
+				shader.setPosition(ent.getPosX() + ent.getWidth() / 2, ent.getPosY() + ent.getHeight() / 2);
+				// shader.render(gc, sbg, g);
 			}
 		}
 		gui.render(gc, sbg, g);
