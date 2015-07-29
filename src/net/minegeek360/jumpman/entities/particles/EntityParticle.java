@@ -34,6 +34,7 @@ public abstract class EntityParticle extends Entity {
 	{
 		if(this.ticksAlive > this.lifetime)
 		{
+			System.out.println("hi");
 			this.dead = true;
 		}
 	}
