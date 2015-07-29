@@ -15,8 +15,9 @@ public class EntityStepParticle extends EntityParticle
 	{
 		super("Step Particle", x, y, worldObj);
 		this.setDimensions(new Dimension(4,4));
-		this.velocityY = -5;
-		this.lifetime = 100;
+		this.velocityY = -5-this.worldObj.rand.nextFloat()*5;
+		this.velocityX = this.worldObj.rand.nextFloat()*5-10;
+		this.lifetime = 1;
 		
 		this.setDisplayImage("entity.particle.walk");
 	}

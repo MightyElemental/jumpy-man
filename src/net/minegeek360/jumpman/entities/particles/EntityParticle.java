@@ -32,9 +32,10 @@ public abstract class EntityParticle extends Entity {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 	{
+		super.update(gc, sbg, delta);
+		
 		if(this.ticksAlive > this.lifetime)
 		{
-			System.out.println("hi");
 			this.dead = true;
 		}
 	}
