@@ -34,7 +34,7 @@ public class EntityLiving extends Entity {
 	}
 
 	private void formatVelocity(World worldObj) {
-		int velShift = 10;
+		float velShift = 10f;
 
 		if (!isInAir) {
 			if (velocityX >= moveSpeed) {
@@ -42,9 +42,9 @@ public class EntityLiving extends Entity {
 			} else if (velocityX <= -moveSpeed) {
 				velocityX = -moveSpeed;
 			}
-			velShift = 10;
+			velShift = 10f;
 		} else {
-			velShift = 20;
+			velShift = 10000f;
 		}
 
 		if (velocityX > 0) {
