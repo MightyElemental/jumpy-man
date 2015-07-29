@@ -15,7 +15,7 @@ public abstract class Entity {
 
 	protected boolean isSolid;
 
-	protected int ticksAlive;
+	protected float ticksAlive;
 
 	protected float velocityX, velocityY, posX, posY;
 
@@ -83,7 +83,7 @@ public abstract class Entity {
 	 * @param delta
 	 *            the time passed since the last update */
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
-		ticksAlive += 1 * delta / 16;
+		ticksAlive += 1 * delta / 16f;
 	}
 
 	public boolean isSolid() {
@@ -167,7 +167,7 @@ public abstract class Entity {
 	}
 
 	/** The time in game ticks the entity has been alive */
-	public int getTicksAlive() {
+	public float getTicksAlive() {
 		return ticksAlive;
 	}
 
