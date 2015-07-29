@@ -13,7 +13,7 @@ public class EntityLiving extends Entity {
 		this.worldObj = worldObj;
 	}
 
-	protected float		moveSpeed		= 2, jumpPower = 4;
+	protected float		moveSpeed		= 2, jumpPower = 10;
 	protected int		maxHealth		= 20;
 	protected int		health			= maxHealth;
 	protected int		doubleJump		= 0;
@@ -65,13 +65,11 @@ public class EntityLiving extends Entity {
 				if (this.getBoundsBottom().intersects(worldObject)) {
 					this.velocityY = 0;
 					this.setPosY(worldObject.getY() - this.height);
-					this.isInAir = false;
 					flag = true;
 				}
 				if (this.getBoundsTop().intersects(worldObject)) {
 					this.velocityY = 0;
-					this.setPosY(worldObject.getY() - worldObject.getHeight());
-					this.isInAir = false;
+					this.setPosY(worldObject.getY() + worldObject.getHeight() + 1);
 					flag = true;
 				}
 			}
