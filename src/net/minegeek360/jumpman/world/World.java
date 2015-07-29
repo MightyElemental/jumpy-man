@@ -7,11 +7,13 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.entities.Entity;
 import net.minegeek360.jumpman.entities.EntityPlayer;
+import net.minegeek360.jumpman.entities.particles.EntityParticle;
 
 public class World {
 
-	public ArrayList<Entity>	entities	= new ArrayList<Entity>();
-	public ArrayList<WorldMap>	mapArray	= new ArrayList<WorldMap>();
+	public ArrayList<Entity>			entities	= new ArrayList<Entity>();
+	public ArrayList<EntityParticle>	particles	= new ArrayList<EntityParticle>();
+	public ArrayList<WorldMap>			mapArray	= new ArrayList<WorldMap>();
 
 	/** The velocity to be added every tick the entities are not on the ground */
 	public float gravity = 0.6f; // should be 9.8m/s/s (9.8m per second for every second in the air)

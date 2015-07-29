@@ -8,6 +8,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.entities.Entity;
+import net.minegeek360.jumpman.entities.particles.EntityParticle;
 import net.minegeek360.jumpman.world.World;
 import net.minegeek360.jumpman.world.objects.WorldObject;
 import net.wolfgangts.gui.GUIRender;
@@ -54,6 +55,12 @@ public class PlayState extends BasicGameState {
 				g.draw(ent.getBoundsTop());
 				g.draw(ent.getBoundsBottom());
 
+			}
+		}
+
+		for (EntityParticle part : world.particles) {
+			if (part != null) {
+				g.drawImage(part.getDisplayImage().getScaledCopy(part.getWidth(), part.getHeight()), part.getPosX(), part.getPosY());
 			}
 		}
 		gui.render(gc, sbg, g);

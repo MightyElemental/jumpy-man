@@ -1,11 +1,11 @@
-package net.minegeek360.jumpman.entities;
+package net.minegeek360.jumpman.entities.particles;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.world.World;
 
-public class EntityStepParticle extends Entity
+public class EntityStepParticle extends EntityParticle
 {
 	public EntityStepParticle(float x, float y, World worldObj)
 	{

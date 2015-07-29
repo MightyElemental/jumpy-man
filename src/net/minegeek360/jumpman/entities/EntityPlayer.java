@@ -4,6 +4,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
 
+import net.minegeek360.jumpman.entities.particles.EntityStepParticle;
 import net.minegeek360.jumpman.world.World;
 
 public class EntityPlayer extends EntityLiving {

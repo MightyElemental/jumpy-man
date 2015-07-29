@@ -29,6 +29,16 @@ public abstract class Entity {
 		this.height = height;
 	}
 
+	public Entity( String name, float posX, float posY, World worldObj ) {
+		this.entityName = name;
+		this.posX = posX;
+		this.posY = posY;
+	}
+
+	public Entity( String name, World worldObj ) {
+		this.entityName = name;
+	}
+
 	public Rectangle getBoundsLeft() {
 		return new Rectangle(this.posX, this.posY + 5, 5, this.height - 10);
 	}
