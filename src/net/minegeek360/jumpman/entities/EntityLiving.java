@@ -70,12 +70,13 @@ public class EntityLiving extends Entity {
 				}
 				if (this.getBoundsTop().intersects(worldObject)) {
 					this.velocityY = 0;
-					this.setPosY(worldObject.getY()-worldObject.getHeight());
+					this.setPosY(worldObject.getY() - worldObject.getHeight());
 					this.isInAir = false;
 					flag = true;
 				}
 			}
 		}
+		this.isInAir = !flag;
 	}
 
 	/** Adds velocity to the entity to move left */
