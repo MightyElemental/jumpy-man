@@ -23,19 +23,25 @@ public class EntityPlayer extends EntityLiving {
 	private boolean	canGoRight	= true;
 	private boolean	canGoLeft	= true;
 
+	public void createParticle()
+	{
+		if(worldObj.rand.nextInt(5) == 0)
+			worldObj.particles.add(new EntityStepParticle(this.getPosX()+this.width/2, this.getPosY()+this.height, worldObj));
+	}
+	
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
 		super.update(gc, sbg, delta);
 		Input input = gc.getInput();
 		if (input.isKeyDown(playerCont[0])) {
 			if (this.canGoRight) {
 				this.moveRight();
-				worldObj.particles.add(new EntityStepParticle(this.getPosX(), this.getPosY(), worldObj));
+				createParticle();
 			}
 		}
 		if (input.isKeyDown(playerCont[1])) {
 			if (this.canGoLeft) {
 				this.moveLeft();
-				worldObj.particles.add(new EntityStepParticle(this.getPosX(), this.getPosY(), worldObj));
+				createParticle();
 
 			}
 		}
