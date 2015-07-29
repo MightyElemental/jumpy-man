@@ -42,7 +42,6 @@ public class Render3D
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 	{
-		float deltaDivisor = delta / 10f;
 
 		if (this.gameTime == 0)
 		{

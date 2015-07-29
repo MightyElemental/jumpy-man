@@ -12,7 +12,6 @@ public class GUIToolTip
 {
 	private boolean	showHint	= false;
 	private String	hint		= "";
-	private long	time		= 0;
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 	{
@@ -45,7 +44,6 @@ public class GUIToolTip
 	{
 		this.showHint = true;
 		this.hint = hint;
-		this.time = System.currentTimeMillis();
 	}
 
 	public void update()
