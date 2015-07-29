@@ -8,6 +8,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
+import net.wolfgangts.shaders.Shader;
+
 public class GUIRender
 {
 	private ArrayList<GUIButton>	buttons			= new ArrayList<GUIButton>();
@@ -15,6 +17,7 @@ public class GUIRender
 	private boolean					previousMouse1	= false;
 	private boolean					previousMouse2	= false;
 	private boolean					previousMouse3	= false;
+	private Shader					shader			= new Shader();
 
 	public GUIRender()
 	{
@@ -23,6 +26,8 @@ public class GUIRender
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 	{
+		this.shader.render(gc, sbg, g);
+		
 		for (Object buttonObj : buttons.toArray())
 		{
 			GUIButton button = (GUIButton) buttonObj;

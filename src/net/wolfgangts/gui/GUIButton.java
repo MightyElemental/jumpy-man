@@ -115,10 +115,6 @@ public class GUIButton
 		return this;
 	}
 	
-
-
-
-	
 	public void callHoverEvent()
 	{
 		if (this.hoverEvent != null)
@@ -139,8 +135,8 @@ public class GUIButton
 		int height = JumpMan.font.getHeight();
 		
 		g.drawString(this.title, position.x + position.width / 2 - width/2, position.y + position.height / 2 - height/2);
+		
+		
 
 	}
-	
-	
 }
