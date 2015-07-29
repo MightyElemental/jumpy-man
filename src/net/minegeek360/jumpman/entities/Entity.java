@@ -27,16 +27,19 @@ public abstract class Entity {
 		this.entityName = name;
 		this.width = width;
 		this.height = height;
+		this.worldObj = worldObj;
 	}
 
 	public Entity( String name, float posX, float posY, World worldObj ) {
 		this.entityName = name;
 		this.posX = posX;
 		this.posY = posY;
+		this.worldObj = worldObj;
 	}
 
 	public Entity( String name, World worldObj ) {
 		this.entityName = name;
+		this.worldObj = worldObj;
 	}
 
 	public Rectangle getBoundsLeft() {

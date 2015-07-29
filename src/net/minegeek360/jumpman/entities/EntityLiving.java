@@ -10,7 +10,6 @@ public class EntityLiving extends Entity {
 
 	public EntityLiving( String name, int sizeX, int sizeY, World worldObj ) {
 		super(name, sizeX, sizeY, worldObj);
-		this.worldObj = worldObj;
 	}
 
 	protected float		moveSpeed		= 2;
@@ -156,12 +155,10 @@ public class EntityLiving extends Entity {
 		this.health = health;
 	}
 
-	
 	public float getJumpPower() {
 		return jumpPower;
 	}
 
-	
 	public void setJumpPower(float jumpPower) {
 		this.jumpPower = jumpPower;
 	}
