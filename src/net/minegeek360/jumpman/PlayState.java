@@ -12,56 +12,42 @@ import net.minegeek360.jumpman.world.World;
 import net.minegeek360.jumpman.world.WorldObject;
 import net.wolfgangts.gui.GUIRender;
 
-public class PlayState extends BasicGameState
-{
+public class PlayState extends BasicGameState {
 
 	private final int	ID;
 	public World		world;
 	private GUIRender	gui;
 
-	public PlayState(int playState)
-	{
+	public PlayState( int playState ) {
 		this.ID = playState;
 	}
 
 	@Override
-	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
-	{
+	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 
 		world = new World();
 		world.init(gc, sbg);
 
 		gui = new GUIRender();
 
-		if (JumpMan.fullscreen)
-			gui.addButton(gc.getWidth() - 40, 10, 30, 30, "X").setClickEvent(new Runnable()
-			{
+		if (JumpMan.fullscreen) gui.addButton(gc.getWidth() - 40, 10, 30, 30, "X").setClickEvent(new Runnable() {
 
-				public void run()
-				{
-					System.exit(0);
-				}
-			});
+			public void run() {
+				System.exit(0);
+			}
+		});
 	}
 
 	@Override
-	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException
-	{
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.setColor(new Color(255, 255, 255, 1f));
-		for (WorldObject worldObj : world.currentMapLoaded.objects)
-		{
+		for (WorldObject worldObj : world.currentMapLoaded.objects) {
 			g.fillRect(worldObj.getX(), worldObj.getY(), worldObj.getWidth(), worldObj.getHeight());
 		}
 
-		for (Entity ent : world.entities)
-		{
-			if (ent != null)
-			{
-				// g.drawImage(ent.getDisplayImage().getScaledCopy(ent.getWidth(),
-				// ent.getHeight()), ent.getPosX(),
-				// ent.getPosY());
-				g.setColor(new Color(0, 255, 0));
-				g.fillRect(ent.getPosX(), ent.getPosY(), ent.getWidth(), ent.getHeight());
+		for (Entity ent : world.entities) {
+			if (ent != null) {
+				g.drawImage(ent.getDisplayImage().getScaledCopy(ent.getWidth(), ent.getHeight()), ent.getPosX(), ent.getPosY());
 				g.setColor(new Color(255, 0, 0));
 				g.draw(ent.getBoundsLeft());
 				g.draw(ent.getBoundsRight());
@@ -74,19 +60,16 @@ public class PlayState extends BasicGameState
 	}
 
 	@Override
-	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
-	{
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		gui.update(gc, sbg, delta);
-		for (Entity ent : world.entities)
-		{
+		for (Entity ent : world.entities) {
 			ent.update(gc, sbg, delta);
 			// System.out.println(ent.getPosY());
 		}
 	}
 
 	@Override
-	public int getID()
-	{
+	public int getID() {
 		return ID;
 	}
 
