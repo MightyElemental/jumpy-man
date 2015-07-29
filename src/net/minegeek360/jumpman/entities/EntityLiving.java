@@ -49,7 +49,7 @@ public class EntityLiving extends Entity {
 		}
 
 		// Y Velocity
-		if (!isInAir) {
+		if (isInAir) {
 			this.velocityY += worldObj.gravity;// SETUP THE GRAVITY!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		}
 
@@ -59,12 +59,20 @@ public class EntityLiving extends Entity {
 	}
 
 	public void testAndHandleCollisions() {
+		boolean flag = false;
 		for (WorldObject worldObject : worldObj.currentMapLoaded.objects) {
 			if (worldObject.isSolid()) {
 				if (this.getBoundsBottom().intersects(worldObject)) {
 					this.velocityY = 0;
 					this.setPosY(worldObject.getY() - this.height);
 					this.isInAir = false;
+					flag = true;
+				}
+				if (this.getBoundsTop().intersects(worldObject)) {
+					this.velocityY = 0;
+					this.setPosY(worldObject.getY()-worldObject.getHeight());
+					this.isInAir = false;
+					flag = true;
 				}
 			}
 		}
