@@ -41,7 +41,9 @@ public class PlayState extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		gui.render(gc, sbg, g);
+
+		g.drawImage(world.currentMapLoaded.getBackground().getScaledCopy(gc.getWidth(), gc.getHeight()), 0, 0);
+
 		g.setColor(new Color(255, 255, 255, 1f));
 		for (WorldObject worldObj : world.currentMapLoaded.objects) {
 			g.fillRect(worldObj.getX(), worldObj.getY(), worldObj.getWidth(), worldObj.getHeight());
@@ -65,6 +67,8 @@ public class PlayState extends BasicGameState {
 			}
 		}
 
+		gui.render(gc, sbg, g);
+
 	}
 
 	@Override
@@ -76,8 +80,7 @@ public class PlayState extends BasicGameState {
 
 		for (EntityParticle ent : world.particles) {
 			ent.update(gc, sbg, delta);
-			if(ent.dead)
-			{
+			if (ent.dead) {
 				world.particles.remove(ent);
 			}
 		}
