@@ -8,9 +8,9 @@ public class WorldMap {
 
 	public void init() {
 		// objects.add(new WorldBlock(500, 170, 4000, 10));
-		objects.add(new WorldBlock(0, 300, 4000, 10));
-		objects.add(new WorldBlock(800, 170, 10, 400));
-		objects.add(new WorldBlock(80, 170, 10, 400));
+		objects.add(new WorldBlock(0, 500, 4000, 50));
+		objects.add(new WorldBlock(800, 50, 10, 500));
+		objects.add(new WorldBlock(80, 50, 10, 500));
 	}
 
 }
