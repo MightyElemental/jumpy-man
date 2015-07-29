@@ -14,6 +14,7 @@ public class EntityStepParticle extends EntityParticle
 		super("Step Particle", x, y, worldObj);
 		this.setDimensions(new Dimension(50, 50));
 		this.velocityY = 20;
+		this.lifetime = 1000;
 	}
 
 	@Override
@@ -21,10 +22,10 @@ public class EntityStepParticle extends EntityParticle
 	{
 		super.update(gc, sbg, delta);
 		
-		this.posX+=this.velocityX*(delta/17);
-		this.posY+=this.velocityY*(delta/17);
+		this.posX+=this.velocityX*(delta/16);
+		this.posY+=this.velocityY*(delta/16);
 		
-		this.velocityX/=2*(delta/17);
-		this.velocityY-=worldObj.gravity*(delta/17);
+		this.velocityX/=2*(delta/16);
+		this.velocityY-=worldObj.gravity*(delta/16);
 	}
 }

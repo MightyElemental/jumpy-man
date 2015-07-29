@@ -11,7 +11,7 @@ import net.minegeek360.jumpman.world.World;
 public abstract class EntityParticle extends Entity {
 
 	public int lifetime;
-	public int life;
+	public boolean dead = false;
 	
 	public EntityParticle( String name, float posX, float posY, World worldObj ) {
 		super(name, posX, posY, worldObj);
@@ -31,10 +31,9 @@ public abstract class EntityParticle extends Entity {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 	{
-		life++;
-		if(life>lifetime)
+		if(this.ticksAlive > this.lifetime)
 		{
-			
+			this.dead = true;
 		}
 	}
 	

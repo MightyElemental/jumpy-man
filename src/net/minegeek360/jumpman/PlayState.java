@@ -76,6 +76,10 @@ public class PlayState extends BasicGameState {
 		
 		for (EntityParticle ent : world.particles) {
 			ent.update(gc, sbg, delta);
+			if(ent.dead)
+			{
+				world.particles.remove(ent);
+			}
 		}
 	}
 

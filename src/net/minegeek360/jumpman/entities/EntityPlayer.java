@@ -36,6 +36,7 @@ public class EntityPlayer extends EntityLiving {
 			if (this.canGoLeft) {
 				this.moveLeft();
 				worldObj.particles.add(new EntityStepParticle(this.getPosX(), this.getPosY(), worldObj));
+
 			}
 		}
 		if (input.isKeyDown(playerCont[2])) {
