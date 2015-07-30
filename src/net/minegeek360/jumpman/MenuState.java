@@ -40,9 +40,9 @@ public class MenuState extends BasicGameState
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException
 	{
+		Render3D.render(gc, sbg, g);
 		gui.render(gc, sbg, g);
 		gui.tooltip.render(gc, sbg, g);
-		Render3D.render(gc, sbg, g);
 	}
 
 	private boolean playingMusic = false;
@@ -75,7 +75,7 @@ public class MenuState extends BasicGameState
 		return ID;
 	}
 	
-	public void mainMenu(GameContainer gc, StateBasedGame sbg)
+	public void mainMenu(final GameContainer gc, final StateBasedGame sbg)
 	{
 		gui.clear();
 		
@@ -90,7 +90,7 @@ public class MenuState extends BasicGameState
 		{
 			public void run()
 			{
-
+				settingsMenu(gc, sbg);
 			}
 		});
 		gui.addButton(gc.getWidth() / 4, gc.getHeight() / 4 * 3, gc.getWidth() / 4 * 2, 50, "Exit").setClickEvent(new Runnable()
@@ -98,6 +98,18 @@ public class MenuState extends BasicGameState
 			public void run()
 			{
 				System.exit(0);
+			}
+		});
+	}
+	
+	public void settingsMenu(final GameContainer gc, final StateBasedGame sbg)
+	{
+		gui.clear();
+		
+		gui.addButton(50, 50, 200, 50, "Go back!").setClickEvent(new Runnable(){
+			public void run()
+			{
+				mainMenu(gc, sbg);
 			}
 		});
 	}

@@ -12,7 +12,7 @@ public class Render3D
 {
 	private ArrayList<float[]>	objects			= new ArrayList<float[]>();
 	private float				gameTime;
-	private float				fov				= 600;
+	private float				fov				= 500;
 	private float				renderDistance	= 5000;
 
 	private Random random = new Random();
@@ -26,6 +26,7 @@ public class Render3D
 	{
 		for (float[] item : this.objects)
 		{
+			
 			float x, y, z;
 
 			x = item[0];
@@ -35,7 +36,7 @@ public class Render3D
 			if (z > 0 && z < this.renderDistance)
 			{
 				g.setColor(new Color(255,255,255,255));
-				g.fillOval(x / z * this.fov + gc.getWidth() / 2, y / z * this.fov + gc.getHeight() / 2, 12500f / z, 12500f / z);
+				g.fillRect(x/z*fov + gc.getWidth()/2, y/z*fov + gc.getHeight()/2, 1, 1);
 			}
 		}
 	}
@@ -48,12 +49,14 @@ public class Render3D
 			for (int i = 0; i < 1000; i++)
 			{
 				this.objects.add(new float[] { 
-						this.random.nextFloat() * gc.getWidth()*2 - gc.getWidth(), 
-						this.random.nextFloat() * gc.getHeight()*2 - gc.getHeight(), 
-						this.random.nextFloat() * 5
+						this.random.nextFloat() * gc.getWidth()-gc.getWidth()/2, 
+						this.random.nextFloat() * gc.getHeight()-gc.getHeight()/2,
+						this.random.nextFloat() * (gc.getWidth()+gc.getHeight())/2 - (gc.getWidth()+gc.getHeight())/4
 						});
 			}
 		}
+		
+		this.rotate(ry(.001f));
 
 		this.gameTime += 1 * delta / 50f;
 	}
