@@ -68,9 +68,7 @@ public class PlayState extends BasicGameState {
 					EntityPlayer p = (EntityPlayer) e;
 					
 					TrueTypeFont cf = JumpMan.fontArial;
-					String health = p.getHealth() + "";
-					System.out.println(health);
-					
+					String health = p.getHealth() + "";		
 					
 					g.setFont(cf);
 					g.setColor(new Color(0,0,0, 0.5f));
