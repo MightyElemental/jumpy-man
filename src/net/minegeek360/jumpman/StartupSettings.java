@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.Window.Type;
 
 @SuppressWarnings( "serial" )
 public class StartupSettings extends JFrame {
@@ -47,8 +48,8 @@ public class StartupSettings extends JFrame {
 
 	/** Create the frame. */
 	public StartupSettings() {
-		setResizable(false);
 		setType(Type.UTILITY);
+		setResizable(false);
 		setTitle(JumpMan.GAME_NAME + " | Game setup");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 306, 300);
