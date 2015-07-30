@@ -29,6 +29,11 @@ public class WorldObject extends Rectangle {
 	}
 
 	public Image getTexture() {
+		if (material == null) {
+			System.err.println("Material = null!");
+		} else if (material.getTexture() == null) {
+			System.err.println("Texture = null!");
+		}
 		return material.getTexture();
 	}
 

@@ -19,8 +19,7 @@ import net.minegeek360.jumpman.world.World;
 import net.minegeek360.jumpman.world.objects.WorldObject;
 import net.wolfgangts.gui.GUIRender;
 
-public class PlayState extends BasicGameState
-{
+public class PlayState extends BasicGameState {
 
 	private final int	ID;
 	public World		world;
@@ -28,52 +27,43 @@ public class PlayState extends BasicGameState
 	private Music		currentMusic;
 	private Music		oldCurrentMusic;
 
-	public PlayState(int playState)
-	{
+	public PlayState( int playState ) {
 		this.ID = playState;
 	}
 
 	@Override
-	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
-	{
+	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 
 		world = new World();
 		world.init(gc, sbg);
 
 		gui = new GUIRender();
 
-		if (JumpMan.fullscreen)
-			gui.addButton(gc.getWidth() - 40, 10, 30, 30, "X").setClickEvent(new Runnable()
-			{
+		if (JumpMan.fullscreen) gui.addButton(gc.getWidth() - 40, 10, 30, 30, "X").setClickEvent(new Runnable() {
 
-				public void run()
-				{
-					System.exit(0);
-				}
-			});
+			public void run() {
+				System.exit(0);
+			}
+		});
 	}
 
 	@Override
-	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException
-	{
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 
 		g.drawImage(world.currentMapLoaded.getBackground().getScaledCopy(gc.getWidth(), gc.getHeight()), 0, 0);
 
 		g.setColor(new Color(255, 255, 255, 1f));
-		for (WorldObject worldObj : world.currentMapLoaded.objects)
-		{
-			g.fillRect(worldObj.getX(), worldObj.getY(), worldObj.getWidth(), worldObj.getHeight());
-			g.texture(new Rectangle(worldObj.getX(), worldObj.getY(), worldObj.getWidth(), worldObj.getHeight()), worldObj.getTexture(), .01f, .02f);
+		for (WorldObject worldObj : world.currentMapLoaded.objects) {
+			g.texture(new Rectangle(worldObj.getX(), worldObj.getY(), worldObj.getWidth(), worldObj.getHeight()), worldObj.getTexture(),
+					.01f, .02f);
 		}
 
-		for (Entity e : world.entities)
-		{
-			if (e != null)
-			{
-				g.drawImage(e.getDisplayImage().getScaledCopy(e.getWidth(), e.getHeight()).getFlippedCopy(!e.isFacingLeft(), false), e.getPosX(), e.getPosY());
+		for (Entity e : world.entities) {
+			if (e != null) {
+				g.drawImage(e.getDisplayImage().getScaledCopy(e.getWidth(), e.getHeight()).getFlippedCopy(!e.isFacingLeft(), false),
+						e.getPosX(), e.getPosY());
 				g.setColor(new Color(255, 0, 0));
-				if (e instanceof EntityPlayer)
-				{
+				if (e instanceof EntityPlayer) {
 					EntityPlayer p = (EntityPlayer) e;
 
 					TrueTypeFont cf = JumpMan.fontArial;
@@ -81,18 +71,18 @@ public class PlayState extends BasicGameState
 
 					g.setFont(cf);
 					g.setColor(new Color(0, 0, 0, 0.5f));
-					g.fillRect(p.getPosX() + p.getWidth() / 2 - cf.getWidth(health), p.getPosY() - cf.getHeight() - 5, cf.getWidth(health) * 2, cf.getHeight() + 10);
+					g.fillRect(p.getPosX() + p.getWidth() / 2 - cf.getWidth(health), p.getPosY() - cf.getHeight() - 5,
+							cf.getWidth(health) * 2, cf.getHeight() + 10);
 					g.setColor(new Color(255, 0, 0, 1f));
 					g.drawString(health, p.getPosX() + p.getWidth() / 2 - cf.getWidth(health) / 2, p.getPosY() - 20);
 				}
 			}
 		}
 
-		for (EntityParticle part : world.particles)
-		{
-			if (part != null)
-			{
-				g.drawImage(part.getDisplayImage().getScaledCopy(part.getWidth(), part.getHeight()), part.getPosX(), part.getPosY(), new Color(part.color.r, part.color.g, part.color.b, part.alpha));
+		for (EntityParticle part : world.particles) {
+			if (part != null) {
+				g.drawImage(part.getDisplayImage().getScaledCopy(part.getWidth(), part.getHeight()), part.getPosX(), part.getPosY(),
+						new Color(part.color.r, part.color.g, part.color.b, part.alpha));
 			}
 		}
 
@@ -103,23 +93,18 @@ public class PlayState extends BasicGameState
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		// Handle music;
-		if(this.currentMusic == null)
-		{
+		if (this.currentMusic == null) {
 			this.currentMusic = JumpMan.normalGameSong;
 		}
-		
-		if(this.oldCurrentMusic!=this.currentMusic)
-		{
-			if(oldCurrentMusic!=null)
-				this.oldCurrentMusic.stop();
-			
+
+		if (this.oldCurrentMusic != this.currentMusic) {
+			if (oldCurrentMusic != null) this.oldCurrentMusic.stop();
+
 			this.currentMusic.loop();
 		}
-		
+
 		this.oldCurrentMusic = this.currentMusic;
-		
-		
-		
+
 		gui.update(gc, sbg, delta);
 		// Update entities
 		ArrayList<Entity> entsToRemove = new ArrayList<Entity>();
@@ -149,8 +134,7 @@ public class PlayState extends BasicGameState
 	}
 
 	@Override
-	public int getID()
-	{
+	public int getID() {
 		return ID;
 	}
 }

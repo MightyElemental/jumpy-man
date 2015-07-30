@@ -79,7 +79,6 @@ public class JumpMan extends StateBasedGame {
 	private Thread loadThread = new Thread() {
 
 		public void run() {
-			NULL_IMAGE = resLoader.loadImage("noImage");
 			mainMenuSong = resLoader.loadMusic("MainMenu");
 			normalGameSong = resLoader.loadMusic("NormalGame");
 			fullLoaded = true;
@@ -93,6 +92,7 @@ public class JumpMan extends StateBasedGame {
 
 	@Override
 	public synchronized void initStatesList(GameContainer gc) throws SlickException {
+		NULL_IMAGE = resLoader.loadImage("noImage");
 		try {
 			InputStream inputStream = org.newdawn.slick.util.ResourceLoader.getResourceAsStream("res/assets/fonts/arial.ttf");
 			Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
