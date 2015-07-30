@@ -75,6 +75,7 @@ public abstract class Entity {
 				this.velocityX = 0;
 				this.velocityY = 0;
 				flag = true;
+				obj.onCollide(this);
 			}
 		}
 		if (!flag) {
@@ -92,6 +93,7 @@ public abstract class Entity {
 					this.setPosY(obj.getY() - this.height);
 					flag = true;
 				}
+				obj.onCollide(this);
 				collidingMaterial = obj.getMaterial();
 			}
 			if (this.getBoundsTop().intersects(obj)) {
@@ -99,6 +101,7 @@ public abstract class Entity {
 					this.velocityY = 0;
 					this.setPosY(obj.getY() + obj.getHeight() + 1);
 				}
+				obj.onCollide(this);
 				collidingMaterial = obj.getMaterial();
 			}
 			if (this.getBoundsLeft().intersects(obj)) {
@@ -106,6 +109,7 @@ public abstract class Entity {
 					this.velocityX = 0;
 					this.setPosX(obj.getX() + obj.getWidth());
 				}
+				obj.onCollide(this);
 				collidingMaterial = obj.getMaterial();
 			}
 			if (this.getBoundsRight().intersects(obj)) {
@@ -113,6 +117,7 @@ public abstract class Entity {
 					this.velocityX = 0;
 					this.setPosX(obj.getX() - this.width);
 				}
+				obj.onCollide(this);
 				collidingMaterial = obj.getMaterial();
 			}
 		}
