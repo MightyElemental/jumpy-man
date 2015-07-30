@@ -53,7 +53,7 @@ public class ResourceLoader {
 		Music loadedMusic = null;
 
 		String location = musicPath.replaceAll("[.]", "/");
-		location += ".mp3";
+		location += ".ogg";
 		location = "res/assets/sounds/music/" + location;
 		if (mapLoads.get(location) != null) {
 			return musicLoads.get(location);
@@ -81,7 +81,7 @@ public class ResourceLoader {
 		Sound loadedSound = null;
 
 		String location = soundPath.replaceAll("[.]", "/");
-		location += ".mp3";
+		location += ".ogg";
 		location = "res/assets/sounds/" + location;
 		if (mapLoads.get(location) != null) {
 			return soundLoads.get(location);
