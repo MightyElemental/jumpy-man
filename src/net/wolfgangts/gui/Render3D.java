@@ -3,6 +3,7 @@ package net.wolfgangts.gui;
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.lwjgl.opengl.GL20;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,7 +13,7 @@ public class Render3D
 {
 	private ArrayList<float[]>	objects			= new ArrayList<float[]>();
 	private float				gameTime;
-	private float				fov				= 500;
+	private float				fov				= 250;
 	private float				renderDistance	= 5000;
 
 	private Random random = new Random();
@@ -57,7 +58,7 @@ public class Render3D
 		}
 		
 		this.rotate(ry(.001f));
-
+		this.rotate(rz(.001f));
 		this.gameTime += 1 * delta / 50f;
 	}
 

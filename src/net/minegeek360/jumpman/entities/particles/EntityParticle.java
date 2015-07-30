@@ -15,7 +15,7 @@ import net.minegeek360.jumpman.world.World;
  */
 public abstract class EntityParticle extends Entity
 {
-
+	
 	public int		lifetime;
 	public boolean	dead	= false;
 	public float	alpha	= 1;

@@ -95,8 +95,8 @@ public class JumpMan extends StateBasedGame {
 	};
 
 	public static void crashMessage(String message) {
-		JOptionPane.showMessageDialog(null, message, JumpMan.GAME_NAME + " | Crash Report", JOptionPane.ERROR_MESSAGE);
-		System.exit(1);
+		JOptionPane.showMessageDialog(null, "Oops! A fatal error: \n" + message + "\noccurred!", JumpMan.GAME_NAME + " | Crash Report", JOptionPane.ERROR_MESSAGE);
+		System.exit(0);
 	}
 
 	@Override
