@@ -72,6 +72,7 @@ public class JumpMan extends StateBasedGame {
 			appGc.setMinimumLogicUpdateInterval(15);
 			appGc.setShowFPS(showFPS);
 			appGc.setVSync(vsync);
+			appGc.setAlwaysRender(true);
 			appGc.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
