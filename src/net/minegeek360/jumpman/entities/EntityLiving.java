@@ -33,7 +33,7 @@ public class EntityLiving extends Entity {
 		}
 		if (this.getCollidingMaterial() != null) {
 			if (this.getCollidingMaterial().isToxic()) {
-				this.setHealth(this.getHealth() - 1);
+				this.setHealth(this.getHealth() - 2);
 			}
 		}
 		if (this.getHealth() <= 0) {
