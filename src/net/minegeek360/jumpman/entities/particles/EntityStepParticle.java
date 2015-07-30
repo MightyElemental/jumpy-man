@@ -3,11 +3,9 @@ package net.minegeek360.jumpman.entities.particles;
 import java.awt.Dimension;
 
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.world.World;
-import net.minegeek360.jumpman.world.objects.WorldObject;
 
 /** @author WolfgangTS
  * @since 29/07/2015 */
@@ -18,7 +16,7 @@ public class EntityStepParticle extends EntityParticle {
 		this.setDimensions(new Dimension(4, 4));
 		this.velocityY = -2 - this.worldObj.rand.nextFloat();
 		this.velocityX = this.worldObj.rand.nextFloat() * 5 - 10;
-		this.lifetime = 200;
+		this.lifetime = 100;
 
 		this.setDisplayImage("entity.particle.walk");
 	}
@@ -33,13 +31,6 @@ public class EntityStepParticle extends EntityParticle {
 		this.velocityX /= 2 * (delta / 16);
 		this.velocityY += worldObj.gravity * (delta / 16);
 
-		for (WorldObject obj : worldObj.currentMapLoaded.objects) {
-			if (obj.intersects(new Rectangle(this.posX, this.posY, this.width, this.height))) {
-				this.posY = obj.getY()+obj.getHeight() + this.height;
-
-				this.velocityX = 0;
-				this.velocityY = 0;
-			}
-		}
+		handleCollisionsBasic();
 	}
 }

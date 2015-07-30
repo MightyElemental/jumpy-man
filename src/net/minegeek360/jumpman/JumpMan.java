@@ -71,10 +71,10 @@ public class JumpMan extends StateBasedGame {
 
 	@Override
 	public void initStatesList(GameContainer gc) throws SlickException {
+		NULL_IMAGE = resLoader.loadImage("noImage");
 		this.getState(STATE_MENU).init(gc, this);
 		this.getState(STATE_PLAY).init(gc, this);
 		this.getState(STATE_PRELOAD).init(gc, this);
-		NULL_IMAGE = resLoader.loadImage("noImage");
 
 		try {
 			InputStream inputStream = org.newdawn.slick.util.ResourceLoader.getResourceAsStream("res/assets/fonts/arial.ttf");

@@ -6,8 +6,9 @@ import net.minegeek360.jumpman.JumpMan;
 
 public class Material {
 
-	private Image	displayImage;
-	private String	matName	= "";
+	private Image displayImage = JumpMan.NULL_IMAGE;
+
+	private String matName = "";
 
 	private Material( String name, String image ) {
 		this.displayImage = JumpMan.resLoader.loadImage(image);
@@ -17,7 +18,7 @@ public class Material {
 	public static final Material	matIron			= new Material("Iron", "materials.iron");
 	public static final Material	matToxicWater	= new Material("Toxic Water", "materials.toxicWater");
 
-	public Image getDisplayImage() {
+	public Image getTexture() {
 		return displayImage;
 	}
 

@@ -4,7 +4,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.world.World;
-import net.minegeek360.jumpman.world.objects.WorldObject;
 
 public class EntityLiving extends Entity {
 
@@ -12,13 +11,14 @@ public class EntityLiving extends Entity {
 		super(name, sizeX, sizeY, worldObj);
 	}
 
-	protected float		moveSpeed		= 2;
-	protected float		jumpPower		= 20;
-	protected int		maxHealth		= 20;
-	protected int		health			= maxHealth;
-	protected int		doubleJump		= 0;
-	protected boolean	hasDoubleJump	= false;
-	protected boolean	isInAir			= true;
+	protected float	moveSpeed	= 2;
+	protected float	jumpPower	= 20;
+
+	protected int	maxHealth	= 20;
+	protected int	health		= maxHealth;
+	protected int	doubleJump	= 0;
+
+	protected boolean hasDoubleJump = false;
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
@@ -27,7 +27,7 @@ public class EntityLiving extends Entity {
 		formatVelocity(worldObj);
 		this.setPosX(this.getPosX() + (getVelocityX() * delta2));
 		this.setPosY(this.getPosY() + (getVelocityY() * delta2));
-		testAndHandleCollisions(delta2);
+		handleCollisionsAdvanced();
 		if (isInAir) {
 			this.velocityY += worldObj.gravity * delta2;
 		}
@@ -61,32 +61,6 @@ public class EntityLiving extends Entity {
 		if (velocityY > -0.19 && velocityY < 0.19) {
 			velocityY = 0;
 		}
-	}
-
-	public void testAndHandleCollisions(float delta) {
-		boolean flag = false;
-		for (WorldObject worldObject : worldObj.currentMapLoaded.objects) {
-			if (worldObject.isSolid()) {
-				if (this.getBoundsBottom().intersects(worldObject)) {
-					this.velocityY = 0;
-					this.setPosY(worldObject.getY() - this.height);
-					flag = true;
-				}
-				if (this.getBoundsTop().intersects(worldObject)) {
-					this.velocityY = 0;
-					this.setPosY(worldObject.getY() + worldObject.getHeight() + 1);
-				}
-				if (this.getBoundsLeft().intersects(worldObject)) {
-					this.velocityX = 0;
-					this.setPosX(worldObject.getX() + worldObject.getWidth());
-				}
-				if (this.getBoundsRight().intersects(worldObject)) {
-					this.velocityX = 0;
-					this.setPosX(worldObject.getX() - this.width);
-				}
-			}
-		}
-		this.isInAir = !flag;
 	}
 
 	/** Adds velocity to the entity to move left */

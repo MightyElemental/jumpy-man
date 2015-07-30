@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.newdawn.slick.Image;
 
+/** @author MightyElemental
+ * @since 28/10/2014 */
 public class ResourceLoader {
 
 	private Map<String, Image> mapLoads = new HashMap<String, Image>();
@@ -24,10 +26,9 @@ public class ResourceLoader {
 		if (mapLoads.get(location) != null) {
 			return mapLoads.get(location);
 		} else {
-
 			try {
-				System.out.println("res/assets/textures/" + location);
 				loadedImage = new Image("res/assets/textures/" + location);
+				System.out.println("res/assets/textures/" + location + " - has been added");
 			} catch (Exception e) {
 				System.out.println("CANT LOAD IMAGE '" + location + "'");
 			}

@@ -23,4 +23,8 @@ public class WorldObject extends Rectangle {
 		return this;
 	}
 
+	public Material getMaterial() {
+		return material;
+	}
+
 }

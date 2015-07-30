@@ -27,7 +27,6 @@ public class WorldMap {
 		objects.add(new WorldObjectFluid(0, gc.getHeight() - 50, gc.getWidth(), 50));
 	}
 
-	
 	public Image getBackground() {
 		return background;
 	}

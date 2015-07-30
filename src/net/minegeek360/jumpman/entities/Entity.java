@@ -7,19 +7,19 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.JumpMan;
 import net.minegeek360.jumpman.world.World;
+import net.minegeek360.jumpman.world.objects.WorldObject;
 
 /** @author MightyElemental */
 public abstract class Entity {
 
 	protected String entityName = "Undefined";
 
-	protected boolean isSolid;
+	protected boolean	facingLeft	= true;
+	protected boolean	isSolid;
+	protected boolean	isInAir		= true;
 
-	protected float ticksAlive;
-
-	protected boolean facingLeft = true;
-
-	protected float velocityX, velocityY, posX, posY;
+	protected float	ticksAlive;
+	protected float	velocityX, velocityY, posX, posY;
 
 	protected int width, height;
 
@@ -60,6 +60,46 @@ public abstract class Entity {
 
 	public Rectangle getBoundsBottom() {
 		return new Rectangle(posX + (width / 2) - (width / 4), posY + (height / 2), width / 2, height / 2);
+	}
+
+	public void handleCollisionsBasic() {
+		boolean flag = false;
+		for (WorldObject obj : worldObj.currentMapLoaded.objects) {
+			if (obj.intersects(new Rectangle(this.posX, this.posY, this.width, this.height))) {
+
+				this.posY = obj.getY() - this.height;
+				this.velocityX = 0;
+				this.velocityY = 0;
+				flag = true;
+			}
+		}
+		this.isInAir = !flag;
+	}
+
+	public void handleCollisionsAdvanced() {
+		boolean flag = false;
+		for (WorldObject worldObject : worldObj.currentMapLoaded.objects) {
+			if (worldObject.isSolid()) {
+				if (this.getBoundsBottom().intersects(worldObject)) {
+					this.velocityY = 0;
+					this.setPosY(worldObject.getY() - this.height);
+					flag = true;
+				}
+				if (this.getBoundsTop().intersects(worldObject)) {
+					this.velocityY = 0;
+					this.setPosY(worldObject.getY() + worldObject.getHeight() + 1);
+				}
+				if (this.getBoundsLeft().intersects(worldObject)) {
+					this.velocityX = 0;
+					this.setPosX(worldObject.getX() + worldObject.getWidth());
+				}
+				if (this.getBoundsRight().intersects(worldObject)) {
+					this.velocityX = 0;
+					this.setPosX(worldObject.getX() - this.width);
+				}
+			}
+		}
+		this.isInAir = !flag;
 	}
 
 	public String getName() {

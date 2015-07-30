@@ -6,6 +6,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -49,6 +50,8 @@ public class PlayState extends BasicGameState {
 		g.setColor(new Color(255, 255, 255, 1f));
 		for (WorldObject worldObj : world.currentMapLoaded.objects) {
 			g.fillRect(worldObj.getX(), worldObj.getY(), worldObj.getWidth(), worldObj.getHeight());
+			g.texture(new Rectangle(worldObj.getX(), worldObj.getY(), worldObj.getWidth(), worldObj.getHeight()),
+					worldObj.getMaterial().getTexture());
 		}
 
 		for (Entity ent : world.entities) {
@@ -66,7 +69,8 @@ public class PlayState extends BasicGameState {
 
 		for (EntityParticle part : world.particles) {
 			if (part != null) {
-				g.drawImage(part.getDisplayImage().getScaledCopy(part.getWidth(), part.getHeight()), part.getPosX(), part.getPosY(), new Color(255,255,255,part.alpha));
+				g.drawImage(part.getDisplayImage().getScaledCopy(part.getWidth(), part.getHeight()), part.getPosX(), part.getPosY(),
+						new Color(255, 255, 255, part.alpha));
 			}
 		}
 
@@ -83,9 +87,10 @@ public class PlayState extends BasicGameState {
 
 		ArrayList<EntityParticle> partsToRemove = new ArrayList<EntityParticle>();
 		for (EntityParticle ent : world.particles) {
-			ent.update(gc, sbg, delta);
 			if (ent.dead) {
 				partsToRemove.add(ent);
+			} else {
+				ent.update(gc, sbg, delta);
 			}
 		}
 		for (EntityParticle ent : partsToRemove) {
