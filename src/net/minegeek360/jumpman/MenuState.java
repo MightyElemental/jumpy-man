@@ -31,29 +31,10 @@ public class MenuState extends BasicGameState
 	{
 
 		gui = new GUIRender();
+		this.Render3D = new Render3D();
+		
+		mainMenu(gc, sbg);
 
-		gui.addButton(gc.getWidth() / 4, gc.getHeight() / 4 * 1, gc.getWidth() / 4 * 2, 50, "Start Game").setColor(new Color(255, 0, 0, 255)).setClickEvent(new Runnable()
-		{
-			public void run()
-			{
-				JumpMan.stateToChange = JumpMan.STATE_PLAY;
-			}
-		});
-		gui.addButton(gc.getWidth() / 4, gc.getHeight() / 4 * 2, gc.getWidth() / 4 * 2, 50, "Settings").setClickEvent(new Runnable()
-		{
-			public void run()
-			{
-				// JumpMan.statToChange =
-				// JumpMan.STATE_SETTINGS;
-			}
-		});
-		gui.addButton(gc.getWidth() / 4, gc.getHeight() / 4 * 3, gc.getWidth() / 4 * 2, 50, "Exit").setClickEvent(new Runnable()
-		{
-			public void run()
-			{
-				System.exit(0);
-			}
-		});
 	}
 
 	@Override
@@ -61,6 +42,7 @@ public class MenuState extends BasicGameState
 	{
 		gui.render(gc, sbg, g);
 		gui.tooltip.render(gc, sbg, g);
+		Render3D.render(gc, sbg, g);
 	}
 
 	private boolean playingMusic = false;
@@ -68,7 +50,7 @@ public class MenuState extends BasicGameState
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
 	{
-
+		Render3D.update(gc, sbg, delta);
 		if (!playingMusic)
 		{
 			if (JumpMan.mainMenuSong != null)
@@ -91,6 +73,33 @@ public class MenuState extends BasicGameState
 	public int getID()
 	{
 		return ID;
+	}
+	
+	public void mainMenu(GameContainer gc, StateBasedGame sbg)
+	{
+		gui.clear();
+		
+		gui.addButton(gc.getWidth() / 4, gc.getHeight() / 4 * 1, gc.getWidth() / 4 * 2, 50, "Start Game").setColor(new Color(255, 0, 0, 255)).setClickEvent(new Runnable()
+		{
+			public void run()
+			{
+				JumpMan.stateToChange = JumpMan.STATE_PLAY;
+			}
+		});
+		gui.addButton(gc.getWidth() / 4, gc.getHeight() / 4 * 2, gc.getWidth() / 4 * 2, 50, "Settings").setClickEvent(new Runnable()
+		{
+			public void run()
+			{
+
+			}
+		});
+		gui.addButton(gc.getWidth() / 4, gc.getHeight() / 4 * 3, gc.getWidth() / 4 * 2, 50, "Exit").setClickEvent(new Runnable()
+		{
+			public void run()
+			{
+				System.exit(0);
+			}
+		});
 	}
 
 }

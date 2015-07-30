@@ -20,6 +20,11 @@ public class GUIRender
 	{
 
 	}
+	
+	public void clear()
+	{
+		this.buttons = new ArrayList<GUIButton>();
+	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 	{
