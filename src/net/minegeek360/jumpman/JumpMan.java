@@ -2,6 +2,10 @@ package net.minegeek360.jumpman;
 
 import java.awt.Font;
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.JOptionPane;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -90,9 +94,17 @@ public class JumpMan extends StateBasedGame {
 		}
 	};
 
+	public static void crashMessage(String message) {
+		JOptionPane.showMessageDialog(null, message, JumpMan.GAME_NAME + " | Crash Report", JOptionPane.ERROR_MESSAGE);
+	}
+
 	@Override
 	public synchronized void initStatesList(GameContainer gc) throws SlickException {
 		NULL_IMAGE = resLoader.loadImage("noImage");
+		if (NULL_IMAGE == null) {
+			gc.exit();
+			crashMessage("JumpMan.NULL_IMAGE is null!\nThis could cause a lot of issues, especially if the game is missing textures!");
+		}
 		try {
 			InputStream inputStream = org.newdawn.slick.util.ResourceLoader.getResourceAsStream("res/assets/fonts/arial.ttf");
 			Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
