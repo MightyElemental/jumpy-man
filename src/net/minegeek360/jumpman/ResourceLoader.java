@@ -54,12 +54,13 @@ public class ResourceLoader {
 
 		String location = musicPath.replaceAll("[.]", "/");
 		location += ".mp3";
+		location = "res/assets/sounds/music/" + location;
 		if (mapLoads.get(location) != null) {
 			return musicLoads.get(location);
 		} else {
 			try {
-				loadedMusic = new Music("res/assets/sounds/music/" + location);
-				System.out.println("res/assets/sounds/music/" + location + " - has been added");
+				loadedMusic = new Music(location);
+				System.out.println(location + " - has been added");
 			} catch (Exception e) {
 				System.out.println("CANT LOAD MUSIC '" + location + "'");
 			}
@@ -81,12 +82,13 @@ public class ResourceLoader {
 
 		String location = soundPath.replaceAll("[.]", "/");
 		location += ".mp3";
+		location = "res/assets/sounds/" + location;
 		if (mapLoads.get(location) != null) {
 			return soundLoads.get(location);
 		} else {
 			try {
-				loadedSound = new Sound("res/assets/sounds/" + location);
-				System.out.println("res/assets/sounds/" + location + " - has been added");
+				loadedSound = new Sound(location);
+				System.out.println(location + " - has been added");
 			} catch (Exception e) {
 				System.out.println("CANT LOAD SOUND '" + location + "'");
 			}
