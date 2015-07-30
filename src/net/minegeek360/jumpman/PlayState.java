@@ -6,11 +6,13 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.entities.Entity;
+import net.minegeek360.jumpman.entities.EntityPlayer;
 import net.minegeek360.jumpman.entities.particles.EntityParticle;
 import net.minegeek360.jumpman.world.World;
 import net.minegeek360.jumpman.world.objects.WorldObject;
@@ -54,16 +56,28 @@ public class PlayState extends BasicGameState {
 					.01f, .02f);
 		}
 
+		
+		
 		for (Entity e : world.entities) {
 			if (e != null) {
 				g.drawImage(e.getDisplayImage().getScaledCopy(e.getWidth(), e.getHeight()).getFlippedCopy(!e.isFacingLeft(), false),
 						e.getPosX(), e.getPosY());
 				g.setColor(new Color(255, 0, 0));
-				/*
-				 * g.draw(ent.getBoundsLeft()); g.draw(ent.getBoundsRight()); g.draw(ent.getBoundsTop());
-				 * g.draw(ent.getBoundsBottom());
-				 */
-
+				if(e instanceof EntityPlayer)
+				{
+					EntityPlayer p = (EntityPlayer) e;
+					
+					TrueTypeFont cf = JumpMan.fontArial;
+					String health = p.getHealth() + "";
+					System.out.println(health);
+					
+					
+					g.setFont(cf);
+					g.setColor(new Color(0,0,0, 0.5f));
+					g.fillRect(p.getPosX()+p.getWidth()/2 - cf.getWidth(health), p.getPosY()-cf.getHeight()-5, cf.getWidth(health)*2, cf.getHeight()+10);
+					g.setColor(new Color(255,0,0, 1f));
+					g.drawString(health, p.getPosX()+p.getWidth()/2 - cf.getWidth(health)/2, p.getPosY() - 20);
+				}
 			}
 		}
 

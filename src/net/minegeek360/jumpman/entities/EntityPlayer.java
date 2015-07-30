@@ -9,12 +9,12 @@ import net.minegeek360.jumpman.world.World;
 
 public class EntityPlayer extends EntityLiving {
 
-	int[] playerCont = { Input.KEY_D, Input.KEY_A, Input.KEY_W, Input.KEY_SPACE };
+	int[] playerCont = { Input.KEY_D, Input.KEY_A, Input.KEY_K, Input.KEY_L };
 
 	public EntityPlayer( World worldObj ) {
 		super("Player", 35, 50, worldObj);
-		this.setHealth(50);
-		this.maxHealth = 50;
+		this.setHealth(10000);
+		this.maxHealth = 10000;
 		this.setDisplayImage("entity.player.player");
 		this.setMoveSpeed(5f);
 		this.setJumpPower(15);
