@@ -4,7 +4,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
 
-import net.minegeek360.jumpman.entities.particles.EntitySmokeParticle;
 import net.minegeek360.jumpman.entities.particles.EntityStepParticle;
 import net.minegeek360.jumpman.world.World;
 
@@ -25,7 +24,6 @@ public class EntityPlayer extends EntityLiving {
 	private boolean	canGoLeft	= true;
 
 	public void createParticle() {
-		worldObj.particles.add(new EntitySmokeParticle(this.getPosX() + this.width / 2, this.getPosY() + this.height -33, worldObj));
 		if (!this.isInAir && worldObj.rand.nextInt(5) == 0)
 			worldObj.particles.add(new EntityStepParticle(this.getPosX() + this.width / 2, this.getPosY() + this.height -3, worldObj));
 	}
