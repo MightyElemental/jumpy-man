@@ -61,13 +61,13 @@ public class PreLoadState extends BasicGameState {
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		if(gc.getInput().isKeyDown(Input.KEY_SPACE))
-		{
-			ticks+=500;
+
+		if (gc.getInput().isKeyDown(Input.KEY_SPACE)) {
+			ticks += 500;
 		}
-		
+
 		ticks += delta / 17f;
-		if (ticks > 150) {
+		if (ticks > 150 && JumpMan.fullLoaded) {
 			alpha -= 0.01f;
 			if (alpha < -0.2f) {
 				sbg.enterState(JumpMan.STATE_MENU);

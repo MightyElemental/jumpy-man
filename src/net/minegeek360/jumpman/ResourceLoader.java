@@ -27,12 +27,13 @@ public class ResourceLoader {
 
 		String location = imagePath.replaceAll("[.]", "/");
 		location += ".png";
+		location = "res/assets/textures/" + location;
 		if (mapLoads.get(location) != null) {
 			return mapLoads.get(location);
 		} else {
 			try {
-				loadedImage = new Image("res/assets/textures/" + location);
-				System.out.println("res/assets/textures/" + location + " - has been added");
+				loadedImage = new Image(location);
+				System.out.println(location + " - has been added");
 			} catch (Exception e) {
 				System.out.println("CANT LOAD IMAGE '" + location + "'");
 			}
