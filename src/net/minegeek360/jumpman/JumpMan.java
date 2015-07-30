@@ -2,8 +2,6 @@ package net.minegeek360.jumpman;
 
 import java.awt.Font;
 import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -95,7 +93,8 @@ public class JumpMan extends StateBasedGame {
 	};
 
 	public static void crashMessage(String message) {
-		JOptionPane.showMessageDialog(null, "Oops! A fatal error: \n" + message + "\noccurred!", JumpMan.GAME_NAME + " | Crash Report", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Oops! A fatal error: \n" + message + "\noccurred!", JumpMan.GAME_NAME + " | Crash Report",
+				JOptionPane.ERROR_MESSAGE);
 		System.exit(0);
 	}
 
