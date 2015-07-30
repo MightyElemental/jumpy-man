@@ -61,7 +61,7 @@ public class ResourceLoader {
 				loadedMusic = new Music("res/assets/sounds/music/" + location);
 				System.out.println("res/assets/sounds/music/" + location + " - has been added");
 			} catch (Exception e) {
-				System.out.println("CANT LOAD IMAGE '" + location + "'");
+				System.out.println("CANT LOAD MUSIC '" + location + "'");
 			}
 			musicLoads.put(location, loadedMusic);
 		}
@@ -88,7 +88,7 @@ public class ResourceLoader {
 				loadedSound = new Sound("res/assets/sounds/" + location);
 				System.out.println("res/assets/sounds/" + location + " - has been added");
 			} catch (Exception e) {
-				System.out.println("CANT LOAD IMAGE '" + location + "'");
+				System.out.println("CANT LOAD SOUND '" + location + "'");
 			}
 			soundLoads.put(location, loadedSound);
 		}
