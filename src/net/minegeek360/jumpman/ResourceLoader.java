@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.Sound;
 
 /** @author MightyElemental
@@ -12,6 +13,7 @@ public class ResourceLoader {
 
 	private Map<String, Image>	mapLoads	= new HashMap<String, Image>();
 	private Map<String, Sound>	soundLoads	= new HashMap<String, Sound>();
+	private Map<String, Music>	musicLoads	= new HashMap<String, Music>();
 
 	/** Loads an image from the 'res/assets/textures' folder
 	 * 
@@ -40,7 +42,34 @@ public class ResourceLoader {
 		return loadedImage;
 	}
 
-	/** Loads an image from the 'res/assets/textures' folder
+	/** Loads a music file from the 'res/assets/sounds/music' folder
+	 * 
+	 * @param musicPath
+	 *            the path to the sound file beginning with 'res/assets/sounds/music'. Remember that you can replace
+	 *            slashes '/' with dots '.'
+	 * @return Music the newly loaded music file */
+	public Music loadMusic(String musicPath) {
+
+		Music loadedMusic = null;
+
+		String location = musicPath.replaceAll("[.]", "/");
+		location += ".png";
+		if (mapLoads.get(location) != null) {
+			return musicLoads.get(location);
+		} else {
+			try {
+				loadedMusic = new Music("res/assets/sounds/music/" + location);
+				System.out.println("res/assets/sounds/music/" + location + " - has been added");
+			} catch (Exception e) {
+				System.out.println("CANT LOAD IMAGE '" + location + "'");
+			}
+			musicLoads.put(location, loadedMusic);
+		}
+
+		return loadedMusic;
+	}
+
+	/** Loads a sound file from the 'res/assets/sounds' folder
 	 * 
 	 * @param soundPath
 	 *            the path to the sound file beginning with 'res/assets/sounds'. Remember that you can replace slashes
