@@ -53,7 +53,7 @@ public class ResourceLoader {
 		Music loadedMusic = null;
 
 		String location = musicPath.replaceAll("[.]", "/");
-		location += ".png";
+		location += ".mp3";
 		if (mapLoads.get(location) != null) {
 			return musicLoads.get(location);
 		} else {
