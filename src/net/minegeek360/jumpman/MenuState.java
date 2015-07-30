@@ -20,7 +20,7 @@ public class MenuState extends BasicGameState {
 	private Random		random	= new Random();
 	private Render3D	Render3D;
 	private GUIRender	gui;
-	private Music		music;
+
 
 	public MenuState( int stateMenu ) {
 		this.ID = stateMenu;
@@ -28,7 +28,7 @@ public class MenuState extends BasicGameState {
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		this.music = JumpMan.resLoader.loadMusic("Starry");
+		
 
 		gui = new GUIRender();
 
@@ -53,15 +53,19 @@ public class MenuState extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 
 		if (!playingMusic) {
-			if (this.music != null) {
-				this.music.loop();
+			if (JumpMan.mainMenuSong != null) {
+				JumpMan.mainMenuSong.loop();
+				playingMusic = true;
 			}
-			playingMusic = true;
 		}
 
 		gui.tooltip.update();
 		gui.update(gc, sbg, delta);
-		if (sbg.getCurrentState().getID() != JumpMan.stateToChange) sbg.enterState(JumpMan.stateToChange);
+		if (sbg.getCurrentState().getID() != JumpMan.stateToChange) 
+		{
+			sbg.enterState(JumpMan.stateToChange);
+			JumpMan.mainMenuSong.loop();
+		}
 	}
 
 	@Override

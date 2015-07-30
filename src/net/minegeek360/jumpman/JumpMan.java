@@ -6,12 +6,16 @@ import java.io.InputStream;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.StateBasedGame;
 
-/** @author MightyElemental & WolfgangTS */
-public class JumpMan extends StateBasedGame {
+/**
+ * @author MightyElemental & WolfgangTS
+ */
+public class JumpMan extends StateBasedGame
+{
 
 	public static final String	GAME_VERSION		= "0.0.7";
 	public static final String	GAME_NAME			= "The Adventures Of Jumpy Man";
@@ -25,8 +29,7 @@ public class JumpMan extends StateBasedGame {
 	public static Image				NULL_IMAGE;
 
 	public static final float[][]	commonRatios		= { { 16, 9 }, { 5, 4 }, { 4, 3 } };
-	public static final int[][]		commonResolutions	= { { 1280, 1600, 1920, 2048 }, { 1280, 1024 },
-			{ 800, 1024, 1152, 1280, 1400, 1600 } };
+	public static final int[][]		commonResolutions	= { { 1280, 1600, 1920, 2048 }, { 1280, 1024 }, { 800, 1024, 1152, 1280, 1400, 1600 } };
 
 	public static int		width;
 	public static float[]	aspectRatio;
@@ -35,15 +38,19 @@ public class JumpMan extends StateBasedGame {
 	public static boolean	showFPS;
 	public static boolean	vsync;
 	public static int		stateToChange	= JumpMan.STATE_MENU;
+	public static Music		mainMenuSong;
+	public static Music normalGameSong;
 
-	public JumpMan( String name ) {
+	public JumpMan(String name)
+	{
 		super(name);
 		this.addState(new PreLoadState(STATE_PRELOAD));
 		this.addState(new MenuState(STATE_MENU));
 		this.addState(new PlayState(STATE_PLAY));
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		StartupSettings settingMenu = new StartupSettings();
 
 		settingMenu.startUp();
@@ -52,10 +59,12 @@ public class JumpMan extends StateBasedGame {
 	public static TrueTypeFont	font;
 	public static TrueTypeFont	fontArial;
 
-	public static void startGame() {
+	public static void startGame()
+	{
 		AppGameContainer appGc;
 
-		try {
+		try
+		{
 			appGc = new AppGameContainer(new JumpMan(GAME_NAME_DISPLAY));
 			appGc.setDisplayMode(width, (int) (width / aspectRatio[0] * aspectRatio[1]), fullscreen);
 			appGc.setTargetFrameRate(maxFPS);
@@ -64,19 +73,25 @@ public class JumpMan extends StateBasedGame {
 			appGc.setShowFPS(showFPS);
 			appGc.setVSync(vsync);
 			appGc.start();
-		} catch (SlickException e) {
+		}
+		catch (SlickException e)
+		{
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public void initStatesList(GameContainer gc) throws SlickException {
+	public void initStatesList(GameContainer gc) throws SlickException
+	{
+		mainMenuSong = this.resLoader.loadMusic("MainMenu");
+		normalGameSong = this.resLoader.loadMusic("NormalGame");
 		NULL_IMAGE = resLoader.loadImage("noImage");
 		this.getState(STATE_PRELOAD).init(gc, this);
 		this.getState(STATE_MENU).init(gc, this);
 		this.getState(STATE_PLAY).init(gc, this);
 
-		try {
+		try
+		{
 			InputStream inputStream = org.newdawn.slick.util.ResourceLoader.getResourceAsStream("res/assets/fonts/arial.ttf");
 			Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
 			awtFont2 = awtFont2.deriveFont(15f);
@@ -86,7 +101,9 @@ public class JumpMan extends StateBasedGame {
 			Font awtFont21 = Font.createFont(Font.TRUETYPE_FONT, inputStream1);
 			awtFont21 = awtFont21.deriveFont(36f);
 			font = new TrueTypeFont(awtFont21, true);
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 
