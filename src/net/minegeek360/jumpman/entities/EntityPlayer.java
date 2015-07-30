@@ -42,7 +42,6 @@ public class EntityPlayer extends EntityLiving {
 			if (this.canGoLeft) {
 				this.moveLeft();
 				createParticle();
-
 			}
 		}
 		if (input.isKeyDown(playerCont[2]) || input.isKeyDown(playerAltCont[2])) {
