@@ -80,7 +80,7 @@ public class ResourceLoader {
 		Sound loadedSound = null;
 
 		String location = soundPath.replaceAll("[.]", "/");
-		location += ".png";
+		location += ".mp3";
 		if (mapLoads.get(location) != null) {
 			return soundLoads.get(location);
 		} else {
