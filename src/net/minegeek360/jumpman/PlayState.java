@@ -82,7 +82,7 @@ public class PlayState extends BasicGameState {
 		for (EntityParticle part : world.particles) {
 			if (part != null) {
 				g.drawImage(part.getDisplayImage().getScaledCopy(part.getWidth(), part.getHeight()), part.getPosX(), part.getPosY(),
-						new Color(255, 255, 255, part.alpha));
+						new Color(part.color.r, part.color.g, part.color.b, part.alpha));
 			}
 		}
 
