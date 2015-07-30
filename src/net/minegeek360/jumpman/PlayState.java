@@ -110,7 +110,8 @@ public class PlayState extends BasicGameState
 		
 		if(this.oldCurrentMusic!=this.currentMusic)
 		{
-			this.oldCurrentMusic.stop();
+			if(oldCurrentMusic!=null)
+				this.oldCurrentMusic.stop();
 			
 			this.currentMusic.loop();
 		}

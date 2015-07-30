@@ -5,7 +5,6 @@ import java.util.Random;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -13,7 +12,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import net.wolfgangts.gui.GUIRender;
 import net.wolfgangts.gui.Render3D;
 
-public class MenuState extends BasicGameState {
+public class MenuState extends BasicGameState
+{
 
 	private final int ID;
 
@@ -21,39 +21,40 @@ public class MenuState extends BasicGameState {
 	private Render3D	Render3D;
 	private GUIRender	gui;
 
-
-	public MenuState( int stateMenu ) {
+	public MenuState(int stateMenu)
+	{
 		this.ID = stateMenu;
 	}
 
 	@Override
-	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		
+	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
+	{
 
 		gui = new GUIRender();
+		this.Render3D = new Render3D();
+		
+		mainMenu(gc, sbg);
 
-		gui.addButton(gc.getWidth() / 4, gc.getHeight() / 2 - 25, gc.getWidth() / 4 * 2, 50, "Start Game")
-				.setColor(new Color(255, 0, 0, 255)).setClickEvent(new Runnable() {
-
-					public void run() {
-						JumpMan.stateToChange = JumpMan.STATE_PLAY;
-					}
-				});
 	}
 
 	@Override
-	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException
+	{
 		gui.render(gc, sbg, g);
 		gui.tooltip.render(gc, sbg, g);
+		Render3D.render(gc, sbg, g);
 	}
 
 	private boolean playingMusic = false;
 
 	@Override
-	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-
-		if (!playingMusic) {
-			if (JumpMan.mainMenuSong != null) {
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
+	{
+		Render3D.update(gc, sbg, delta);
+		if (!playingMusic)
+		{
+			if (JumpMan.mainMenuSong != null)
+			{
 				JumpMan.mainMenuSong.loop();
 				playingMusic = true;
 			}
@@ -61,7 +62,7 @@ public class MenuState extends BasicGameState {
 
 		gui.tooltip.update();
 		gui.update(gc, sbg, delta);
-		if (sbg.getCurrentState().getID() != JumpMan.stateToChange) 
+		if (sbg.getCurrentState().getID() != JumpMan.stateToChange)
 		{
 			sbg.enterState(JumpMan.stateToChange);
 			JumpMan.mainMenuSong.loop();
@@ -69,8 +70,36 @@ public class MenuState extends BasicGameState {
 	}
 
 	@Override
-	public int getID() {
+	public int getID()
+	{
 		return ID;
+	}
+	
+	public void mainMenu(GameContainer gc, StateBasedGame sbg)
+	{
+		gui.clear();
+		
+		gui.addButton(gc.getWidth() / 4, gc.getHeight() / 4 * 1, gc.getWidth() / 4 * 2, 50, "Start Game").setColor(new Color(255, 0, 0, 255)).setClickEvent(new Runnable()
+		{
+			public void run()
+			{
+				JumpMan.stateToChange = JumpMan.STATE_PLAY;
+			}
+		});
+		gui.addButton(gc.getWidth() / 4, gc.getHeight() / 4 * 2, gc.getWidth() / 4 * 2, 50, "Settings").setClickEvent(new Runnable()
+		{
+			public void run()
+			{
+
+			}
+		});
+		gui.addButton(gc.getWidth() / 4, gc.getHeight() / 4 * 3, gc.getWidth() / 4 * 2, 50, "Exit").setClickEvent(new Runnable()
+		{
+			public void run()
+			{
+				System.exit(0);
+			}
+		});
 	}
 
 }
