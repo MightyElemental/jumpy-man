@@ -104,6 +104,7 @@ public class JumpMan extends StateBasedGame {
 		if (NULL_IMAGE == null) {
 			gc.exit();
 			crashMessage("JumpMan.NULL_IMAGE is null!\nThis could cause a lot of issues, especially if the game is missing textures!");
+			System.exit(1);
 		}
 		try {
 			InputStream inputStream = org.newdawn.slick.util.ResourceLoader.getResourceAsStream("res/assets/fonts/arial.ttf");
