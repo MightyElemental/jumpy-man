@@ -50,14 +50,14 @@ public class PlayState extends BasicGameState {
 		g.setColor(new Color(255, 255, 255, 1f));
 		for (WorldObject worldObj : world.currentMapLoaded.objects) {
 			g.fillRect(worldObj.getX(), worldObj.getY(), worldObj.getWidth(), worldObj.getHeight());
-			g.texture(new Rectangle(worldObj.getX(), worldObj.getY(), worldObj.getWidth(), worldObj.getHeight()),
-					worldObj.getMaterial().getTexture());
+			g.texture(new Rectangle(worldObj.getX(), worldObj.getY(), worldObj.getWidth(), worldObj.getHeight()), worldObj.getTexture(),
+					.01f, .02f);
 		}
 
-		for (Entity ent : world.entities) {
-			if (ent != null) {
-				g.drawImage(ent.getDisplayImage().getScaledCopy(ent.getWidth(), ent.getHeight()).getFlippedCopy(!ent.isFacingLeft(), false),
-						ent.getPosX(), ent.getPosY());
+		for (Entity e : world.entities) {
+			if (e != null) {
+				g.drawImage(e.getDisplayImage().getScaledCopy(e.getWidth(), e.getHeight()).getFlippedCopy(!e.isFacingLeft(), false),
+						e.getPosX(), e.getPosY());
 				g.setColor(new Color(255, 0, 0));
 				/*
 				 * g.draw(ent.getBoundsLeft()); g.draw(ent.getBoundsRight()); g.draw(ent.getBoundsTop());
@@ -81,10 +81,20 @@ public class PlayState extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		gui.update(gc, sbg, delta);
+		// Update entities
+		ArrayList<Entity> entsToRemove = new ArrayList<Entity>();
 		for (Entity ent : world.entities) {
-			ent.update(gc, sbg, delta);
+			if (ent.isDead()) {
+				entsToRemove.add(ent);
+			} else {
+				ent.update(gc, sbg, delta);
+			}
+		}
+		for (Entity ent : entsToRemove) {
+			world.entities.remove(ent);
 		}
 
+		// Update particles
 		ArrayList<EntityParticle> partsToRemove = new ArrayList<EntityParticle>();
 		for (EntityParticle ent : world.particles) {
 			if (ent.dead) {

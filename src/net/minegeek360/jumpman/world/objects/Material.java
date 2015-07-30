@@ -10,13 +10,15 @@ public class Material {
 
 	private String matName = "";
 
+	private boolean isToxic = false;
+
 	private Material( String name, String image ) {
 		this.displayImage = JumpMan.resLoader.loadImage(image);
 		this.matName = name;
 	}
 
 	public static final Material	matIron			= new Material("Iron", "materials.iron");
-	public static final Material	matToxicWater	= new Material("Toxic Water", "materials.toxicWater");
+	public static final Material	matToxicWater	= new Material("Toxic Water", "materials.toxicWater").setToxic(true);
 
 	public Image getTexture() {
 		return displayImage;
@@ -24,6 +26,15 @@ public class Material {
 
 	public String getMatName() {
 		return matName;
+	}
+
+	public boolean isToxic() {
+		return isToxic;
+	}
+
+	public Material setToxic(boolean isToxic) {
+		this.isToxic = isToxic;
+		return this;
 	}
 
 }

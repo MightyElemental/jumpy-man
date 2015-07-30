@@ -1,5 +1,6 @@
 package net.minegeek360.jumpman.world.objects;
 
+import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
 
 @SuppressWarnings( "serial" )
@@ -25,6 +26,10 @@ public class WorldObject extends Rectangle {
 
 	public Material getMaterial() {
 		return material;
+	}
+
+	public Image getTexture() {
+		return material.getTexture();
 	}
 
 }

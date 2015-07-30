@@ -7,6 +7,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.JumpMan;
 import net.minegeek360.jumpman.world.World;
+import net.minegeek360.jumpman.world.objects.Material;
 import net.minegeek360.jumpman.world.objects.WorldObject;
 
 /** @author MightyElemental */
@@ -17,6 +18,7 @@ public abstract class Entity {
 	protected boolean	facingLeft	= true;
 	protected boolean	isSolid;
 	protected boolean	isInAir		= true;
+	protected boolean	isDead		= false;
 
 	protected float	ticksAlive;
 	protected float	velocityX, velocityY, posX, posY;
@@ -26,6 +28,8 @@ public abstract class Entity {
 	protected Image displayImage = JumpMan.NULL_IMAGE;
 
 	protected World worldObj;
+
+	protected Material collidingMaterial;
 
 	public Entity( String name, int width, int height, World worldObj ) {
 		this.entityName = name;
@@ -66,42 +70,59 @@ public abstract class Entity {
 		boolean flag = false;
 		for (WorldObject obj : worldObj.currentMapLoaded.objects) {
 			if (obj.intersects(new Rectangle(this.posX, this.posY, this.width, this.height))) {
-
+				collidingMaterial = obj.getMaterial();
 				this.posY = obj.getY() - this.height;
 				this.velocityX = 0;
 				this.velocityY = 0;
 				flag = true;
 			}
 		}
+		if (!flag) {
+			collidingMaterial = null;
+		}
 		this.isInAir = !flag;
 	}
 
 	public void handleCollisionsAdvanced() {
 		boolean flag = false;
-		for (WorldObject worldObject : worldObj.currentMapLoaded.objects) {
-			if (worldObject.isSolid()) {
-				if (this.getBoundsBottom().intersects(worldObject)) {
+		for (WorldObject obj : worldObj.currentMapLoaded.objects) {
+			if (this.getBoundsBottom().intersects(obj)) {
+				if (obj.isSolid()) {
 					this.velocityY = 0;
-					this.setPosY(worldObject.getY() - this.height);
+					this.setPosY(obj.getY() - this.height);
 					flag = true;
 				}
-				if (this.getBoundsTop().intersects(worldObject)) {
-					this.velocityY = 0;
-					this.setPosY(worldObject.getY() + worldObject.getHeight() + 1);
-				}
-				if (this.getBoundsLeft().intersects(worldObject)) {
-					this.velocityX = 0;
-					this.setPosX(worldObject.getX() + worldObject.getWidth());
-				}
-				if (this.getBoundsRight().intersects(worldObject)) {
-					this.velocityX = 0;
-					this.setPosX(worldObject.getX() - this.width);
-				}
+				collidingMaterial = obj.getMaterial();
 			}
+			if (this.getBoundsTop().intersects(obj)) {
+				if (obj.isSolid()) {
+					this.velocityY = 0;
+					this.setPosY(obj.getY() + obj.getHeight() + 1);
+				}
+				collidingMaterial = obj.getMaterial();
+			}
+			if (this.getBoundsLeft().intersects(obj)) {
+				if (obj.isSolid()) {
+					this.velocityX = 0;
+					this.setPosX(obj.getX() + obj.getWidth());
+				}
+				collidingMaterial = obj.getMaterial();
+			}
+			if (this.getBoundsRight().intersects(obj)) {
+				if (obj.isSolid()) {
+					this.velocityX = 0;
+					this.setPosX(obj.getX() - this.width);
+				}
+				collidingMaterial = obj.getMaterial();
+			}
+		}
+		if (!flag) {
+			collidingMaterial = null;
 		}
 		this.isInAir = !flag;
 	}
 
+	/** The name of the entity */
 	public String getName() {
 		return entityName;
 	}
@@ -169,6 +190,7 @@ public abstract class Entity {
 		this.posY = locationY;
 	}
 
+	/** The width of the entity */
 	public int getWidth() {
 		return width;
 	}
@@ -181,6 +203,7 @@ public abstract class Entity {
 		this.width = sizeX;
 	}
 
+	/** The height of the entity */
 	public int getHeight() {
 		return height;
 	}
@@ -213,8 +236,26 @@ public abstract class Entity {
 		return ticksAlive;
 	}
 
+	/** The direction the entity is facing */
 	public boolean isFacingLeft() {
 		return facingLeft;
+	}
+
+	/** The material the entity is currently touching */
+	public Material getCollidingMaterial() {
+		return collidingMaterial;
+	}
+
+	public boolean isDead() {
+		return isDead;
+	}
+
+	/** Kills the entity
+	 * 
+	 * @param isDead
+	 *            the new dead boolean */
+	public void setDead(boolean isDead) {
+		this.isDead = isDead;
 	}
 
 }

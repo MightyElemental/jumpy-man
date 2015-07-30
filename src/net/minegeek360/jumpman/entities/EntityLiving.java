@@ -31,6 +31,14 @@ public class EntityLiving extends Entity {
 		if (isInAir) {
 			this.velocityY += worldObj.gravity * delta2;
 		}
+		if (this.getCollidingMaterial() != null) {
+			if (this.getCollidingMaterial().isToxic()) {
+				this.setHealth(this.getHealth() - 1);
+			}
+		}
+		if (this.getHealth() <= 0) {
+			this.setDead(true);
+		}
 	}
 
 	private void formatVelocity(World worldObj) {
