@@ -31,7 +31,7 @@ public class MenuState extends BasicGameState
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
 	{
-		this.music = JumpMan.resLoader.loadMusic("sounds.music");
+		this.music = JumpMan.resLoader.loadMusic("Starry");
 
 		if(this.music!=null)
 			this.music.play();
