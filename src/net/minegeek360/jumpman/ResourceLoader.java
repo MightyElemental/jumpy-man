@@ -1,5 +1,6 @@
 package net.minegeek360.jumpman;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,11 +16,11 @@ public class ResourceLoader {
 	private Map<String, Sound>	soundLoads	= new HashMap<String, Sound>();
 	private Map<String, Music>	musicLoads	= new HashMap<String, Music>();
 
-	/** Loads an image from the 'res/assets/textures' folder
+	/** Loads an image from the 'assets/textures' package
 	 * 
 	 * @param imagePath
-	 *            the path to the image beginning with 'res/assets/textures'. Remember that you can replace slashes '/'
-	 *            with dots '.'
+	 *            the path to the image beginning with 'assets/textures'. Remember that you can replace slashes '/' with
+	 *            dots '.'
 	 * @return Image the newly loaded image */
 	public Image loadImage(String imagePath) {
 
@@ -27,15 +28,22 @@ public class ResourceLoader {
 
 		String location = imagePath.replaceAll("[.]", "/");
 		location += ".png";
-		location = "res/assets/textures/" + location;
+		location = "assets/textures/" + location;
 		if (mapLoads.get(location) != null) {
 			return mapLoads.get(location);
 		} else {
 			try {
-				loadedImage = new Image(location);
-				System.out.println(location + " - has been added");
+				// loadedImage = new Image(location);
+				File temp = new File(this.getClass().getClassLoader().getResource(location).toURI());
+				if (temp.exists()) {
+					loadedImage = new Image(this.getClass().getClassLoader().getResourceAsStream(location), location, false,
+							Image.FILTER_NEAREST);
+					System.out.println("Added texture   '" + location + "'");
+				} else {
+					throw new Exception("Missing texture '" + location + "'");
+				}
 			} catch (Exception e) {
-				System.out.println("CANT LOAD IMAGE '" + location + "'");
+				System.err.println("Missing texture '" + location + "'");
 			}
 			mapLoads.put(location, loadedImage);
 		}

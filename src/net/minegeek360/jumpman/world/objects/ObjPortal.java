@@ -37,6 +37,10 @@ public class ObjPortal extends WorldObject {
 		}
 	}
 
+	public boolean isSolid() {
+		return false;
+	}
+
 	public ObjPortal( float x, float y, int type, boolean isVerticle, ObjPortal connectedPortal ) {
 		this(x, y, type, isVerticle);
 		this.connectedPortal = connectedPortal;
