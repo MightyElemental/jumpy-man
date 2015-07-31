@@ -9,8 +9,9 @@ import org.newdawn.slick.state.StateBasedGame;
 import net.minegeek360.jumpman.JumpMan;
 import net.minegeek360.jumpman.world.objects.Material;
 import net.minegeek360.jumpman.world.objects.ObjBlock;
-import net.minegeek360.jumpman.world.objects.WorldObject;
 import net.minegeek360.jumpman.world.objects.ObjFluid;
+import net.minegeek360.jumpman.world.objects.ObjPortal;
+import net.minegeek360.jumpman.world.objects.WorldObject;
 
 public class WorldMap {
 
@@ -26,6 +27,7 @@ public class WorldMap {
 		objects.add(new ObjBlock(80, 50, 10, 500, Material.matIron).setSolid(false));
 		objects.add(new ObjBlock(0, gc.getHeight(), gc.getWidth(), 50, Material.matIron));
 		objects.add(new ObjFluid(0, gc.getHeight() - 50, gc.getWidth(), 50, Material.matToxicWater));
+		objects.add(new ObjPortal(60, 70, ObjPortal.TYPE_BLUE, false));
 	}
 
 	public Image getBackground() {

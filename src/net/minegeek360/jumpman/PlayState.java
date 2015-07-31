@@ -16,6 +16,7 @@ import net.minegeek360.jumpman.entities.Entity;
 import net.minegeek360.jumpman.entities.EntityPlayer;
 import net.minegeek360.jumpman.entities.particles.EntityParticle;
 import net.minegeek360.jumpman.world.World;
+import net.minegeek360.jumpman.world.objects.ObjPortal;
 import net.minegeek360.jumpman.world.objects.WorldObject;
 import net.wolfgangts.gui.GUIRender;
 
@@ -54,8 +55,13 @@ public class PlayState extends BasicGameState {
 
 		g.setColor(new Color(255, 255, 255, 1f));
 		for (WorldObject worldObj : world.currentMapLoaded.objects) {
-			g.texture(new Rectangle(worldObj.getX(), worldObj.getY(), worldObj.getWidth(), worldObj.getHeight()), worldObj.getTexture(),
-					.01f, .02f);
+			if (!(worldObj instanceof ObjPortal)) {
+				g.texture(new Rectangle(worldObj.getX(), worldObj.getY(), worldObj.getWidth(), worldObj.getHeight()), worldObj.getTexture(),
+						.01f, .02f, false);
+			} else {
+				g.drawImage(worldObj.getTexture().getScaledCopy((int) worldObj.getWidth(), (int) worldObj.getHeight()), worldObj.getX(),
+						worldObj.getY(), ((ObjPortal) worldObj).getPortalColor());
+			}
 		}
 
 		for (Entity e : world.entities) {

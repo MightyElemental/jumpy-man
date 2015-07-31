@@ -15,13 +15,13 @@ public class ObjPortal extends WorldObject {
 	private ObjPortal		connectedPortal;
 
 	public ObjPortal( float x, float y, int type, boolean isVerticle ) {
-		super(x, y, 50, 10, Material.matPortal);
+		super(x, y, 70, 20, Material.matPortal);
 		if (isVerticle) {
-			this.setWidth(50);
-			this.setHeight(10);
+			this.setWidth(70);
+			this.setHeight(20);
 		} else {
-			this.setWidth(10);
-			this.setHeight(50);
+			this.setWidth(20);
+			this.setHeight(70);
 		}
 		this.type = type;
 		switch (type) {
