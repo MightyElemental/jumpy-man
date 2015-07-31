@@ -3,7 +3,7 @@ package net.minegeek360.jumpman.world.objects;
 import org.newdawn.slick.Color;
 
 import net.minegeek360.jumpman.entities.Entity;
-import net.minegeek360.jumpman.entities.particles.EntityPortalParticle;
+import net.minegeek360.jumpman.entities.particles.ParticlePortal;
 import net.minegeek360.jumpman.world.World;
 
 public class ObjPortal extends WorldObject {
@@ -59,7 +59,7 @@ public class ObjPortal extends WorldObject {
 			entity.setPosX(destX);
 			entity.setPosY(destY);
 			System.out.println(entity.getPosX());
-			worldObj.particles.add(new EntityPortalParticle(destY, destY, worldObj, this));
+			worldObj.particles.add(new ParticlePortal(destY, destY, worldObj, this));
 		} else {
 			System.err.println("connected portal is null. CANNOT TELEPORT");
 		}

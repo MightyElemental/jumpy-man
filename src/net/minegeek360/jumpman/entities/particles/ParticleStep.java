@@ -9,9 +9,9 @@ import net.minegeek360.jumpman.world.World;
 
 /** @author WolfgangTS
  * @since 29/07/2015 */
-public class EntityStepParticle extends EntityParticle {
+public class ParticleStep extends EntityParticle {
 
-	public EntityStepParticle( float x, float y, World worldObj ) {
+	public ParticleStep( float x, float y, World worldObj ) {
 		super("Smoke Particle", x, y, worldObj);
 		this.setDimensions(new Dimension(4, 4));
 		this.velocityY = -2 - this.worldObj.rand.nextFloat();

@@ -12,11 +12,11 @@ import net.minegeek360.jumpman.world.objects.WorldObject;
 
 /** @author WolfgangTS
  * @since 29/07/2015 */
-public class EntityFireParticle extends EntityParticle {
+public class ParticleFire extends EntityParticle {
 
 	private Color[] colorPossibilities = { Color.red, Color.orange, Color.yellow };
 
-	public EntityFireParticle( float x, float y, World worldObj ) {
+	public ParticleFire( float x, float y, World worldObj ) {
 		super("Fire Particle", x, y, worldObj);
 		this.setDimensions(new Dimension(16, 16));
 		this.velocityY = -3 - this.worldObj.rand.nextFloat();
