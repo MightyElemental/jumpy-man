@@ -107,12 +107,12 @@ public class JumpMan extends StateBasedGame {
 			crashMessage("JumpMan.NULL_IMAGE is null!\nThis could cause a lot of issues, especially if the game is missing textures!");
 		}
 		try {
-			InputStream inputStream = org.newdawn.slick.util.ResourceLoader.getResourceAsStream("res/assets/fonts/arial.ttf");
+			InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("assets/fonts/arial.ttf");
 			Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
 			awtFont2 = awtFont2.deriveFont(15f);
 			fontArial = new TrueTypeFont(awtFont2, true);
 
-			InputStream inputStream1 = org.newdawn.slick.util.ResourceLoader.getResourceAsStream("res/assets/fonts/monkey.ttf");
+			InputStream inputStream1 = this.getClass().getClassLoader().getResourceAsStream("assets/fonts/monkey.ttf");
 			Font awtFont21 = Font.createFont(Font.TRUETYPE_FONT, inputStream1);
 			awtFont21 = awtFont21.deriveFont(36f);
 			font = new TrueTypeFont(awtFont21, true);

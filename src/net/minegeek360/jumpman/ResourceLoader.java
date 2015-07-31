@@ -51,11 +51,11 @@ public class ResourceLoader {
 		return loadedImage;
 	}
 
-	/** Loads a music file from the 'res/assets/sounds/music' folder
+	/** Loads a music file from the 'assets/sounds/music' package
 	 * 
 	 * @param musicPath
-	 *            the path to the sound file beginning with 'res/assets/sounds/music'. Remember that you can replace
-	 *            slashes '/' with dots '.'
+	 *            the path to the sound file beginning with 'assets/sounds/music'. Remember that you can replace slashes
+	 *            '/' with dots '.'
 	 * @return Music the newly loaded music file */
 	public Music loadMusic(String musicPath) {
 
@@ -63,15 +63,21 @@ public class ResourceLoader {
 
 		String location = musicPath.replaceAll("[.]", "/");
 		location += ".ogg";
-		location = "res/assets/sounds/music/" + location;
+		location = "assets/sounds/music/" + location;
 		if (mapLoads.get(location) != null) {
 			return musicLoads.get(location);
 		} else {
 			try {
-				loadedMusic = new Music(location);
-				System.out.println(location + " - has been added");
+
+				File temp = new File(this.getClass().getClassLoader().getResource(location).toURI());
+				if (temp.exists()) {
+					loadedMusic = new Music(this.getClass().getClassLoader().getResourceAsStream(location), location);
+					System.out.println("Added music   '" + location + "'");
+				} else {
+					throw new Exception("Missing music '" + location + "'");
+				}
 			} catch (Exception e) {
-				System.out.println("CANT LOAD MUSIC '" + location + "'");
+				System.err.println("Missing music '" + location + "'");
 			}
 			musicLoads.put(location, loadedMusic);
 		}
@@ -79,11 +85,11 @@ public class ResourceLoader {
 		return loadedMusic;
 	}
 
-	/** Loads a sound file from the 'res/assets/sounds' folder
+	/** Loads a sound file from the 'assets/sounds' package
 	 * 
 	 * @param soundPath
-	 *            the path to the sound file beginning with 'res/assets/sounds'. Remember that you can replace slashes
-	 *            '/' with dots '.'
+	 *            the path to the sound file beginning with 'assets/sounds'. Remember that you can replace slashes '/'
+	 *            with dots '.'
 	 * @return Sound the newly loaded sound */
 	public Sound loadSound(String soundPath) {
 
@@ -91,15 +97,20 @@ public class ResourceLoader {
 
 		String location = soundPath.replaceAll("[.]", "/");
 		location += ".ogg";
-		location = "res/assets/sounds/" + location;
+		location = "assets/sounds/" + location;
 		if (mapLoads.get(location) != null) {
 			return soundLoads.get(location);
 		} else {
 			try {
-				loadedSound = new Sound(location);
-				System.out.println(location + " - has been added");
+				File temp = new File(this.getClass().getClassLoader().getResource(location).toURI());
+				if (temp.exists()) {
+					loadedSound = new Sound(this.getClass().getClassLoader().getResourceAsStream(location), location);
+					System.out.println("Added sound   '" + location + "'");
+				} else {
+					throw new Exception("Missing sound '" + location + "'");
+				}
 			} catch (Exception e) {
-				System.out.println("CANT LOAD SOUND '" + location + "'");
+				System.out.println("Missing sound '" + location + "'");
 			}
 			soundLoads.put(location, loadedSound);
 		}
