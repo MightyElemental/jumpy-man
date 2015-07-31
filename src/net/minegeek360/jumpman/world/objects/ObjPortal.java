@@ -54,19 +54,16 @@ public class ObjPortal extends WorldObject {
 	@Override
 	public void onCollide(Entity entity) {// YOU REALLY NEED TO CHANGE THIS TO WORK!!!
 		super.onCollide(entity);
-		//entity.lastUsedPortal = this;
+		if (connectedPortal == null) { return; }
+
 		if (entity.lastUsedPortal == null) {
-			entity.lastUsedPortal = this;
-			this.lockPortal();
-		}
-		if (connectedPortal != null && !connectedPortal.isLocked) {
 			float destX = entity.getPosX() - this.getX() + connectedPortal.getX();
 			float destY = entity.getPosY() - this.getY() + connectedPortal.getY();
 			entity.setPosX(destX);
 			entity.setPosY(destY);
 			for (int i = 0; i < worldObj.rand.nextInt(20); i++) {
-				worldObj.createParticle(new ParticlePortal(worldObj.rand.nextInt((int) this.getWidth()) + this.getX(),
-						worldObj.rand.nextInt((int) this.getHeight()) + this.getY(), worldObj, this));
+				worldObj.createParticle(new ParticlePortal(worldObj.rand.nextInt((int) connectedPortal.getWidth()) + connectedPortal.getX(),
+						worldObj.rand.nextInt((int) connectedPortal.getHeight()) + connectedPortal.getY(), worldObj, connectedPortal));
 			}
 		}
 	}

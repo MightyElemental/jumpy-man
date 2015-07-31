@@ -159,12 +159,15 @@ public abstract class Entity {
 	 *            the time passed since the last update */
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
 		ticksAlive += 1 * delta / 16f;
-		if (this.lastUsedPortal != null) {
-			System.out.println(this.lastUsedPortal.getType());
-			//this.lastUsedPortal.unlockPortal();
-			//this.lastUsedPortal.getConnectedPortal().lockPortal();
-			this.lastUsedPortal = null;
+		if (lastUsedPortal != null) {
+			if (!getBasicBounds().intersects(lastUsedPortal)) {
+				lastUsedPortal = null;
+			}
 		}
+	}
+
+	public Rectangle getBasicBounds() {
+		return new Rectangle(posX, posY, width, height);
 	}
 
 	public boolean isSolid() {
