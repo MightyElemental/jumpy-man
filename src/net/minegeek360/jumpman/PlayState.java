@@ -1,7 +1,5 @@
 package net.minegeek360.jumpman;
 
-import java.util.ArrayList;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -112,31 +110,7 @@ public class PlayState extends BasicGameState {
 		this.oldCurrentMusic = this.currentMusic;
 
 		gui.update(gc, sbg, delta);
-		// Update entities
-		ArrayList<Entity> entsToRemove = new ArrayList<Entity>();
-		for (Entity ent : world.entities) {
-			if (ent.isDead()) {
-				entsToRemove.add(ent);
-			} else {
-				ent.update(gc, sbg, delta);
-			}
-		}
-		for (Entity ent : entsToRemove) {
-			world.entities.remove(ent);
-		}
-
-		// Update particles
-		ArrayList<EntityParticle> partsToRemove = new ArrayList<EntityParticle>();
-		for (EntityParticle ent : world.particles) {
-			if (ent.dead) {
-				partsToRemove.add(ent);
-			} else {
-				ent.update(gc, sbg, delta);
-			}
-		}
-		for (EntityParticle ent : partsToRemove) {
-			world.particles.remove(ent);
-		}
+		world.update(gc, sbg, delta);
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import net.minegeek360.jumpman.JumpMan;
 import net.minegeek360.jumpman.world.World;
 import net.minegeek360.jumpman.world.objects.Material;
+import net.minegeek360.jumpman.world.objects.ObjPortal;
 import net.minegeek360.jumpman.world.objects.WorldObject;
 
 /** @author MightyElemental */
@@ -15,10 +16,16 @@ public abstract class Entity {
 
 	protected String entityName = "Undefined";
 
+	public static final int	EDGE_TOP	= 0;
+	public static final int	EDGE_LEFT	= 1;
+	public static final int	EDGE_RIGHT	= 2;
+	public static final int	EDGE_BOTTOM	= 3;
+
 	protected boolean	facingLeft	= true;
 	protected boolean	isSolid;
 	protected boolean	isInAir		= true;
 	protected boolean	isDead		= false;
+	public ObjPortal	lastUsedPortal;
 
 	protected float	ticksAlive;
 	protected float	velocityX, velocityY, posX, posY;
@@ -93,7 +100,7 @@ public abstract class Entity {
 					this.setPosY(obj.getY() - this.height);
 					flag = true;
 				}
-				obj.onCollide(this);
+				obj.onCollide(this, EDGE_BOTTOM);
 				collidingMaterial = obj.getMaterial();
 			}
 			if (this.getBoundsTop().intersects(obj)) {
@@ -101,7 +108,7 @@ public abstract class Entity {
 					this.velocityY = 0;
 					this.setPosY(obj.getY() + obj.getHeight() + 1);
 				}
-				obj.onCollide(this);
+				obj.onCollide(this, EDGE_TOP);
 				collidingMaterial = obj.getMaterial();
 			}
 			if (this.getBoundsLeft().intersects(obj)) {
@@ -109,7 +116,7 @@ public abstract class Entity {
 					this.velocityX = 0;
 					this.setPosX(obj.getX() + obj.getWidth());
 				}
-				obj.onCollide(this);
+				obj.onCollide(this, EDGE_LEFT);
 				collidingMaterial = obj.getMaterial();
 			}
 			if (this.getBoundsRight().intersects(obj)) {
@@ -117,7 +124,7 @@ public abstract class Entity {
 					this.velocityX = 0;
 					this.setPosX(obj.getX() - this.width);
 				}
-				obj.onCollide(this);
+				obj.onCollide(this, EDGE_RIGHT);
 				collidingMaterial = obj.getMaterial();
 			}
 		}
@@ -152,6 +159,12 @@ public abstract class Entity {
 	 *            the time passed since the last update */
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
 		ticksAlive += 1 * delta / 16f;
+		if (this.lastUsedPortal != null) {
+			System.out.println(this.lastUsedPortal.getType());
+			//this.lastUsedPortal.unlockPortal();
+			//this.lastUsedPortal.getConnectedPortal().lockPortal();
+			this.lastUsedPortal = null;
+		}
 	}
 
 	public boolean isSolid() {

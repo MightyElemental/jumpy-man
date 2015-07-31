@@ -19,6 +19,10 @@ public class WorldObject extends Rectangle {
 		this.material = mat;
 	}
 
+	public void onCollide(Entity entity, int edge) {
+		onCollide(entity);
+	}
+
 	public void onCollide(Entity entity) {
 	}
 

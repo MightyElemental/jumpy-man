@@ -16,6 +16,7 @@ public class ObjPortal extends WorldObject {
 	private Color			portalColor	= Color.blue;
 	private ObjPortal		connectedPortal;
 	private World			worldObj;
+	protected boolean		isLocked;
 
 	public ObjPortal( float x, float y, int type, boolean isVerticle, World worldObj ) {
 		super(x, y, 70, 20, Material.matPortal);
@@ -53,16 +54,29 @@ public class ObjPortal extends WorldObject {
 	@Override
 	public void onCollide(Entity entity) {// YOU REALLY NEED TO CHANGE THIS TO WORK!!!
 		super.onCollide(entity);
-		if (connectedPortal != null) {
+		//entity.lastUsedPortal = this;
+		if (entity.lastUsedPortal == null) {
+			entity.lastUsedPortal = this;
+			this.lockPortal();
+		}
+		if (connectedPortal != null && !connectedPortal.isLocked) {
 			float destX = entity.getPosX() - this.getX() + connectedPortal.getX();
 			float destY = entity.getPosY() - this.getY() + connectedPortal.getY();
 			entity.setPosX(destX);
 			entity.setPosY(destY);
-			System.out.println(entity.getPosX());
-			worldObj.particles.add(new ParticlePortal(destY, destY, worldObj, this));
-		} else {
-			System.err.println("connected portal is null. CANNOT TELEPORT");
+			for (int i = 0; i < worldObj.rand.nextInt(20); i++) {
+				worldObj.createParticle(new ParticlePortal(worldObj.rand.nextInt((int) this.getWidth()) + this.getX(),
+						worldObj.rand.nextInt((int) this.getHeight()) + this.getY(), worldObj, this));
+			}
 		}
+	}
+
+	public void lockPortal() {
+		isLocked = true;
+	}
+
+	public void unlockPortal() {
+		isLocked = false;
 	}
 
 	public int getType() {

@@ -24,6 +24,7 @@ public abstract class EntityParticle extends Entity
 	public EntityParticle(String name, float posX, float posY, World worldObj)
 	{
 		super(name, posX, posY, worldObj);
+		this.setDimensions(new Dimension(16, 16));
 	}
 
 	public void setDimensions(Dimension d)

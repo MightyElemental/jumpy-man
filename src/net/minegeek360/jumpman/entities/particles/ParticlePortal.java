@@ -1,24 +1,22 @@
 package net.minegeek360.jumpman.entities.particles;
 
-import java.awt.Dimension;
-
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.world.World;
 import net.minegeek360.jumpman.world.objects.ObjPortal;
-import net.minegeek360.jumpman.world.objects.WorldObject;
 
 public class ParticlePortal extends EntityParticle {
 
 	public ParticlePortal( float x, float y, World worldObj, ObjPortal portal ) {
 		super("Portal Particle", x, y, worldObj);
-		this.setDimensions(new Dimension(16, 16));
-		this.velocityY = -3 - this.worldObj.rand.nextFloat();
+		this.setPosX(x - (this.width / 2));
+		this.setPosY(y - (this.height / 2));
+		this.velocityY = -this.worldObj.rand.nextFloat() + this.worldObj.rand.nextFloat();
 		this.velocityX = this.worldObj.rand.nextFloat() * 2 - 1;
-		this.lifetime = 50;
+		this.lifetime = 40;
 		this.setDisplayImage("entity.particle.portal");
+		this.alpha = 0.2f;
 
 		this.color = portal.getPortalColor();
 
@@ -31,17 +29,6 @@ public class ParticlePortal extends EntityParticle {
 		this.posX += this.velocityX * (delta / 16);
 		this.posY += this.velocityY * (delta / 16);
 		this.velocityX = (this.velocityX + (worldObj.rand.nextFloat() * 10 - 5f)) / 2;
-
-		for (WorldObject obj : worldObj.currentMapLoaded.objects) {
-			if (obj.intersects(new Rectangle(this.posX, this.posY, this.width, this.height))) {
-				if (obj.isSolid()) {
-					this.posY = obj.getY() + this.height;
-
-					this.velocityX = 0;
-					this.velocityY = 0;
-				}
-			}
-		}
 	}
 
 }

@@ -26,7 +26,7 @@ public class EntityPlayer extends EntityLiving {
 
 	public void createParticle() {
 		if (!this.isInAir && worldObj.rand.nextInt(5) == 0)
-			worldObj.particles.add(new ParticleStep(this.getPosX() + this.width / 2, this.getPosY() + this.height - 3, worldObj));
+			worldObj.createParticle(new ParticleStep(this.getPosX() + this.width / 2, this.getPosY() + this.height - 3, worldObj));
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
