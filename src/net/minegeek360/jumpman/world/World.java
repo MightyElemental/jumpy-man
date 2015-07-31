@@ -24,7 +24,7 @@ public class World {
 	public void init(GameContainer gc, StateBasedGame sbg) {
 		entities.add(new EntityPlayer(this));
 		WorldMap map = new WorldMap();
-		map.init(gc, sbg);
+		map.init(gc, sbg, this);
 		mapArray.add(map);
 		currentMapLoaded = mapArray.get(0);
 	}

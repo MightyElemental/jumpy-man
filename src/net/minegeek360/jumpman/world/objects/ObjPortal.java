@@ -3,6 +3,8 @@ package net.minegeek360.jumpman.world.objects;
 import org.newdawn.slick.Color;
 
 import net.minegeek360.jumpman.entities.Entity;
+import net.minegeek360.jumpman.entities.particles.EntityPortalParticle;
+import net.minegeek360.jumpman.world.World;
 
 public class ObjPortal extends WorldObject {
 
@@ -13,10 +15,12 @@ public class ObjPortal extends WorldObject {
 	private int				type;
 	private Color			portalColor	= Color.blue;
 	private ObjPortal		connectedPortal;
+	private World			worldObj;
 
-	public ObjPortal( float x, float y, int type, boolean isVerticle ) {
+	public ObjPortal( float x, float y, int type, boolean isVerticle, World worldObj ) {
 		super(x, y, 70, 20, Material.matPortal);
-		if (isVerticle) {
+		this.worldObj = worldObj;
+		if (!isVerticle) {
 			this.setWidth(70);
 			this.setHeight(20);
 		} else {
@@ -41,8 +45,8 @@ public class ObjPortal extends WorldObject {
 		return false;
 	}
 
-	public ObjPortal( float x, float y, int type, boolean isVerticle, ObjPortal connectedPortal ) {
-		this(x, y, type, isVerticle);
+	public ObjPortal( float x, float y, int type, boolean isVerticle, World worldObj, ObjPortal connectedPortal ) {
+		this(x, y, type, isVerticle, worldObj);
 		this.connectedPortal = connectedPortal;
 	}
 
@@ -50,8 +54,14 @@ public class ObjPortal extends WorldObject {
 	public void onCollide(Entity entity) {// YOU REALLY NEED TO CHANGE THIS TO WORK!!!
 		super.onCollide(entity);
 		if (connectedPortal != null) {
-			entity.setPosX(connectedPortal.getCenterX());
-			entity.setPosY(connectedPortal.getCenterY());
+			float destX = entity.getPosX() - this.getX() + connectedPortal.getX();
+			float destY = entity.getPosY() - this.getY() + connectedPortal.getY();
+			entity.setPosX(destX);
+			entity.setPosY(destY);
+			System.out.println(entity.getPosX());
+			worldObj.particles.add(new EntityPortalParticle(destY, destY, worldObj, this));
+		} else {
+			System.err.println("connected portal is null. CANNOT TELEPORT");
 		}
 	}
 
@@ -67,8 +77,9 @@ public class ObjPortal extends WorldObject {
 		return connectedPortal;
 	}
 
-	public void setConnectedPortal(ObjPortal connectedPortal) {
+	public ObjPortal setConnectedPortal(ObjPortal connectedPortal) {
 		this.connectedPortal = connectedPortal;
+		return this;
 	}
 
 }

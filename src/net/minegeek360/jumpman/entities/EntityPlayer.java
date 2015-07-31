@@ -18,7 +18,7 @@ public class EntityPlayer extends EntityLiving {
 		this.maxHealth = 10000;
 		this.setDisplayImage("entity.player.player");
 		this.setMoveSpeed(5f);
-		this.setJumpPower(15);
+		this.setJumpPower(10);
 	}
 
 	private boolean	canGoRight	= true;

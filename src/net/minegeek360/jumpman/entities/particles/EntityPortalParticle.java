@@ -2,29 +2,26 @@ package net.minegeek360.jumpman.entities.particles;
 
 import java.awt.Dimension;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.world.World;
+import net.minegeek360.jumpman.world.objects.ObjPortal;
 import net.minegeek360.jumpman.world.objects.WorldObject;
 
-/** @author WolfgangTS
- * @since 29/07/2015 */
-public class EntityFireParticle extends EntityParticle {
+public class EntityPortalParticle extends EntityParticle {
 
-	private Color[] colorPossibilities = { Color.red, Color.orange, Color.yellow };
-
-	public EntityFireParticle( float x, float y, World worldObj ) {
-		super("Fire Particle", x, y, worldObj);
+	public EntityPortalParticle( float x, float y, World worldObj, ObjPortal portal ) {
+		super("Portal Particle", x, y, worldObj);
 		this.setDimensions(new Dimension(16, 16));
 		this.velocityY = -3 - this.worldObj.rand.nextFloat();
 		this.velocityX = this.worldObj.rand.nextFloat() * 2 - 1;
 		this.lifetime = 50;
-		this.setDisplayImage("entity.particle.blaze");
+		this.setDisplayImage("entity.particle.portal");
 
-		this.color = this.colorPossibilities[this.worldObj.rand.nextInt(this.colorPossibilities.length)];
+		this.color = portal.getPortalColor();
+
 	}
 
 	@Override
@@ -46,4 +43,5 @@ public class EntityFireParticle extends EntityParticle {
 			}
 		}
 	}
+
 }

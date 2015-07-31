@@ -12,7 +12,7 @@ public class EntityLiving extends Entity {
 	}
 
 	protected float	moveSpeed	= 2;
-	protected float	jumpPower	= 20;
+	protected float	jumpPower	= 10;
 
 	protected int	maxHealth	= 20;
 	protected int	health		= maxHealth;

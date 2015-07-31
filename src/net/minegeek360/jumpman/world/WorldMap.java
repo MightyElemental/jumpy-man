@@ -19,15 +19,20 @@ public class WorldMap {
 
 	protected Image background = JumpMan.NULL_IMAGE;
 
-	public void init(GameContainer gc, StateBasedGame sbg) {
+	public void init(GameContainer gc, StateBasedGame sbg, World worldObj) {
 		// objects.add(new WorldBlock(500, 170, 4000, 10));
 		background = JumpMan.resLoader.loadImage("maps.testmap.background");
 		objects.add(new ObjBlock(0, 500, gc.getWidth() - 400, 50, Material.matIron));
 		// objects.add(new WorldBlock(800, 50, 10, 500, Material.matIron));
-		objects.add(new ObjBlock(80, 50, 10, 500, Material.matIron).setSolid(false));
+		objects.add(new ObjBlock(-5, 50, 10, 500, Material.matIron).setSolid(true));
 		objects.add(new ObjBlock(0, gc.getHeight(), gc.getWidth(), 50, Material.matIron));
 		objects.add(new ObjFluid(0, gc.getHeight() - 50, gc.getWidth(), 50, Material.matToxicWater));
-		objects.add(new ObjPortal(60, 450, ObjPortal.TYPE_BLUE, false));
+		ObjPortal port = new ObjPortal(400, 420, ObjPortal.TYPE_BLUE, true, worldObj);
+		ObjPortal port2 = new ObjPortal(70, 420, ObjPortal.TYPE_ORANGE, true, worldObj, port);
+		port.setConnectedPortal(port2);
+		objects.add(port);
+		objects.add(port2);
+
 	}
 
 	public Image getBackground() {
