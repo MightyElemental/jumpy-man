@@ -22,11 +22,11 @@ public class ObjPortal extends WorldObject {
 		super(x, y, 70, 20, Material.matPortal);
 		this.worldObj = worldObj;
 		if (!isVerticle) {
-			this.setWidth(70);
-			this.setHeight(20);
+			this.setWidth(60);
+			this.setHeight(this.getWidth() / 3.5f);
 		} else {
-			this.setWidth(20);
-			this.setHeight(70);
+			this.setHeight(60);
+			this.setWidth(this.getHeight() / 3.5f);
 		}
 		this.type = type;
 		switch (type) {
@@ -56,15 +56,16 @@ public class ObjPortal extends WorldObject {
 		super.onCollide(entity);
 		if (connectedPortal == null) { return; }
 
-		if (entity.lastUsedPortal == null) {
+		if (!entity.hasTeleported && this.type == ObjPortal.TYPE_ORANGE) {
 			float destX = entity.getPosX() - this.getX() + connectedPortal.getX();
 			float destY = entity.getPosY() - this.getY() + connectedPortal.getY();
 			entity.setPosX(destX);
 			entity.setPosY(destY);
-			for (int i = 0; i < worldObj.rand.nextInt(20); i++) {
+			for (int i = 0; i < worldObj.rand.nextInt(10) + 20; i++) {
 				worldObj.createParticle(new ParticlePortal(worldObj.rand.nextInt((int) connectedPortal.getWidth()) + connectedPortal.getX(),
 						worldObj.rand.nextInt((int) connectedPortal.getHeight()) + connectedPortal.getY(), worldObj, connectedPortal));
 			}
+			entity.lastUsedPortal = this;
 		}
 	}
 

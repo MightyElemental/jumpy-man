@@ -21,11 +21,12 @@ public abstract class Entity {
 	public static final int	EDGE_RIGHT	= 2;
 	public static final int	EDGE_BOTTOM	= 3;
 
-	protected boolean	facingLeft	= true;
+	protected boolean	facingLeft		= true;
 	protected boolean	isSolid;
-	protected boolean	isInAir		= true;
-	protected boolean	isDead		= false;
+	protected boolean	isInAir			= true;
+	protected boolean	isDead			= false;
 	public ObjPortal	lastUsedPortal;
+	public boolean		hasTeleported	= false;
 
 	protected float	ticksAlive;
 	protected float	velocityX, velocityY, posX, posY;
@@ -160,7 +161,7 @@ public abstract class Entity {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
 		ticksAlive += 1 * delta / 16f;
 		if (lastUsedPortal != null) {
-			if (!getBasicBounds().intersects(lastUsedPortal)) {
+			if (getBasicBounds().intersects(lastUsedPortal)) {
 				lastUsedPortal = null;
 			}
 		}
