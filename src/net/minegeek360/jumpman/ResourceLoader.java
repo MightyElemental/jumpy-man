@@ -72,12 +72,12 @@ public class ResourceLoader {
 				File temp = new File(this.getClass().getClassLoader().getResource(location).toURI());
 				if (temp.exists()) {
 					loadedMusic = new Music(this.getClass().getClassLoader().getResourceAsStream(location), location);
-					System.out.println("Added music   '" + location + "'");
+					System.out.println("Added music\t'" + location + "'");
 				} else {
-					throw new Exception("Missing music '" + location + "'");
+					throw new Exception("Missing music\t'" + location + "'");
 				}
 			} catch (Exception e) {
-				System.err.println("Missing music '" + location + "'");
+				System.err.println("Missing music\t'" + location + "'");
 			}
 			musicLoads.put(location, loadedMusic);
 		}
