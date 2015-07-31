@@ -1,7 +1,9 @@
 package net.minegeek360.jumpman.world.objects;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.state.StateBasedGame;
 
 import net.minegeek360.jumpman.entities.Entity;
 
@@ -18,6 +20,10 @@ public class WorldObject extends Rectangle {
 	}
 
 	public void onCollide(Entity entity) {
+	}
+
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
+
 	}
 
 	public boolean isSolid() {

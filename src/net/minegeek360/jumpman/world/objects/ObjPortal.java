@@ -45,8 +45,10 @@ public class ObjPortal extends WorldObject {
 	@Override
 	public void onCollide(Entity entity) {// YOU REALLY NEED TO CHANGE THIS TO WORK!!!
 		super.onCollide(entity);
-		entity.setPosX(connectedPortal.getCenterX());
-		entity.setPosY(connectedPortal.getCenterY());
+		if (connectedPortal != null) {
+			entity.setPosX(connectedPortal.getCenterX());
+			entity.setPosY(connectedPortal.getCenterY());
+		}
 	}
 
 	public int getType() {

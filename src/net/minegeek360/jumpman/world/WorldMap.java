@@ -27,7 +27,7 @@ public class WorldMap {
 		objects.add(new ObjBlock(80, 50, 10, 500, Material.matIron).setSolid(false));
 		objects.add(new ObjBlock(0, gc.getHeight(), gc.getWidth(), 50, Material.matIron));
 		objects.add(new ObjFluid(0, gc.getHeight() - 50, gc.getWidth(), 50, Material.matToxicWater));
-		objects.add(new ObjPortal(60, 70, ObjPortal.TYPE_BLUE, false));
+		objects.add(new ObjPortal(60, 450, ObjPortal.TYPE_BLUE, false));
 	}
 
 	public Image getBackground() {
