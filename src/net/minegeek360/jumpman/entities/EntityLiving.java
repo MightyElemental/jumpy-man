@@ -76,6 +76,8 @@ public class EntityLiving extends Entity {
 		if (velocityX < -moveSpeed) { return; }
 		if (!isInAir) {
 			this.velocityX -= moveSpeed;
+		} else {
+			this.velocityX -= moveSpeed / 20f;
 		}
 		this.facingLeft = true;
 	}
@@ -85,6 +87,8 @@ public class EntityLiving extends Entity {
 		if (velocityX > moveSpeed) { return; }
 		if (!isInAir) {
 			this.velocityX += moveSpeed;
+		} else {
+			this.velocityX += moveSpeed / 20f;
 		}
 		this.facingLeft = false;
 	}

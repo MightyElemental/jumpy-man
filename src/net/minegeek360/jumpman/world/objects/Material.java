@@ -20,6 +20,7 @@ public class Material {
 	public static final Material	matIron			= new Material("Iron", "materials.iron");
 	public static final Material	matPortal		= new Material("Portal", "materials.portal");
 	public static final Material	matToxicWater	= new Material("Toxic Water", "materials.toxicWater").setToxic(true);
+	public static final Material	matBouncy		= new Material("Bouncy", "materials.bouncy");
 
 	public Image getTexture() {
 		return displayImage;

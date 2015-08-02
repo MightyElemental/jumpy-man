@@ -38,12 +38,12 @@ public class ResourceLoader {
 				if (temp.exists()) {
 					loadedImage = new Image(this.getClass().getClassLoader().getResourceAsStream(location), location, false,
 							Image.FILTER_NEAREST);
-					System.out.println("Added texture   '" + location + "'");
+					System.out.println("Added texture\t'" + location + "'");
 				} else {
-					throw new Exception("Missing texture '" + location + "'");
+					throw new Exception("Missing texture\t'" + location + "'");
 				}
 			} catch (Exception e) {
-				System.err.println("Missing texture '" + location + "'");
+				System.err.println("Missing texture\t'" + location + "'");
 			}
 			mapLoads.put(location, loadedImage);
 		}
@@ -105,12 +105,12 @@ public class ResourceLoader {
 				File temp = new File(this.getClass().getClassLoader().getResource(location).toURI());
 				if (temp.exists()) {
 					loadedSound = new Sound(this.getClass().getClassLoader().getResourceAsStream(location), location);
-					System.out.println("Added sound   '" + location + "'");
+					System.out.println("Added sound\t'" + location + "'");
 				} else {
-					throw new Exception("Missing sound '" + location + "'");
+					throw new Exception("Missing sound\t'" + location + "'");
 				}
 			} catch (Exception e) {
-				System.out.println("Missing sound '" + location + "'");
+				System.out.println("Missing sound\t'" + location + "'");
 			}
 			soundLoads.put(location, loadedSound);
 		}
