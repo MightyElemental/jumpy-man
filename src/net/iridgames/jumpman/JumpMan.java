@@ -15,7 +15,8 @@ import org.newdawn.slick.state.StateBasedGame;
 public class JumpMan extends StateBasedGame {
 
 	public static final String	GAME_VERSION		= "0.2.7";
-	public static final String	GAME_NAME			= "The Adventures Of Jumpy Man";
+	public static final String	GAME_NAME			= "The Adventures Of Jumpy Man";			// Captured - or at
+																								// least it will be
 	public static final String	GAME_NAME_DISPLAY	= GAME_NAME + " | Version " + GAME_VERSION;
 
 	public static final int	STATE_PRELOAD	= 0;
@@ -43,6 +44,9 @@ public class JumpMan extends StateBasedGame {
 	public static Music	mainMenuSong;
 	public static Music	normalGameSong;
 
+	public static TrueTypeFont	font;
+	public static TrueTypeFont	fontArial;
+
 	public JumpMan( String name ) {
 		super(name);
 		this.addState(new PreLoadState(STATE_PRELOAD));
@@ -55,9 +59,6 @@ public class JumpMan extends StateBasedGame {
 
 		settingMenu.startUp();
 	}
-
-	public static TrueTypeFont	font;
-	public static TrueTypeFont	fontArial;
 
 	public static void startGame() {
 		AppGameContainer appGc;

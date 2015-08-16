@@ -27,7 +27,7 @@ public class WorldMap {
 		// objects.add(new WorldBlock(800, 50, 10, 500, Material.matIron));
 		objects.add(new ObjBlock(-5, 50, 10, 500, Material.matIron).setSolid(true));
 		objects.add(new ObjBlock(0, gc.getHeight(), gc.getWidth(), 50, Material.matIron));
-		objects.add(new ObjFluid(0, gc.getHeight() - 50, gc.getWidth(), 50, Material.matToxicWater));
+		objects.add(new ObjFluid(0, gc.getHeight() - 50, gc.getWidth(), 50, Material.matFluid.setToxic(true)));//may cause issues
 		ObjPortal port = new ObjPortal(400, 420, ObjPortal.TYPE_BLUE, true, worldObj);
 		ObjPortal port2 = new ObjPortal(70, 420, ObjPortal.TYPE_ORANGE, true, worldObj, port);
 		port.setConnectedPortal(port2);

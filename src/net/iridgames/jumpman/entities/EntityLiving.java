@@ -93,11 +93,25 @@ public class EntityLiving extends Entity {
 		this.facingLeft = false;
 	}
 
+	/** Adds velocity to the entity to move up */
+	public void moveUp() {
+		if (!isInAir) {
+			this.velocityY += moveSpeed / 2;
+		}
+	}
+
+	/** Adds velocity to the entity to move up */
+	public void moveUp(float amount) {
+		if (!isInAir) {
+			this.velocityY += amount;
+		}
+	}
+
 	/** Makes the entity jump */
 	public void jump() {
 		if (this.isInAir) { return; }
 		if (hasDoubleJump && doubleJump < 2) { return; }
-		this.velocityY -= jumpPower;
+		moveUp(-jumpPower);
 	}
 
 	/** Gets the speed at which the entity moves */

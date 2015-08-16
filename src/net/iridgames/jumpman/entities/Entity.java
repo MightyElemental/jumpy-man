@@ -89,7 +89,11 @@ public abstract class Entity {
 		if (!flag) {
 			collidingMaterial = null;
 		}
+
 		this.isInAir = !flag;
+		if (this.collidingMaterial.isFluid()) {
+			this.isInAir = false;
+		}
 	}
 
 	public void handleCollisionsAdvanced() {
