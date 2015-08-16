@@ -8,7 +8,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
-import net.minegeek360.jumpman.JumpMan;
+import net.iridgames.jumpman.JumpMan;
 
 public class GUIButton
 {
