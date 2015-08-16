@@ -6,6 +6,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.iridgames.jumpman.JumpMan;
+import net.iridgames.jumpman.MathHelp;
 import net.iridgames.jumpman.world.World;
 import net.iridgames.jumpman.world.objects.Material;
 import net.iridgames.jumpman.world.objects.ObjPortal;
@@ -23,18 +24,21 @@ public abstract class Entity {
 
 	protected boolean	facingLeft		= true;
 	protected boolean	isSolid			= true;
-	protected boolean	isInAir			= true;
+	protected boolean	isInAir			= false;
 	protected boolean	isInFluid		= false;
 	protected boolean	isDead			= false;
 	public ObjPortal	lastUsedPortal;
 	public boolean		hasTeleported	= false;
-	
+
+	public float terminalVelocity;
+
 	public Material entityMat = Material.matEntity;
 
 	protected float	ticksAlive;
 	protected float	velocityX, velocityY, posX, posY;
 
-	protected int width, height;
+	protected int	width	= 1;
+	protected int	height	= 1;
 
 	protected Image displayImage = JumpMan.NULL_IMAGE;
 
@@ -43,22 +47,22 @@ public abstract class Entity {
 	protected Material collidingMaterial;
 
 	public Entity( String name, int width, int height, World worldObj ) {
-		this.entityName = name;
+		this(name, worldObj);
 		this.width = width;
 		this.height = height;
-		this.worldObj = worldObj;
+		terminalVelocity = MathHelp.getTerminalVelocityAir(worldObj, this);
 	}
 
 	public Entity( String name, float posX, float posY, World worldObj ) {
-		this.entityName = name;
+		this(name, worldObj);
 		this.posX = posX;
 		this.posY = posY;
-		this.worldObj = worldObj;
 	}
 
 	public Entity( String name, World worldObj ) {
 		this.entityName = name;
 		this.worldObj = worldObj;
+		terminalVelocity = MathHelp.getTerminalVelocityAir(worldObj, this);
 	}
 
 	public Rectangle getBoundsLeft() {
@@ -94,9 +98,11 @@ public abstract class Entity {
 		}
 
 		this.isInAir = !flag;
-		if (this.collidingMaterial.isFluid()) {
-			this.isInFluid = true;
-			this.isInAir = false;
+		if (this.collidingMaterial != null) {
+			if (this.collidingMaterial.isFluid()) {
+				this.isInFluid = true;
+				this.isInAir = false;
+			}
 		}
 	}
 
@@ -141,9 +147,11 @@ public abstract class Entity {
 			collidingMaterial = null;
 		}
 		this.isInAir = !flag;
-		if (this.collidingMaterial.isFluid()) {
-			this.isInFluid = true;
-			this.isInAir = false;
+		if (this.collidingMaterial != null) {
+			if (this.collidingMaterial.isFluid()) {
+				this.isInFluid = true;
+				this.isInAir = false;
+			}
 		}
 	}
 
@@ -235,6 +243,7 @@ public abstract class Entity {
 	 *            the new width for the entity */
 	public void setWidth(int sizeX) {
 		this.width = sizeX;
+		terminalVelocity = MathHelp.getTerminalVelocityAir(worldObj, this);
 	}
 
 	/** The height of the entity */
@@ -248,6 +257,7 @@ public abstract class Entity {
 	 *            the new height for the entity */
 	public void setHeight(int sizeY) {
 		this.height = sizeY;
+		terminalVelocity = MathHelp.getTerminalVelocityAir(worldObj, this);
 	}
 
 	/** @return displayImage the entity's display image */

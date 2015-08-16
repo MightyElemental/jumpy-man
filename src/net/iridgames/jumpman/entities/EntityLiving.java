@@ -12,7 +12,8 @@ public class EntityLiving extends Entity {
 	}
 
 	protected float	moveSpeed	= 2;
-	protected float	jumpPower	= 10;
+	/** How many meters in the air */
+	protected float	jumpPower	= 1;
 
 	protected int	maxHealth	= 20;
 	protected int	health		= maxHealth;
@@ -28,11 +29,13 @@ public class EntityLiving extends Entity {
 		this.setPosX(this.getPosX() + (getVelocityX() * delta2));
 		this.setPosY(this.getPosY() + (getVelocityY() * delta2));
 		handleCollisionsAdvanced();
+		float temp = (float) ((worldObj.gravity / 200.0) * delta2); // GRAVITY IS MESSED UP!!!
+		System.out.println(temp);
 		if (isInAir) {
-			this.velocityY += worldObj.gravity/1000*delta;
+			this.velocityY += temp;
 		}
 		if (isInFluid) {
-			this.velocityY += (worldObj.gravity/4000)*delta;
+			this.velocityY += temp * 4 * delta2;
 		}
 		if (this.getCollidingMaterial() != null) {
 			if (this.getCollidingMaterial().isToxic()) {
@@ -66,6 +69,13 @@ public class EntityLiving extends Entity {
 
 		if (velocityX > -0.19 && velocityX < 0.19) {
 			velocityX = 0;
+		}
+
+		if (this.isInAir) {
+			System.out.println(this.terminalVelocity);
+			if (velocityY > this.terminalVelocity) {
+
+			}
 		}
 
 		// Y Velocity
