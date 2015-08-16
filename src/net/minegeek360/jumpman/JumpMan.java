@@ -3,8 +3,6 @@ package net.minegeek360.jumpman;
 import java.awt.Font;
 import java.io.InputStream;
 
-import javax.swing.JOptionPane;
-
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
