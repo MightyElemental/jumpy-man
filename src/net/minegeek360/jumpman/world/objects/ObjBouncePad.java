@@ -13,8 +13,9 @@ public class ObjBouncePad extends WorldObject {
 	public void onCollide(Entity entity, int edge) {
 		super.onCollide(entity);
 		if (edge == Entity.EDGE_BOTTOM) {
-			entity.setVelocityY(-entity.getVelocityY() / 1f);
-			System.out.println("asdf");
+			if(entity.getVelocityY() >= 9f){
+				entity.setVelocityY(-entity.getVelocityY() / 0.8f);
+			}
 		}
 
 	}
