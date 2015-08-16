@@ -93,18 +93,17 @@ public class JumpMan extends StateBasedGame {
 		}
 	};
 
-	public static void crashMessage(String message) {
-		JOptionPane.showMessageDialog(null, "Oops! A fatal error has occurred: \n" + message, JumpMan.GAME_NAME + " | Crash Report",
-				JOptionPane.ERROR_MESSAGE);
-		System.exit(0);
-	}
-
 	@Override
 	public synchronized void initStatesList(GameContainer gc) throws SlickException {
 		NULL_IMAGE = resLoader.loadImage("noImage");
 		if (NULL_IMAGE == null) {
 			gc.exit();
-			crashMessage("JumpMan.NULL_IMAGE is null!\nThis could cause a lot of issues, especially if the game is missing textures!");
+			try {
+				throw new GameBreakException(
+						"JumpMan.NULL_IMAGE is null!\nThis could cause a lot of issues, especially if the game is missing textures!");
+			} catch (GameBreakException e) {
+				e.printStackTrace();
+			}
 		}
 		try {
 			InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("assets/fonts/arial.ttf");
