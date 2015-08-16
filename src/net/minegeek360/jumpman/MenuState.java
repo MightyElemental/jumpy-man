@@ -1,7 +1,5 @@
 package net.minegeek360.jumpman;
 
-import java.util.Random;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -14,9 +12,7 @@ import net.wolfgangts.gui.Render3D;
 
 public class MenuState extends BasicGameState {
 
-	private final int ID;
-
-	private Random		random	= new Random();
+	private final int	ID;
 	private Render3D	Render3D;
 	private GUIRender	gui;
 
