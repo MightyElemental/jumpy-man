@@ -22,11 +22,14 @@ public abstract class Entity {
 	public static final int	EDGE_BOTTOM	= 3;
 
 	protected boolean	facingLeft		= true;
-	protected boolean	isSolid;
+	protected boolean	isSolid			= true;
 	protected boolean	isInAir			= true;
+	protected boolean	isInFluid		= false;
 	protected boolean	isDead			= false;
 	public ObjPortal	lastUsedPortal;
 	public boolean		hasTeleported	= false;
+	
+	public Material entityMat = Material.matEntity;
 
 	protected float	ticksAlive;
 	protected float	velocityX, velocityY, posX, posY;
@@ -92,6 +95,7 @@ public abstract class Entity {
 
 		this.isInAir = !flag;
 		if (this.collidingMaterial.isFluid()) {
+			this.isInFluid = true;
 			this.isInAir = false;
 		}
 	}
@@ -137,6 +141,10 @@ public abstract class Entity {
 			collidingMaterial = null;
 		}
 		this.isInAir = !flag;
+		if (this.collidingMaterial.isFluid()) {
+			this.isInFluid = true;
+			this.isInAir = false;
+		}
 	}
 
 	/** The name of the entity */

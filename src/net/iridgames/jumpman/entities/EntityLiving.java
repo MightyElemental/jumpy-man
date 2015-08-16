@@ -29,7 +29,10 @@ public class EntityLiving extends Entity {
 		this.setPosY(this.getPosY() + (getVelocityY() * delta2));
 		handleCollisionsAdvanced();
 		if (isInAir) {
-			this.velocityY += worldObj.gravity * delta2;
+			this.velocityY += worldObj.gravity/1000*delta;
+		}
+		if (isInFluid) {
+			this.velocityY += (worldObj.gravity/4000)*delta;
 		}
 		if (this.getCollidingMaterial() != null) {
 			if (this.getCollidingMaterial().isToxic()) {
