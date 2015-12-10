@@ -29,13 +29,13 @@ public class EntityLiving extends Entity {
 		this.setPosX(this.getPosX() + (getVelocityX() * delta2));
 		this.setPosY(this.getPosY() + (getVelocityY() * delta2));
 		handleCollisionsAdvanced();
-		float temp = (float) ((worldObj.gravity / 200.0) * delta2); // GRAVITY IS MESSED UP!!!
-		System.out.println(temp);
+		// float temp = (float) ((worldObj.gravity / 200.0) * delta2); // GRAVITY IS MESSED UP!!!
+		// System.out.println(temp);
 		if (isInAir) {
-			this.velocityY += temp;
+			this.velocityY += worldObj.gravity;
 		}
 		if (isInFluid) {
-			this.velocityY += temp * 4 * delta2;
+			this.velocityY += worldObj.gravity * 4;
 		}
 		if (this.getCollidingMaterial() != null) {
 			if (this.getCollidingMaterial().isToxic()) {
@@ -72,7 +72,7 @@ public class EntityLiving extends Entity {
 		}
 
 		if (this.isInAir) {
-			System.out.println(this.terminalVelocity);
+			// System.out.println(this.terminalVelocity);
 			if (velocityY > this.terminalVelocity) {
 
 			}

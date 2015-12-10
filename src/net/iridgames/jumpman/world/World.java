@@ -19,7 +19,7 @@ public class World {
 	public Random rand = new Random();
 
 	/** The velocity to be added every tick the entities are not on the ground */
-	public float gravity = 9.8f; // should be 9.8m/s/s (9.8m per second for every second in the air) //0.6 - old
+	public float gravity = 0.6f; // should be 9.8m/s/s (9.8m per second for every second in the air) //0.6 - old
 
 	public WorldMap currentMapLoaded;
 
