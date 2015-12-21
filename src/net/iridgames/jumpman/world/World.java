@@ -7,8 +7,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.iridgames.jumpman.entities.Entity;
-import net.iridgames.jumpman.entities.EntityPlayer;
 import net.iridgames.jumpman.entities.particles.EntityParticle;
+import net.iridgames.jumpman.entities.player.EntityPlayer;
 
 public class World {
 

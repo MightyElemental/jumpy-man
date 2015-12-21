@@ -35,7 +35,7 @@ public class EntityLiving extends Entity {
 			this.velocityY += worldObj.gravity;
 		}
 		if (isInFluid) {
-			this.velocityY += worldObj.gravity * 4;
+			this.velocityY += worldObj.gravity / 4;
 		}
 		if (this.getCollidingMaterial() != null) {
 			if (this.getCollidingMaterial().isToxic()) {

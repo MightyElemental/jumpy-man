@@ -1,9 +1,10 @@
-package net.iridgames.jumpman.entities;
+package net.iridgames.jumpman.entities.player;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
 
+import net.iridgames.jumpman.entities.EntityLiving;
 import net.iridgames.jumpman.entities.particles.ParticleStep;
 import net.iridgames.jumpman.world.World;
 
@@ -14,8 +15,8 @@ public class EntityPlayer extends EntityLiving {
 
 	public EntityPlayer( World worldObj ) {
 		super("Player", 35, 50, worldObj);
-		this.setHealth(10000);
-		this.maxHealth = 10000;
+		this.setHealth(1000);
+		this.maxHealth = 1000;
 		this.setDisplayImage("entity.player.player");
 		this.setMoveSpeed(5f);
 		this.setJumpPower(10);

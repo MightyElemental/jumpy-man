@@ -27,7 +27,9 @@ public class JumpMan extends StateBasedGame {
 
 	public static Image NULL_IMAGE;
 
-	public static final float[][]	commonRatios		= { { 16, 9 }, { 5, 4 }, { 4, 3 } };
+	public static final float[][]	commonRatios		= { { 16, 9 } };								// { { 16, 9 },
+																										// { 5, 4 }, {
+																										// 4, 3 } };
 	public static float[]			aspectRatio;
 	public static final int[][]		commonResolutions	= { { 1280, 1600, 1920, 2048 }, { 1280, 1024 },
 			{ 800, 1024, 1152, 1280, 1400, 1600 } };

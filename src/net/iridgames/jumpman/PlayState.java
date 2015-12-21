@@ -11,8 +11,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import net.iridgames.jumpman.entities.Entity;
-import net.iridgames.jumpman.entities.EntityPlayer;
 import net.iridgames.jumpman.entities.particles.EntityParticle;
+import net.iridgames.jumpman.entities.player.EntityPlayer;
 import net.iridgames.jumpman.world.World;
 import net.iridgames.jumpman.world.objects.ObjPortal;
 import net.iridgames.jumpman.world.objects.WorldObject;
