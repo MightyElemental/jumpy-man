@@ -1,6 +1,6 @@
 package net.iridgames.jumpman.entities.player;
 
-import org.newdawn.slick.tests.xml.Item;
+import net.iridgames.jumpman.items.Item;
 
 public class Inventory {
 
@@ -27,23 +27,19 @@ public class Inventory {
 		return false;
 	}
 
-	/**
-	 * @return the coins
-	 */
+	/** @return the coins */
 	public int getCoins() {
 		return coins;
 	}
 
-	/**
-	 * @param coins the coins to set
-	 */
+	/** @param coins
+	 *            the coins to set */
 	public void setCoins(int coins) {
 		this.coins = coins;
 	}
-	
-	/**
-	 * @param coins the coins to set
-	 */
+
+	/** @param coins
+	 *            the coins to set */
 	public void addCoins(int amount) {
 		this.coins += amount;
 	}
