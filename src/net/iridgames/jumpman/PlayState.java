@@ -49,6 +49,15 @@ public class PlayState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 
+		renderWorld(gc, sbg, g);
+		renderEntities(gc, sbg, g);
+		renderParticles(gc, sbg, g);
+
+		gui.render(gc, sbg, g);
+
+	}
+
+	public void renderWorld(GameContainer gc, StateBasedGame sbg, Graphics g) {
 		g.drawImage(world.currentMapLoaded.getBackground().getScaledCopy(gc.getWidth(), gc.getHeight()), 0, 0);
 
 		g.setColor(new Color(255, 255, 255, 1f));
@@ -61,7 +70,9 @@ public class PlayState extends BasicGameState {
 						worldObj.getY(), ((ObjPortal) worldObj).getPortalColor());
 			}
 		}
+	}
 
+	public void renderEntities(GameContainer gc, StateBasedGame sbg, Graphics g) {
 		for (Entity e : world.entities) {
 			if (e != null) {
 				g.drawImage(e.getDisplayImage().getScaledCopy(e.getWidth(), e.getHeight()).getFlippedCopy(!e.isFacingLeft(), false),
@@ -82,35 +93,40 @@ public class PlayState extends BasicGameState {
 				}
 			}
 		}
+	}
 
+	public void renderParticles(GameContainer gc, StateBasedGame sbg, Graphics g) {
 		for (EntityParticle part : world.particles) {
 			if (part != null) {
 				g.drawImage(part.getDisplayImage().getScaledCopy(part.getWidth(), part.getHeight()), part.getPosX(), part.getPosY(),
 						new Color(part.color.r, part.color.g, part.color.b, part.alpha));
 			}
 		}
-
-		gui.render(gc, sbg, g);
-
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		// Handle music;
+		updateMusic(gc, sbg, delta);
+
+		gui.update(gc, sbg, delta);
+		world.update(gc, sbg, delta);
+	}
+
+	public void updateMusic(GameContainer gc, StateBasedGame sbg, int delta) {
 		if (this.currentMusic == null) {
 			this.currentMusic = JumpMan.normalGameSong;
 		}
 
 		if (this.oldCurrentMusic != this.currentMusic) {
 			if (oldCurrentMusic != null) this.oldCurrentMusic.stop();
-			this.currentMusic.setVolume(0.5f);
-			this.currentMusic.loop(1f, 0.1f);
+			if (this.currentMusic != null) {
+				this.currentMusic.setVolume(0.5f);
+				this.currentMusic.loop(1f, 0.1f);
+			}
 		}
 
 		this.oldCurrentMusic = this.currentMusic;
-
-		gui.update(gc, sbg, delta);
-		world.update(gc, sbg, delta);
 	}
 
 	@Override

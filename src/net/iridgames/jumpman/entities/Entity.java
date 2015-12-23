@@ -155,6 +155,15 @@ public abstract class Entity {
 		}
 	}
 
+	public void restrictFallSpeed() {
+		if (this.velocityY >= 16) {
+			this.velocityY = 16f;
+		}
+		if (this.velocityY <= -16) {
+			this.velocityY = -16f;
+		}
+	}
+
 	/** The name of the entity */
 	public String getName() {
 		return entityName;
@@ -185,6 +194,7 @@ public abstract class Entity {
 				lastUsedPortal = null;
 			}
 		}
+		restrictFallSpeed();
 	}
 
 	public Rectangle getBasicBounds() {

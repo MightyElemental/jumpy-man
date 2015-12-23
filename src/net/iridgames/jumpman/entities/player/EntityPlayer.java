@@ -13,7 +13,7 @@ public class EntityPlayer extends EntityLiving {
 	public Inventory inventory = new Inventory();
 
 	int[]	playerCont		= { Input.KEY_D, Input.KEY_A, Input.KEY_W, Input.KEY_SPACE };
-	int[]	playerAltCont	= { Input.KEY_LEFT, Input.KEY_RIGHT, Input.KEY_Q, Input.KEY_E };
+	int[]	playerAltCont	= { Input.KEY_RIGHT, Input.KEY_LEFT, Input.KEY_Q, Input.KEY_E };
 
 	public EntityPlayer( World worldObj ) {
 		super("Player", 35, 50, worldObj);

@@ -53,7 +53,9 @@ public class MenuState extends BasicGameState {
 		gui.update(gc, sbg, delta);
 		if (sbg.getCurrentState().getID() != JumpMan.stateToChange) {
 			sbg.enterState(JumpMan.stateToChange);
-			JumpMan.mainMenuSong.loop();
+			if (JumpMan.mainMenuSong != null) {
+				JumpMan.mainMenuSong.loop();
+			}
 		}
 	}
 
