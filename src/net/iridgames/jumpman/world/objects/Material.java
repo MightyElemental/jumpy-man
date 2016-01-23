@@ -8,7 +8,8 @@ public class Material {
 
 	private Image displayImage = JumpMan.NULL_IMAGE;
 
-	private String matName = "";
+	private String	matName	= "";
+	private String	texLoc	= "noImage";
 
 	private boolean	isToxic	= false;
 	private boolean	isFluid	= false;
@@ -17,13 +18,14 @@ public class Material {
 
 	private Material( String name, String image ) {
 		this(name);
-		this.displayImage = JumpMan.resLoader.loadImage(image);
+		texLoc = image;
 	}
 
 	private Material( String name ) {
 		this.matName = name;
 	}
 
+	public static final Material	matNull			= new Material("Null", "noImage");
 	public static final Material	matIron			= new Material("Iron", "materials.iron");
 	public static final Material	matPortal		= new Material("Portal", "materials.portal");
 	public static final Material	matFluid		= new Material("Fluid", "materials.fluid").setFluid(true).setDensity(600);
@@ -63,6 +65,15 @@ public class Material {
 	public Material setDensity(float density) {
 		this.density = density;
 		return this;
+	}
+
+	/** @return the texLoc */
+	public String getTexLoc() {
+		return texLoc;
+	}
+
+	public void loadTexture() {
+		this.displayImage = JumpMan.resLoader.loadImage(texLoc);
 	}
 
 }

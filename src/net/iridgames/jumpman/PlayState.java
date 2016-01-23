@@ -1,5 +1,7 @@
 package net.iridgames.jumpman;
 
+import java.lang.reflect.Field;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -14,6 +16,7 @@ import net.iridgames.jumpman.entities.Entity;
 import net.iridgames.jumpman.entities.particles.EntityParticle;
 import net.iridgames.jumpman.entities.player.EntityPlayer;
 import net.iridgames.jumpman.world.World;
+import net.iridgames.jumpman.world.objects.Material;
 import net.iridgames.jumpman.world.objects.ObjPortal;
 import net.iridgames.jumpman.world.objects.WorldObject;
 import net.wolfgangts.gui.GUIRender;
@@ -30,11 +33,26 @@ public class PlayState extends BasicGameState {
 		this.ID = playState;
 	}
 
+	public void loadMaterialTextures() throws IllegalArgumentException, IllegalAccessException {
+		Field[] temp = Material.class.getDeclaredFields();
+		System.out.println("load");
+		for (Field f : temp) {
+			if (f.getType().equals(Material.class)) {
+				((Material) f.get("")).loadTexture();
+			}
+		}
+	}
+
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 
 		world = new World();
 		world.init(gc, sbg);
+		try {
+			loadMaterialTextures();
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
 
 		gui = new GUIRender();
 
