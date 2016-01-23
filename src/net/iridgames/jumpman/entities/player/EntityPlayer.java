@@ -1,5 +1,7 @@
 package net.iridgames.jumpman.entities.player;
 
+import java.lang.reflect.Field;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
@@ -7,6 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import net.iridgames.jumpman.entities.EntityLiving;
 import net.iridgames.jumpman.entities.particles.ParticleStep;
 import net.iridgames.jumpman.world.World;
+import net.iridgames.jumpman.world.objects.Material;
 
 public class EntityPlayer extends EntityLiving {
 
@@ -17,8 +20,8 @@ public class EntityPlayer extends EntityLiving {
 
 	public EntityPlayer( World worldObj ) {
 		super("Player", 35, 50, worldObj);
-		this.setHealth(1000);
-		this.maxHealth = 1000;
+		this.setHealth(10000);
+		this.maxHealth = 10000;
 		this.setDisplayImage("entity.player.player");
 		this.setMoveSpeed(5f);
 		this.setJumpPower(10);
@@ -28,12 +31,19 @@ public class EntityPlayer extends EntityLiving {
 	private boolean	canGoLeft	= true;
 
 	public void createParticle() {
-		if (!this.isInAir && worldObj.rand.nextInt(5) == 0)
+		if (this.isOnGround && worldObj.rand.nextInt(5) == 0)
 			worldObj.createParticle(new ParticleStep(this.getPosX() + this.width / 2, this.getPosY() + this.height - 3, worldObj));
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
+		this.setHealth(10000);
 		super.update(gc, sbg, delta);
+		Field[] temp = Material.class.getFields();
+		for (Field f : temp) {
+			if (f.getType().equals(Material.class)) {
+				System.out.println(f.getName());
+			}
+		}
 		Input input = gc.getInput();
 		if (input.isKeyDown(playerCont[0]) || input.isKeyDown(playerAltCont[0])) {
 			if (this.canGoRight) {

@@ -24,11 +24,11 @@ public class Material {
 		this.matName = name;
 	}
 
-	public static final Material	matIron		= new Material("Iron", "materials.iron");
-	public static final Material	matPortal	= new Material("Portal", "materials.portal");
-	public static final Material	matFluid	= new Material("Fluid", "materials.fluid").setFluid(true).setDensity(600);
-	public static final Material	matBouncy	= new Material("Bouncy", "materials.bouncy");
-	public static final Material	matEntity	= new Material("Entity").setDensity(1300);
+	public static final Material	matIron			= new Material("Iron", "materials.iron");
+	public static final Material	matPortal		= new Material("Portal", "materials.portal");
+	public static final Material	matFluid		= new Material("Fluid", "materials.fluid").setFluid(true).setDensity(600);
+	public static final Material	matGravityUp	= new Material("Gravity Up Field", "materials.gravUpField");
+	public static final Material	matEntity		= new Material("Entity").setDensity(1300);
 
 	public Image getTexture() {
 		return displayImage;

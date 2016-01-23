@@ -9,7 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import net.iridgames.jumpman.JumpMan;
 import net.iridgames.jumpman.world.objects.Material;
 import net.iridgames.jumpman.world.objects.ObjBlock;
-import net.iridgames.jumpman.world.objects.ObjBouncePad;
+import net.iridgames.jumpman.world.objects.ObjGravityReverse;
 import net.iridgames.jumpman.world.objects.ObjFluid;
 import net.iridgames.jumpman.world.objects.ObjPortal;
 import net.iridgames.jumpman.world.objects.WorldObject;
@@ -27,13 +27,15 @@ public class WorldMap {
 		// objects.add(new WorldBlock(800, 50, 10, 500, Material.matIron));
 		objects.add(new ObjBlock(-5, 50, 10, 500, Material.matIron).setSolid(true));
 		objects.add(new ObjBlock(0, gc.getHeight(), gc.getWidth(), 50, Material.matIron));
-		objects.add(new ObjFluid(0, gc.getHeight() - 50, gc.getWidth(), 50, Material.matFluid.setToxic(true)));//may cause issues
+		objects.add(new ObjFluid(0, gc.getHeight() - 50, gc.getWidth(), 50, Material.matFluid.setToxic(true)));// may
+																												// cause
+																												// issues
 		ObjPortal port = new ObjPortal(400, 420, ObjPortal.TYPE_BLUE, true, worldObj);
 		ObjPortal port2 = new ObjPortal(70, 420, ObjPortal.TYPE_ORANGE, true, worldObj, port);
 		port.setConnectedPortal(port2);
 		// objects.add(port);
 		// objects.add(port2);
-		objects.add(new ObjBouncePad(300, 475));
+		objects.add(new ObjGravityReverse(300, 415, 30, 70));
 		objects.add(new ObjBlock(330, 275, 10, 200, Material.matIron));
 	}
 

@@ -31,7 +31,7 @@ public class EntityLiving extends Entity {
 		handleCollisionsAdvanced();
 		// float temp = (float) ((worldObj.gravity / 200.0) * delta2); // GRAVITY IS MESSED UP!!!
 		// System.out.println(temp);
-		if (isInAir) {
+		if (!isOnGround) {
 			this.velocityY += worldObj.gravity;
 		}
 		if (isInFluid) {
@@ -50,7 +50,7 @@ public class EntityLiving extends Entity {
 	private void formatVelocity(World worldObj) {
 		float velShift = 10f;
 
-		if (!isInAir) {
+		if (isOnGround) {
 			if (velocityX >= moveSpeed) {
 				velocityX = moveSpeed;
 			} else if (velocityX <= -moveSpeed) {
@@ -67,18 +67,19 @@ public class EntityLiving extends Entity {
 			velocityX += moveSpeed / velShift;
 		}
 
+		// Remove odd movement
 		if (velocityX > -0.19 && velocityX < 0.19) {
 			velocityX = 0;
 		}
 
-		if (this.isInAir) {
+		if (!this.isOnGround) {
 			// System.out.println(this.terminalVelocity);
 			if (velocityY > this.terminalVelocity) {
 
 			}
 		}
 
-		// Y Velocity
+		// Remove odd movement
 		if (velocityY > -0.19 && velocityY < 0.19) {
 			velocityY = 0;
 		}
@@ -86,10 +87,11 @@ public class EntityLiving extends Entity {
 
 	/** Adds velocity to the entity to move left */
 	public void moveLeft() {
-		if (velocityX < -moveSpeed) { return; }
-		if (!isInAir) {
+		if (isOnGround) {
+			if (velocityX < -moveSpeed) { return; }
 			this.velocityX -= moveSpeed;
 		} else {
+			if (velocityX < -(moveSpeed * 0.2)) { return; }
 			this.velocityX -= moveSpeed / 20f;
 		}
 		this.facingLeft = true;
@@ -97,10 +99,11 @@ public class EntityLiving extends Entity {
 
 	/** Adds velocity to the entity to move right */
 	public void moveRight() {
-		if (velocityX > moveSpeed) { return; }
-		if (!isInAir) {
+		if (isOnGround) {
+			if (velocityX > moveSpeed) { return; }
 			this.velocityX += moveSpeed;
 		} else {
+			if (velocityX > moveSpeed * 0.2) { return; }
 			this.velocityX += moveSpeed / 20f;
 		}
 		this.facingLeft = false;
@@ -108,21 +111,21 @@ public class EntityLiving extends Entity {
 
 	/** Adds velocity to the entity to move up */
 	public void moveUp() {
-		if (!isInAir) {
+		if (isOnGround) {
 			this.velocityY += moveSpeed / 2;
 		}
 	}
 
 	/** Adds velocity to the entity to move up */
 	public void moveUp(float amount) {
-		if (!isInAir) {
+		if (isOnGround) {
 			this.velocityY += amount;
 		}
 	}
 
 	/** Makes the entity jump */
 	public void jump() {
-		if (this.isInAir) { return; }
+		if (!this.isOnGround) { return; }
 		if (hasDoubleJump && doubleJump < 2) { return; }
 		moveUp(-jumpPower);
 	}

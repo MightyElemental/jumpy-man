@@ -24,7 +24,7 @@ public abstract class Entity {
 
 	protected boolean	facingLeft		= true;
 	protected boolean	isSolid			= true;
-	protected boolean	isInAir			= false;
+	protected boolean	isOnGround		= false;
 	protected boolean	isInFluid		= false;
 	protected boolean	isDead			= false;
 	public ObjPortal	lastUsedPortal;
@@ -97,11 +97,11 @@ public abstract class Entity {
 			collidingMaterial = null;
 		}
 
-		this.isInAir = !flag;
+		this.isOnGround = flag;
 		if (this.collidingMaterial != null) {
 			if (this.collidingMaterial.isFluid()) {
 				this.isInFluid = true;
-				this.isInAir = false;
+				this.isOnGround = true;
 			}
 		}
 	}
@@ -146,11 +146,11 @@ public abstract class Entity {
 		if (!flag) {
 			collidingMaterial = null;
 		}
-		this.isInAir = !flag;
+		this.isOnGround = flag;
 		if (this.collidingMaterial != null) {
 			if (this.collidingMaterial.isFluid()) {
 				this.isInFluid = true;
-				this.isInAir = false;
+				this.isOnGround = true;
 			}
 		}
 	}
@@ -224,6 +224,14 @@ public abstract class Entity {
 
 	public void setVelocityY(float velocityY) {
 		this.velocityY = velocityY;
+	}
+
+	public void addForceY(float forceY) {
+		this.velocityY += forceY;
+	}
+
+	public void addForceX(float forceX) {
+		this.velocityX += forceX;
 	}
 
 	public float getPosX() {
