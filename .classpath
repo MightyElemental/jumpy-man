@@ -15,5 +15,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/jars/jogg-0.0.7.jar"/>
 	<classpathentry kind="lib" path="lib/jars/jorbis-0.0.15.jar"/>
+	<classpathentry kind="lib" path="lib/jars/gson-2.3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

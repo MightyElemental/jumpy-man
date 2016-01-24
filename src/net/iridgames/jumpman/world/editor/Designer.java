@@ -10,10 +10,22 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import com.google.gson.Gson;
 
 import net.iridgames.jumpman.world.objects.Material;
 import net.iridgames.jumpman.world.objects.ObjBlock;
@@ -105,7 +117,7 @@ public class Designer extends JPanel implements MouseListener, MouseMotionListen
 			}
 			if (editor.checkboxShowNumbers.getState()) {
 				g.setColor(grayTransBlock.darker());
-				g.fillRect(x, y - (int) (13 * camZoom), (int) (10 * camZoom), (int) (11 * camZoom));
+				g.fillRect(x, y - 13, 10, 11);
 				g.setColor(Color.WHITE);
 				g.drawString(i + "", x + (int) (2 * sizeRatio), y - (int) (4 * sizeRatio));
 			}
@@ -117,6 +129,9 @@ public class Designer extends JPanel implements MouseListener, MouseMotionListen
 		public void run() {
 			while (true) {
 				repaint();
+				if (editor.list.getSelectedIndex() != -1) {
+					displayProperties(editor.list.getSelectedIndex());
+				}
 				try {
 					sleep(100);
 				} catch (InterruptedException e) {
@@ -171,6 +186,7 @@ public class Designer extends JPanel implements MouseListener, MouseMotionListen
 		buttonPressed = e.getButton();
 		tempX = e.getX();
 		tempY = e.getY();
+		boolean flag = true;
 		if (e.getButton() == MouseEvent.BUTTON1) {
 			for (int i = 0; i < objects.size(); i++) {
 				WorldObject wo = objects.get(i);
@@ -182,16 +198,29 @@ public class Designer extends JPanel implements MouseListener, MouseMotionListen
 
 				if (rect.contains(e.getX(), e.getY())) {
 					editor.list.select(i);
+					flag = false;
 					return;
 				}
 			}
+		}
+		if (flag) {
+			editor.list.select(-1);
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		buttonPressed = 0;
-		reloadObjects();
+		// if (e.getButton() == 1) {
+		// reloadObjects();
+		// }
+	}
+
+	public void displayProperties(int object) {
+		editor.spinnerHeight.setValue((int) objects.get(object).getHeight());
+		editor.spinnerWidth.setValue((int) objects.get(object).getWidth());
+		editor.spinnerXpos.setValue((int) objects.get(object).getX());
+		editor.spinnerYpos.setValue((int) objects.get(object).getY());
 	}
 
 	public void reloadObjects() {
@@ -205,13 +234,72 @@ public class Designer extends JPanel implements MouseListener, MouseMotionListen
 		}
 	}
 
+	public void setXOfCurrentObject(float x) {
+		if (editor.list.getSelectedIndex() == -1) { return; }
+		objects.get(editor.list.getSelectedIndex()).setX(x);
+	}
+
+	public void setYOfCurrentObject(float y) {
+		if (editor.list.getSelectedIndex() == -1) { return; }
+		objects.get(editor.list.getSelectedIndex()).setY(y);
+	}
+
+	public void setWidthOfCurrentObject(float width) {
+		if (editor.list.getSelectedIndex() == -1) { return; }
+		objects.get(editor.list.getSelectedIndex()).setWidth(width);
+	}
+
+	public void setHeightOfCurrentObject(float height) {
+		if (editor.list.getSelectedIndex() == -1) { return; }
+		objects.get(editor.list.getSelectedIndex()).setHeight(height);
+	}
+
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		camZoom += e.getWheelRotation() * -0.01f;
 	}
 
-	public void save() {
+	JFileChooser fileChooser = new JFileChooser();
 
+	public void save() throws FileNotFoundException, UnsupportedEncodingException {
+		String a = new Gson().toJson(objects);
+		System.out.println(a);
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		fileChooser.showSaveDialog(editor);
+		File chosenFile = fileChooser.getSelectedFile();
+		if (!chosenFile.getName().endsWith(".jmmap")) {
+			chosenFile = new File(chosenFile.toString() + ".jmmap");
+		}
+		PrintWriter writer = new PrintWriter(chosenFile, "UTF-8");
+		writer.println(a);
+		writer.close();
+	}
+
+	public void load() throws IOException {
+		fileChooser.showOpenDialog(editor);
+		File chosenFile = fileChooser.getSelectedFile();
+		if (!chosenFile.exists()) {
+			JOptionPane.showMessageDialog(editor, "That file does not exist!");
+			return;
+		}
+		if (!chosenFile.getName().endsWith(".jmmap")) {
+			JOptionPane.showMessageDialog(editor, "Wrong file type!");
+			return;
+		}
+		BufferedReader reader = new BufferedReader(new FileReader(chosenFile));
+		String a = reader.readLine();
+		reader.close();
+		List<WorldObject> b = stringToArray(a, WorldObject[].class);
+		objects.clear();
+		for (int i = 0; i < b.size(); i++) {
+			WorldObject c = b.get(i);
+			objects.add(c);
+		}
+	}
+
+	public static <T> List<T> stringToArray(String s, Class<T[]> clazz) {
+		T[] arr = new Gson().fromJson(s, clazz);
+		return Arrays.asList(arr); // or return Arrays.asList(new Gson().fromJson(s, clazz)); for a one-liner
 	}
 
 }
