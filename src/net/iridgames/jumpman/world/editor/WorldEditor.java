@@ -6,9 +6,7 @@ import java.awt.Label;
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,11 +25,12 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import net.iridgames.jumpman.world.objects.Material;
 import net.iridgames.jumpman.world.objects.WorldObject;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
+import javax.swing.JButton;
 
 @SuppressWarnings( "serial" )
 public class WorldEditor extends JFrame {
@@ -111,7 +110,7 @@ public class WorldEditor extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					desPanel.save();
-				} catch (FileNotFoundException | UnsupportedEncodingException e1) {
+				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -124,7 +123,7 @@ public class WorldEditor extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					desPanel.load();
-				} catch (IOException e) {
+				} catch (IOException | ClassNotFoundException e) {
 					e.printStackTrace();
 				}
 			}
@@ -300,5 +299,14 @@ public class WorldEditor extends JFrame {
 		panel_1.add(textField);
 		textField.setColumns(10);
 
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				desPanel.deleteCurrentObj();
+			}
+		});
+		btnDelete.setBounds(160, 119, 101, 31);
+		panel_1.add(btnDelete);
 	}
 }

@@ -10,13 +10,12 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,6 +23,7 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.google.gson.Gson;
 
@@ -261,22 +261,29 @@ public class Designer extends JPanel implements MouseListener, MouseMotionListen
 
 	JFileChooser fileChooser = new JFileChooser();
 
-	public void save() throws FileNotFoundException, UnsupportedEncodingException {
+	public void save() throws IOException {
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Jump Man Map File", "jmmap");
+		fileChooser.setFileFilter(filter);
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		int result = fileChooser.showSaveDialog(editor);
+		if (result == JFileChooser.CANCEL_OPTION) { return; }
 		String a = new Gson().toJson(objects);
 		System.out.println(a);
-		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		fileChooser.showSaveDialog(editor);
 		File chosenFile = fileChooser.getSelectedFile();
 		if (!chosenFile.getName().endsWith(".jmmap")) {
 			chosenFile = new File(chosenFile.toString() + ".jmmap");
 		}
-		PrintWriter writer = new PrintWriter(chosenFile, "UTF-8");
-		writer.println(a);
-		writer.close();
+		FileOutputStream fiout = new FileOutputStream(chosenFile);
+		ObjectOutputStream oout = new ObjectOutputStream(fiout);
+		oout.writeObject(a);
+		oout.close();
 	}
 
-	public void load() throws IOException {
-		fileChooser.showOpenDialog(editor);
+	public void load() throws IOException, ClassNotFoundException {
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Jump Man Map File", "jmmap");
+		fileChooser.setFileFilter(filter);
+		int result = fileChooser.showOpenDialog(editor);
+		if (result == JFileChooser.CANCEL_OPTION) { return; }
 		File chosenFile = fileChooser.getSelectedFile();
 		if (!chosenFile.exists()) {
 			JOptionPane.showMessageDialog(editor, "That file does not exist!");
@@ -286,20 +293,34 @@ public class Designer extends JPanel implements MouseListener, MouseMotionListen
 			JOptionPane.showMessageDialog(editor, "Wrong file type!");
 			return;
 		}
-		BufferedReader reader = new BufferedReader(new FileReader(chosenFile));
-		String a = reader.readLine();
-		reader.close();
-		List<WorldObject> b = stringToArray(a, WorldObject[].class);
-		objects.clear();
-		for (int i = 0; i < b.size(); i++) {
-			WorldObject c = b.get(i);
-			objects.add(c);
+		try {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(chosenFile));
+			String a = (String) ois.readObject();
+			ois.close();
+			List<WorldObject> b = stringToArray(a, WorldObject[].class);
+			objects.clear();
+			for (int i = 0; i < b.size(); i++) {
+				WorldObject c = b.get(i);
+				objects.add(c);
+			}
+		} catch (Exception e) {
+			System.err.println("File could not be loaded!");
 		}
+		this.reloadObjects();
 	}
 
 	public static <T> List<T> stringToArray(String s, Class<T[]> clazz) {
 		T[] arr = new Gson().fromJson(s, clazz);
 		return Arrays.asList(arr); // or return Arrays.asList(new Gson().fromJson(s, clazz)); for a one-liner
+	}
+
+	public void deleteCurrentObj() {
+		if (editor.list.getSelectedIndex() == -1) {
+			JOptionPane.showMessageDialog(editor, "No Object Has Been Selected!", "No Object", JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		objects.remove(editor.list.getSelectedIndex());
+		this.reloadObjects();
 	}
 
 }
