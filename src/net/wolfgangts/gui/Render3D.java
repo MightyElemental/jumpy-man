@@ -3,12 +3,15 @@ package net.wolfgangts.gui;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.lwjgl.opengl.GL20;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * @author WolfgangTS
+ * @author James - size and colour
+ * */
 public class Render3D
 {
 	private ArrayList<float[]>	objects			= new ArrayList<float[]>();
@@ -36,8 +39,9 @@ public class Render3D
 
 			if (z > 0 && z < this.renderDistance)
 			{
-				g.setColor(new Color(255,255,255,255));
-				g.fillRect(x/z*fov + gc.getWidth()/2, y/z*fov + gc.getHeight()/2, 1, 1);
+				g.setColor(new Color(100f/z,100f/z,100f/z,1f)); // Color is now based on distance
+				//g.fillRect(x/z*fov + gc.getWidth()/2, y/z*fov + gc.getHeight()/2, 1, 1);
+				g.fillOval(x/z*fov + gc.getWidth()/2, y/z*fov + gc.getHeight()/2, 4/z*fov, 4/z*fov); // Size is now based on distance
 			}
 		}
 	}
