@@ -83,8 +83,8 @@ public class JumpMan extends StateBasedGame {
 	private Thread loadThread = new Thread() {
 
 		public void run() {
-			// mainMenuSong = resLoader.loadMusic("MainMenu");
-			// normalGameSong = resLoader.loadMusic("NormalGame");
+			mainMenuSong = resLoader.loadMusic("MainMenu");
+			normalGameSong = resLoader.loadMusic("NormalGame");
 			fullLoaded = true;
 			try {
 				loadThread.join();
