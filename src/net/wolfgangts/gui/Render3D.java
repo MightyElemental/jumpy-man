@@ -19,7 +19,8 @@ public class Render3D
 	private float				fov				= 250;
 	private float				renderDistance	= 5000;
 
-	private Random random = new Random();
+	private Random random 		= new Random();
+	private String copyright 	= "\u00a92014 MightyElemental\nMenu and starfield by WolfgangTS";
 
 	public Render3D()
 	{
@@ -44,6 +45,7 @@ public class Render3D
 				g.fillOval(x/z*fov + gc.getWidth()/2, y/z*fov + gc.getHeight()/2, 4/z*fov, 4/z*fov); // Size is now based on distance
 			}
 		}
+		g.drawString(copyright, 10, gc.getHeight()-10-g.getFont().getHeight(copyright));
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
